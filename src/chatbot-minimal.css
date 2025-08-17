@@ -1,0 +1,273 @@
+/* Chatbot CSS - Completamente Responsive usando Tailwind CSS */
+
+/* Auto-resize del textarea */
+#user-input.auto-resize {
+    height: auto !important;
+}
+
+/* Estados de conexión específicos */
+.connection-status.online {
+    background: rgb(168 85 247 / 0.3);
+    color: rgb(221 214 254);
+    border-color: rgb(168 85 247 / 0.5);
+}
+
+.connection-status.offline {
+    background: rgb(239 68 68 / 0.3);
+    color: rgb(254 202 202);
+    border-color: rgb(239 68 68 / 0.5);
+}
+
+/* Animaciones específicas del chat */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animación bounce (faltaba si no se compila Tailwind completo) */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); animation-timing-function: cubic-bezier(0.8,0,1,1); }
+    50% { transform: translateY(-6px); animation-timing-function: cubic-bezier(0,0,0.2,1); }
+}
+
+.animate-bounce {
+    animation: bounce 1s infinite;
+}
+
+/* Variante accesible: si usuario reduce movimiento, eliminar rebote */
+@media (prefers-reduced-motion: reduce) {
+    .animate-bounce { animation: none !important; }
+}
+
+/* Indicador de escritura personalizado */
+.typing-dots {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    height: 1rem;
+}
+
+.typing-dot {
+    width: 0.45rem;
+    height: 0.45rem;
+    background: rgb(168 85 247);
+    border-radius: 9999px;
+    opacity: 0.6;
+    animation: typingBlink 1s infinite ease-in-out;
+    box-shadow: 0 0 4px rgba(168,85,247,0.7), 0 0 8px rgba(168,85,247,0.4);
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingBlink {
+    0%, 80%, 100% { transform: translateY(0); opacity: 0.5; }
+    40% { transform: translateY(-6px); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .typing-dot { animation: none; opacity: 0.8; }
+}
+
+.message-fade-in {
+    animation: fadeInUp 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Avatar del asistente con brillo reducido */
+.chat-avatar {
+    /* Tamaño base aumentado 50% (w-8=>32px -> 48px) */
+    width: 3rem; /* 48px */
+    height: 3rem;
+    /* Mantener halo suave */
+    box-shadow: 0 0 4px rgba(168,85,247,0.22), 0 0 10px rgba(168,85,247,0.15) !important;
+    border: 2px solid rgba(26, 1, 48, 0.35) !important;
+    transition: box-shadow .3s ease, transform .3s ease;
+    /* Imagen más brillante y un poco más saturada */
+    filter: brightness(1.7) saturate(1.5) contrast(1.1);
+}
+
+/* Burbuja de usuario más oscura */
+.user-bubble-dark {
+    /* Lado derecho ahora más oscuro manteniendo transición suave */
+    background: linear-gradient(135deg, #150a2b 0%, #241046 50%, #1a0f33 100%) !important;
+    filter: brightness(.93) saturate(.95) contrast(.98);
+    box-shadow: 0 0 6px -1px rgba(50,25,95,0.55), 0 2px 10px -2px rgba(0,0,0,0.6);
+}
+
+@media (prefers-contrast: high) {
+    .user-bubble-dark { filter: none; }
+}
+
+
+/* Hover opcional (si quieres un ligero aumento) */
+.chat-avatar:hover {
+    box-shadow: 0 0 6px rgba(168,85,247,0.30), 0 0 12px rgba(168,85,247,0.22) !important;
+}
+
+/* Tamaño responsive (antes sm:w-10=40px -> +50% = 60px) */
+@media (min-width: 640px) {
+    .chat-avatar {
+        width: 3.75rem; /* 60px */
+        height: 3.75rem;
+    }
+}
+
+/* Scrollbar personalizado para todos los navegadores */
+.chat-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(147 51 234) rgb(55 65 81);
+}
+
+/* Webkit scrollbar (Chrome, Safari, Edge) */
+.chat-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-scroll::-webkit-scrollbar-track {
+    background: rgb(55 65 81 / 0.5);
+    border-radius: 3px;
+}
+
+.chat-scroll::-webkit-scrollbar-thumb {
+    background: rgb(147 51 234);
+    border-radius: 3px;
+    transition: background 0.3s ease;
+}
+
+.chat-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgb(139 92 246);
+}
+
+/* Breakpoints responsive mejorados */
+
+/* Extra Small devices (phones, 320px and up) */
+@media (max-width: 480px) {
+    .chat-main {
+        width: 100vw !important;
+        height: 100vh !important;
+        height: 100dvh !important; /* Dynamic viewport height para móviles */
+        border-radius: 0 !important;
+        border: none !important;
+        max-width: none !important;
+        max-height: none !important;
+        margin: 0 !important;
+    }
+    
+    /* Ajustar padding del contenedor padre */
+    .chat-main + * {
+        padding: 0 !important;
+    }
+    
+    /* Aumentar tamaño de fuente (≈33%) en mensajes y área de escritura */
+    #user-input {
+        font-size: 1.17rem !important; /* ~18.7px (antes ~14px-16px) */
+        line-height: 1.45 !important;
+    }
+    /* Mensajes (usuario y bot) */
+    #chat-log p {
+        font-size: 1.17rem !important;
+        line-height: 1.5 !important;
+    }
+}
+
+/* También aplicar hasta 640px para cubrir rango sm:hidden base */
+@media (min-width: 481px) and (max-width: 640px) {
+    #user-input { font-size: 1.17rem !important; line-height: 1.45 !important; }
+    #chat-log p { font-size: 1.17rem !important; line-height: 1.5 !important; }
+}
+
+/* Small devices (landscape phones, 481px and up) */
+@media (min-width: 481px) and (max-width: 640px) {
+    .chat-main {
+        width: calc(100vw - 1rem) !important;
+        height: calc(100vh - 1rem) !important;
+        max-height: calc(100vh - 1rem) !important;
+        border-radius: 0.75rem !important;
+    }
+}
+
+/* Medium devices (tablets, 641px and up) */
+@media (min-width: 641px) and (max-width: 768px) {
+    .chat-main {
+        width: calc(100vw - 2rem) !important;
+        height: min(650px, calc(100vh - 2rem)) !important;
+        max-height: calc(100vh - 2rem) !important;
+    }
+}
+
+/* Large devices (desktops, 769px and up) */
+@media (min-width: 769px) {
+    .chat-main {
+        width: 100%;
+        height: 700px;
+        max-height: 90vh;
+    }
+}
+
+/* Landscape orientation adjustments */
+@media (orientation: landscape) and (max-height: 600px) {
+    .chat-main {
+        height: 100vh !important;
+        max-height: 100vh !important;
+    }
+    
+    .chat-header {
+        padding-top: 0.75rem !important;
+        padding-bottom: 0.75rem !important;
+        min-height: 60px !important;
+    }
+    
+    .chat-input-area {
+        padding-top: 0.75rem !important;
+        padding-bottom: 0.75rem !important;
+    }
+}
+
+/* Reducir animaciones para accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .message-fade-in {
+        animation: none !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .chat-main {
+        border-width: 2px !important;
+        border-color: rgb(147 51 234) !important;
+    }
+    
+    .connection-status.online {
+        background: rgb(34 197 94) !important;
+        color: rgb(255 255 255) !important;
+        border-color: rgb(34 197 94) !important;
+    }
+}
+
+/* Print styles */
+@media print {
+    .chat-main {
+        width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
+        border: 1px solid #000 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+    }
+    
+    .chat-input-area {
+        display: none !important;
+    }
+}

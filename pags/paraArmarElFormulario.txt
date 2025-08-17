@@ -1,0 +1,15 @@
+📋 Método definitivo para obtener los IDs correctos:
+Paso 1: Accede al formulario en modo edición
+Ve a: https://docs.google.com/forms/d/1FAIpQLSedo9Tr3XCRazr4FYynZNYY0oXggC14ZOZ6sOW-YG2PsjKqfg/edit
+
+Paso 2: Obtener enlace rellenado previamente
+En cada campo del formulario, haz clic en los tres puntos verticales (⋮)
+Selecciona "Obtener enlace rellenado previamente"
+Llena cada campo con texto de prueba:
+Nombre completo: "Test Nombre"
+Correo electrónico: "test@email.com"
+Mensaje: "Test Mensaje"
+Haz clic en "Obtener enlace"
+Copia el enlace generado
+Paso 3: Extraer los IDs
+En el enlace copiado, busca los parámetros que empiecen con entry. seguido de números.

@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../src/output.css" rel="stylesheet">
+    <script src="../src/main.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Galería de Temas Violetas</title>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen pb-20 lg:pb-0">
+    <!-- Menú superior unificado -->
+    <div class="nav-container hidden md:flex justify-center gap-y-8">
+        <nav class="bg-gray-900/80 backdrop-blur-sm border-b border-gray-700 shadow-2xl w-full">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
+                <div class="flex justify-between h-16 w-full">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 px-1.5 flex">
+                            <a href="../index.html" class="flex items-center group pl-4">
+                                <div class="h-10 w-10 bg-gradient-to-br from-purple-500 to-violet-600 rounded-lg flex items-center justify-center border border-purple-400/30">
+                                    <span class="text-white font-bold text-sm">AL</span>
+                                </div>
+                                <span class="ml-3 text-white font-bold text-xl tracking-wide">AstraLumina</span>
+                            </a>
+                        </div>
+                        <div class="hidden md:ml-10 md:flex md:items-center md:space-x-5 gap-x-5 pr-2">
+                            <a href="../index.html" class="text-gray-300 hover:text-white hover:bg-gray-700/50 px-4 py-2 rounded-lg text-sm font-medium">Inicio</a>
+                            <a href="consultas.html" class="text-gray-300 hover:text-white hover:bg-gray-700/50 px-4 py-2 rounded-lg text-sm font-medium">Consultas</a>
+                            <a href="cursos.html" class="text-gray-300 hover:text-white hover:bg-gray-700/50 px-4 py-2 rounded-lg text-sm font-medium">Cursos</a>
+                            <a href="contacto.html" class="text-gray-300 hover:text-white hover:bg-gray-700/50 px-4 py-2 rounded-lg text-sm font-medium">Contacto</a>
+                            <a href="acerca-de.html" class="text-gray-300 hover:text-white hover:bg-gray-700/50 px-4 py-2 rounded-lg text-sm font-medium">Acerca de</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center md:hidden">
+                        <button id="mobile-menu-button" class="p-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700/50">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden md:hidden" id="mobile-menu">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <a href="../index.html" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">Inicio</a>
+                    <a href="consultas.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Consultas</a>
+                    <a href="cursos.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Cursos</a>
+                    <a href="contacto.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contacto</a>
+                    <a href="acerca-de.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Acerca de</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 py-8">
+        <!-- Introducción -->
+        <section class="mb-12 text-center">
+            <h2 class="text-4xl font-bold text-primary-900 mb-4">Explora Diferentes Temas</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Descubre cómo nuestros colores violetas personalizados se adaptan a diferentes estilos y casos de uso.
+                Cada tema muestra una aplicación práctica de la paleta de colores.
+            </p>
+        </section>
+
+        <!-- Comparación de Colores -->
+        <section class="mb-12 bg-white rounded-2xl shadow-xl p-8">
+            <h3 class="text-2xl font-bold text-primary-800 mb-6 text-center">Comparación de Paletas</h3>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Primary -->
+                <div class="text-center">
+                    <h4 class="text-xl font-semibold text-primary-800 mb-4">Primary (315°)</h4>
+                    <p class="text-sm text-gray-600 mb-4">Basado en #9b0bdf</p>
+                    <div class="grid grid-cols-5 gap-1 mb-3">
+                        <div class="aspect-square bg-primary-200 rounded"></div>
+                        <div class="aspect-square bg-primary-400 rounded"></div>
+                        <div class="aspect-square bg-primary-500 rounded"></div>
+                        <div class="aspect-square bg-primary-600 rounded"></div>
+                        <div class="aspect-square bg-primary-800 rounded"></div>
+                    </div>
+                    <span class="inline-block bg-primary-100 text-primary-800 text-xs font-semibold px-3 py-1 rounded-full">
+                        MAGENTA VIBRANTE
+                    </span>
+                </div>
+                
+                <!-- Violet -->
+                <div class="text-center">
+                    <h4 class="text-xl font-semibold text-violet-800 mb-4">Violet (260°)</h4>
+                    <p class="text-sm text-gray-600 mb-4">Índigo profundo</p>
+                    <div class="grid grid-cols-5 gap-1 mb-3">
+                        <div class="aspect-square bg-violet-200 rounded"></div>
+                        <div class="aspect-square bg-violet-400 rounded"></div>
+                        <div class="aspect-square bg-violet-500 rounded"></div>
+                        <div class="aspect-square bg-violet-600 rounded"></div>
+                        <div class="aspect-square bg-violet-800 rounded"></div>
+                    </div>
+                    <span class="inline-block bg-violet-100 text-violet-800 text-xs font-semibold px-3 py-1 rounded-full">
+                        ÍNDIGO AZULADO
+                    </span>
+                </div>
+                
+                <!-- Purple -->
+                <div class="text-center">
+                    <h4 class="text-xl font-semibold text-purple-800 mb-4">Purple (295°)</h4>
+                    <p class="text-sm text-gray-600 mb-4">Violeta equilibrado</p>
+                    <div class="grid grid-cols-5 gap-1 mb-3">
+                        <div class="aspect-square bg-purple-200 rounded"></div>
+                        <div class="aspect-square bg-purple-400 rounded"></div>
+                        <div class="aspect-square bg-purple-500 rounded"></div>
+                        <div class="aspect-square bg-purple-600 rounded"></div>
+                        <div class="aspect-square bg-purple-800 rounded"></div>
+                    </div>
+                    <span class="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">
+                        VIOLETA CLÁSICO
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nombres y Descripciones de Colores -->
+        <section class="mb-12 bg-white rounded-2xl shadow-xl p-8">
+            <h3 class="text-2xl font-bold text-primary-800 mb-6 text-center">Nomenclatura de Colores</h3>
+            
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Primary Colors -->
+                <div>
+                    <h4 class="text-lg font-semibold text-primary-800 mb-4 flex items-center">
+                        <div class="w-4 h-4 bg-primary-500 rounded mr-2"></div>
+                        Primary (Magenta Vibrante)
+                    </h4>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between items-center p-2 bg-primary-50 rounded">
+                            <span class="font-mono text-primary-800">primary-50</span>
+                            <span class="text-primary-700">Muy claro</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-primary-100 rounded">
+                            <span class="font-mono text-primary-800">primary-100</span>
+                            <span class="text-primary-700">Claro</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-primary-200 rounded">
+                            <span class="font-mono text-primary-800">primary-200</span>
+                            <span class="text-primary-700">Suave</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-primary-300 rounded">
+                            <span class="font-mono text-white">primary-300</span>
+                            <span class="text-white">Medio claro</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-primary-400 rounded">
+                            <span class="font-mono text-white">primary-400</span>
+                            <span class="text-white">Medio</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-primary-500 rounded border-2 border-primary-600">
+                            <span class="font-mono text-white font-bold">primary-500</span>
+                            <span class="text-white font-semibold">Base (#9b0bdf)</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-primary-600 rounded">
+                            <span class="font-mono text-white">primary-600</span>
+                            <span class="text-white">Intenso</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-primary-700 rounded">
+                            <span class="font-mono text-white">primary-700</span>
+                            <span class="text-white">Oscuro</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-primary-800 rounded">
+                            <span class="font-mono text-white">primary-800</span>
+                            <span class="text-white">Muy oscuro</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-primary-900 rounded">
+                            <span class="font-mono text-white">primary-900</span>
+                            <span class="text-white">Profundo</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-primary-950 rounded">
+                            <span class="font-mono text-white">primary-950</span>
+                            <span class="text-white">Máximo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Violet Colors -->
+                <div>
+                    <h4 class="text-lg font-semibold text-violet-800 mb-4 flex items-center">
+                        <div class="w-4 h-4 bg-violet-500 rounded mr-2"></div>
+                        Violet (Índigo Azulado)
+                    </h4>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between items-center p-2 bg-violet-50 rounded">
+                            <span class="font-mono text-violet-800">violet-50</span>
+                            <span class="text-violet-700">Muy claro</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-violet-100 rounded">
+                            <span class="font-mono text-violet-800">violet-100</span>
+                            <span class="text-violet-700">Claro</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-violet-200 rounded">
+                            <span class="font-mono text-violet-800">violet-200</span>
+                            <span class="text-violet-700">Suave</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-violet-300 rounded">
+                            <span class="font-mono text-white">violet-300</span>
+                            <span class="text-white">Medio claro</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-violet-400 rounded">
+                            <span class="font-mono text-white">violet-400</span>
+                            <span class="text-white">Medio</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-violet-500 rounded border-2 border-violet-600">
+                            <span class="font-mono text-white font-bold">violet-500</span>
+                            <span class="text-white font-semibold">Base</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-violet-600 rounded">
+                            <span class="font-mono text-white">violet-600</span>
+                            <span class="text-white">Intenso</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-violet-700 rounded">
+                            <span class="font-mono text-white">violet-700</span>
+                            <span class="text-white">Oscuro</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-violet-800 rounded">
+                            <span class="font-mono text-white">violet-800</span>
+                            <span class="text-white">Muy oscuro</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-violet-900 rounded">
+                            <span class="font-mono text-white">violet-900</span>
+                            <span class="text-white">Profundo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Purple Colors -->
+                <div>
+                    <h4 class="text-lg font-semibold text-purple-800 mb-4 flex items-center">
+                        <div class="w-4 h-4 bg-purple-500 rounded mr-2"></div>
+                        Purple (Violeta Clásico)
+                    </h4>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between items-center p-2 bg-purple-50 rounded">
+                            <span class="font-mono text-purple-800">purple-50</span>
+                            <span class="text-purple-700">Muy claro</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-purple-100 rounded">
+                            <span class="font-mono text-purple-800">purple-100</span>
+                            <span class="text-purple-700">Claro</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-purple-200 rounded">
+                            <span class="font-mono text-purple-800">purple-200</span>
+                            <span class="text-purple-700">Suave</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-purple-300 rounded">
+                            <span class="font-mono text-white">purple-300</span>
+                            <span class="text-white">Medio claro</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-purple-400 rounded">
+                            <span class="font-mono text-white">purple-400</span>
+                            <span class="text-white">Medio</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-purple-500 rounded border-2 border-purple-600">
+                            <span class="font-mono text-white font-bold">purple-500</span>
+                            <span class="text-white font-semibold">Base</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-purple-600 rounded">
+                            <span class="font-mono text-white">purple-600</span>
+                            <span class="text-white">Intenso</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-purple-700 rounded">
+                            <span class="font-mono text-white">purple-700</span>
+                            <span class="text-white">Oscuro</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-purple-800 rounded">
+                            <span class="font-mono text-white">purple-800</span>
+                            <span class="text-white">Muy oscuro</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-purple-900 rounded">
+                            <span class="font-mono text-white">purple-900</span>
+                            <span class="text-white">Profundo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Guía de uso -->
+            <div class="mt-8 p-6 bg-gray-50 rounded-xl">
+                <h5 class="text-lg font-semibold text-gray-800 mb-3">💡 Guía de Uso</h5>
+                <div class="grid md:grid-cols-2 gap-4 text-sm text-gray-600">
+                    <div>
+                        <p class="font-medium mb-2">Para Fondos:</p>
+                        <ul class="space-y-1">
+                            <li>• <code class="bg-gray-200 px-1 rounded">50-100</code> - Fondos muy suaves</li>
+                            <li>• <code class="bg-gray-200 px-1 rounded">200-300</code> - Fondos destacados</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-medium mb-2">Para Texto:</p>
+                        <ul class="space-y-1">
+                            <li>• <code class="bg-gray-200 px-1 rounded">700-900</code> - Texto principal</li>
+                            <li>• <code class="bg-gray-200 px-1 rounded">500-600</code> - Texto secundario</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grid de Temas -->
+        <div class="grid lg:grid-cols-2 gap-8 mb-12">
+            
+            <!-- Tema Corporativo -->
+            <section class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                <div class="bg-gradient-to-r from-primary-600 to-primary-700 p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Tema Corporativo</h3>
+                    <p class="text-primary-100">Elegante y profesional para aplicaciones empresariales</p>
+                </div>
+                <div class="p-6 space-y-4">
+                    <!-- Header corporativo -->
+                    <div class="bg-primary-50 border-l-4 border-primary-500 p-4 rounded">
+                        <h4 class="text-primary-800 font-semibold">Panel de Control</h4>
+                        <p class="text-primary-600 text-sm">Dashboard ejecutivo</p>
+                    </div>
+                    
+                    <!-- Botones -->
+                    <div class="flex space-x-3">
+                        <button class="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                            Crear Reporte
+                        </button>
+                        <button class="border-2 border-primary-600 text-primary-600 hover:bg-primary-50 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                            Ver Datos
+                        </button>
+                    </div>
+                    
+                    <!-- Cards -->
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="bg-primary-50 p-3 rounded-lg">
+                            <div class="text-2xl font-bold text-primary-800">$47,892</div>
+                            <div class="text-primary-600 text-xs">Ingresos</div>
+                        </div>
+                        <div class="bg-primary-50 p-3 rounded-lg">
+                            <div class="text-2xl font-bold text-primary-800">1,248</div>
+                            <div class="text-primary-600 text-xs">Usuarios</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tema Creativo -->
+            <section class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                <div class="bg-gradient-to-r from-violet-500 to-purple-600 p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Tema Creativo</h3>
+                    <p class="text-violet-100">Vibrante y moderno para portfolios y diseño</p>
+                </div>
+                <div class="p-6 space-y-4">
+                    <!-- Header creativo -->
+                    <div class="bg-gradient-to-r from-violet-100 to-purple-100 p-4 rounded-lg">
+                        <h4 class="text-violet-800 font-bold">Portfolio Creativo</h4>
+                        <p class="text-purple-600 text-sm">Diseño & Arte</p>
+                    </div>
+                    
+                    <!-- Botones creativos -->
+                    <div class="flex space-x-3">
+                        <button class="bg-violet-500 hover:bg-violet-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-all transform hover:scale-105">
+                            ✨ Crear
+                        </button>
+                        <button class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-all transform hover:scale-105">
+                            🎨 Editar
+                        </button>
+                    </div>
+                    
+                    <!-- Cards creativos -->
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="bg-gradient-to-br from-violet-400 to-violet-500 p-3 rounded-xl text-white">
+                            <div class="text-lg font-bold">25</div>
+                            <div class="text-violet-100 text-xs">Proyectos</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-purple-400 to-purple-500 p-3 rounded-xl text-white">
+                            <div class="text-lg font-bold">8.5k</div>
+                            <div class="text-purple-100 text-xs">Vistas</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tema E-commerce -->
+            <section class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                <div class="bg-gradient-to-r from-primary-500 to-violet-600 p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Tema E-commerce</h3>
+                    <p class="text-primary-100">Atractivo y confiable para tiendas online</p>
+                </div>
+                <div class="p-6 space-y-4">
+                    <!-- Producto -->
+                    <div class="border border-primary-200 rounded-lg p-4">
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <h4 class="text-primary-800 font-semibold">Auriculares Premium</h4>
+                                <p class="text-primary-600 text-sm">Audio de alta calidad</p>
+                            </div>
+                            <span class="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-1 rounded-full">Nuevo</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-primary-800">$299</span>
+                            <button class="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                                Agregar al Carrito
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Rating -->
+                    <div class="flex items-center space-x-2">
+                        <div class="flex text-violet-400">
+                            ★★★★★
+                        </div>
+                        <span class="text-primary-600 text-sm">4.8 (124 reseñas)</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tema Dashboard -->
+            <section class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                <div class="bg-gradient-to-r from-purple-600 to-primary-700 p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Tema Dashboard</h3>
+                    <p class="text-purple-100">Funcional y claro para analíticas</p>
+                </div>
+                <div class="p-6 space-y-4">
+                    <!-- Métricas -->
+                    <div class="grid grid-cols-3 gap-2">
+                        <div class="text-center p-2 bg-primary-50 rounded">
+                            <div class="text-lg font-bold text-primary-800">94%</div>
+                            <div class="text-primary-600 text-xs">Uptime</div>
+                        </div>
+                        <div class="text-center p-2 bg-violet-50 rounded">
+                            <div class="text-lg font-bold text-violet-800">2.4k</div>
+                            <div class="text-violet-600 text-xs">Visitas</div>
+                        </div>
+                        <div class="text-center p-2 bg-purple-50 rounded">
+                            <div class="text-lg font-bold text-purple-800">18ms</div>
+                            <div class="text-purple-600 text-xs">Latencia</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Gráfico simulado -->
+                    <div class="h-20 bg-gray-50 rounded-lg flex items-end justify-center space-x-1 p-2">
+                        <div class="w-3 bg-primary-300 rounded-t" style="height: 40%"></div>
+                        <div class="w-3 bg-primary-400 rounded-t" style="height: 70%"></div>
+                        <div class="w-3 bg-primary-500 rounded-t" style="height: 90%"></div>
+                        <div class="w-3 bg-primary-600 rounded-t" style="height: 60%"></div>
+                        <div class="w-3 bg-primary-500 rounded-t" style="height: 80%"></div>
+                    </div>
+                    
+                    <!-- Status -->
+                    <div class="flex items-center justify-between">
+                        <span class="flex items-center space-x-2">
+                            <div class="w-3 h-3 bg-green-400 rounded-full"></div>
+                            <span class="text-sm text-gray-600">Sistema operativo</span>
+                        </span>
+                        <button class="text-primary-600 hover:text-primary-800 text-sm font-medium">
+                            Ver más →
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Sección de Componentes -->
+        <section class="bg-white rounded-2xl shadow-xl p-8 mb-12">
+            <h3 class="text-2xl font-bold text-primary-800 mb-6 text-center">Componentes de UI</h3>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Botones -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold text-gray-800">Botones</h4>
+                    <div class="space-y-3">
+                        <button class="w-full bg-primary-600 hover:bg-primary-700 text-white py-3 px-6 rounded-lg font-medium transition-colors">
+                            Primario
+                        </button>
+                        <button class="w-full border-2 border-primary-600 text-primary-600 hover:bg-primary-50 py-3 px-6 rounded-lg font-medium transition-colors">
+                            Secundario
+                        </button>
+                        <button class="w-full bg-violet-500 hover:bg-violet-600 text-white py-3 px-6 rounded-lg font-medium transition-colors">
+                            Violet
+                        </button>
+                        <button class="w-full bg-gray-100 text-gray-700 hover:bg-gray-200 py-3 px-6 rounded-lg font-medium transition-colors">
+                            Neutral
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Badges y Tags -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold text-gray-800">Badges & Tags</h4>
+                    <div class="space-y-3">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-sm font-medium">Nuevo</span>
+                            <span class="bg-violet-100 text-violet-800 px-3 py-1 rounded-full text-sm font-medium">Popular</span>
+                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Premium</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-primary-600 text-white px-3 py-1 rounded-lg text-sm font-medium">Activo</span>
+                            <span class="bg-violet-500 text-white px-3 py-1 rounded-lg text-sm font-medium">En línea</span>
+                            <span class="bg-purple-500 text-white px-3 py-1 rounded-lg text-sm font-medium">VIP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alertas -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold text-gray-800">Alertas</h4>
+                    <div class="space-y-3">
+                        <div class="bg-primary-50 border-l-4 border-primary-500 p-3 rounded">
+                            <p class="text-primary-800 text-sm font-medium">Información importante</p>
+                        </div>
+                        <div class="bg-violet-50 border border-violet-200 p-3 rounded-lg">
+                            <p class="text-violet-800 text-sm font-medium">Notificación especial</p>
+                        </div>
+                        <div class="bg-green-50 border-l-4 border-green-500 p-3 rounded">
+                            <p class="text-green-800 text-sm font-medium">Operación exitosa</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Paleta de Colores Rápida -->
+        <section class="bg-white rounded-2xl shadow-xl p-8">
+            <h3 class="text-2xl font-bold text-primary-800 mb-6 text-center">Paleta de Colores Rápida</h3>
+            
+            <div class="grid grid-cols-3 gap-6">
+                <!-- Primary -->
+                <div class="text-center">
+                    <h4 class="text-lg font-semibold text-primary-800 mb-3">Primary (Magenta)</h4>
+                    <div class="flex space-x-1 mb-2">
+                        <div class="w-8 h-8 bg-primary-200 rounded"></div>
+                        <div class="w-8 h-8 bg-primary-400 rounded"></div>
+                        <div class="w-8 h-8 bg-primary-600 rounded"></div>
+                        <div class="w-8 h-8 bg-primary-800 rounded"></div>
+                    </div>
+                    <span class="inline-block bg-primary-100 text-primary-800 text-xs font-medium px-2 py-1 rounded">
+                        VIBRANTE
+                    </span>
+                </div>
+                
+                <!-- Violet -->
+                <div class="text-center">
+                    <h4 class="text-lg font-semibold text-violet-800 mb-3">Violet (Índigo)</h4>
+                    <div class="flex space-x-1 mb-2">
+                        <div class="w-8 h-8 bg-violet-200 rounded"></div>
+                        <div class="w-8 h-8 bg-violet-400 rounded"></div>
+                        <div class="w-8 h-8 bg-violet-600 rounded"></div>
+                        <div class="w-8 h-8 bg-violet-800 rounded"></div>
+                    </div>
+                    <span class="inline-block bg-violet-100 text-violet-800 text-xs font-medium px-2 py-1 rounded">
+                        AZULADO
+                    </span>
+                </div>
+                
+                <!-- Purple -->
+                <div class="text-center">
+                    <h4 class="text-lg font-semibold text-purple-800 mb-3">Purple (Equilibrado)</h4>
+                    <div class="flex space-x-1 mb-2">
+                        <div class="w-8 h-8 bg-purple-200 rounded"></div>
+                        <div class="w-8 h-8 bg-purple-400 rounded"></div>
+                        <div class="w-8 h-8 bg-purple-600 rounded"></div>
+                        <div class="w-8 h-8 bg-purple-800 rounded"></div>
+                    </div>
+                    <span class="inline-block bg-purple-100 text-purple-800 text-xs font-medium px-2 py-1 rounded">
+                        CLÁSICO
+                    </span>
+                </div>
+                    <div class="flex space-x-1">
+                        <div class="w-8 h-8 bg-purple-200 rounded"></div>
+                        <div class="w-8 h-8 bg-purple-400 rounded"></div>
+                        <div class="w-8 h-8 bg-purple-600 rounded"></div>
+                        <div class="w-8 h-8 bg-purple-800 rounded"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Sección Síguenos -->
+    <section class="py-6 sm:py-8 px-4 bg-gray-800/30 backdrop-blur-sm">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="flex space-x-4 sm:space-x-6 justify-center">
+                <a href="#" class="group flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gray-700/50 hover:bg-purple-600/30 rounded-full border border-gray-600 hover:border-purple-400/50 transition-all duration-300">
+                    <i class="fab fa-facebook text-lg sm:text-xl text-gray-400 group-hover:text-purple-300 transition-colors duration-300"></i>
+                </a>
+                <a href="#" class="group flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gray-700/50 hover:bg-purple-600/30 rounded-full border border-gray-600 hover:border-purple-400/50 transition-all duration-300">
+                    <i class="fab fa-instagram text-lg sm:text-xl text-gray-400 group-hover:text-purple-300 transition-colors duration-300"></i>
+                </a>
+                <a href="#" class="group flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gray-700/50 hover:bg-purple-600/30 rounded-full border border-gray-600 hover:border-purple-400/50 transition-all duration-300">
+                    <i class="fab fa-twitter text-lg sm:text-xl text-gray-400 group-hover:text-purple-300 transition-colors duration-300"></i>
+                </a>
+                <a href="#" class="group flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gray-700/50 hover:bg-purple-600/30 rounded-full border border-gray-600 hover:border-purple-400/50 transition-all duration-300">
+                    <i class="fab fa-youtube text-lg sm:text-xl text-gray-400 group-hover:text-purple-300 transition-colors duration-300"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="menu-inferior md:hidden fixed bottom-0 left-0 right-0 z-40 pt-2 sm:pt-4 justify-center justify-items-center bg-gray-900/95 backdrop-blur-sm border-t border-gray-700">
+        <div class="menu-inferior-container flex w-full max-w-[600px] justify-around bg-gray-800/50 backdrop-blur-sm px-2 sm:px-4 pb-2 pt-2 rounded-t-2xl border border-gray-600 mx-4">
+            <a href="../index.html" class="flex flex-col items-center group">
+                <div class="p-3 rounded-xl bg-gray-400/10 group-hover:bg-gray-400/20 transition-colors">
+                    <i class="fa-regular fa-house text-2xl text-gray-400 group-hover:text-gray-300 transition-colors"></i>
+                </div>
+                <span class="text-xs font-medium text-gray-300 mt-1">Home</span>
+            </a>
+            <a href="consultas.html" class="flex flex-col items-center group">
+                <div class="p-3 rounded-xl bg-gray-400/10 group-hover:bg-gray-400/20 transition-colors">
+                    <i class="fa-solid fa-comments text-2xl text-gray-400 group-hover:text-gray-300 transition-colors"></i>
+                </div>
+                <span class="text-xs font-medium text-gray-300 mt-1">Consultas</span>
+            </a>
+            <a href="cursos.html" class="flex flex-col items-center group">
+                <div class="p-3 rounded-xl bg-gray-400/10 group-hover:bg-gray-400/20 transition-colors">
+                    <i class="fa-solid fa-book text-2xl text-gray-400 group-hover:text-gray-300 transition-colors"></i>
+                </div>
+                <span class="text-xs font-medium text-gray-300 mt-1">Cursos</span>
+            </a>
+            <a href="contacto.html" class="flex flex-col items-center group">
+                <div class="p-3 rounded-xl bg-gray-400/10 group-hover:bg-gray-400/20 transition-colors">
+                    <i class="fa-solid fa-phone-flip text-2xl text-gray-400 group-hover:text-gray-300 transition-colors"></i>
+                </div>
+                <span class="text-xs font-medium text-gray-300 mt-1">Contacto</span>
+            </a>
+            <a href="acerca-de.html" class="flex flex-col items-center group">
+                <div class="p-3 rounded-xl bg-gray-400/10 group-hover:bg-gray-400/20 transition-colors">
+                    <i class="fa-regular fa-user text-2xl text-gray-400 group-hover:text-gray-300 transition-colors"></i>
+                </div>
+                <span class="text-xs font-medium text-gray-300 mt-1">Acerca de</span>
+            </a> 
+        </div>
+    </section>
+    
+    <!-- WhatsApp Flotante -->
+    <div class="fixed right-2 sm:right-4 bottom-24 lg:bottom-4 z-50">
+      <a href="https://wa.me/5491154106096?text=Hola,%20me%20interesa%20obtener%20más%20información" 
+         target="_blank"
+         class="group inline-flex items-center bg-green-600/20 hover:bg-green-600/30 
+                border border-green-500/30 hover:border-green-400/50 
+                rounded-xl px-1 py-1 transition-all duration-300 transform 
+                 hover:shadow-2xl hover:shadow-green-600/05">
+        <!-- Icono WhatsApp -->
+        <div class="bg-green-500 rounded-full p-2 group-hover:bg-green-400 transition-colors duration-300">
+          <svg class="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12.017 2c-5.527 0-9.998 4.471-9.998 9.998 0 1.764.459 3.423 1.265 4.859L2 22l5.233-1.237c1.4.739 2.992 1.152 4.767 1.152 5.527 0 9.998-4.471 9.998-9.998S17.544 2 12.017 2zm5.951 14.5c-.252.706-1.26 1.306-2.018 1.471-.758.165-1.39.147-4.748-1.11-2.89-1.08-4.758-3.946-4.9-4.13-.141-.183-1.156-1.537-1.156-2.932 0-1.395.731-2.077 1.02-2.36.29-.282.632-.353.843-.353.211 0 .422.001.606.011.194.011.454-.073.708.539.252.612.864 2.11.94 2.26.076.151.127.327.025.528-.101.2-.151.327-.302.502-.151.176-.318.392-.453.527-.151.151-.308.314-.133.615.176.302.783 1.295 1.681 2.097 1.155.03 2.085 1.437 3.134 1.437.303 0 .966-.127 1.282-.302.317-.176.504-.28.705-.438.2-.159.453-.127.604.075.151.201.63.705.63 1.658 0 .378-.075.706-.226.959z"/>
+          </svg>
+        </div>
+      </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-4 sm:py-6 border-t border-gray-800">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <p class="text-xs sm:text-sm">© 2025 AstraLumina. Todos los derechos reservados.</p>
+            <p class="text-xs mt-1 sm:mt-2">Desarrollado por ©TheBaltoTeam</p>
+        </div>
+    </footer>
+</body>
+</html>

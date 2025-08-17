@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-tablet: 800px;
+  --breakpoint-3xl: 1920px;
+  /* Paleta Primary basada en #9b0bdf (315° hue) */
+  --color-primary-50: oklch(0.97 0.02 315);
+  --color-primary-100: oklch(0.94 0.04 315);
+  --color-primary-200: oklch(0.89 0.08 315);
+  --color-primary-300: oklch(0.81 0.15 315);
+  --color-primary-400: oklch(0.71 0.22 315);
+  --color-primary-500: oklch(0.61 0.25 315); /* Base #9b0bdf */
+  --color-primary-600: oklch(0.54 0.27 315);
+  --color-primary-700: oklch(0.46 0.25 315);
+  --color-primary-800: oklch(0.39 0.23 315);
+  --color-primary-900: oklch(0.32 0.20 315);
+  --color-primary-950: oklch(0.25 0.15 315);
+
+  /* Paleta Violet redefinida basada en #9b0bdf (260° hue) */
+  /* --color-violet-50: oklch(0.97 0.02 260);
+  --color-violet-100: oklch(0.94 0.04 260);
+  --color-violet-200: oklch(0.89 0.08 260);
+  --color-violet-300: oklch(0.81 0.15 260);
+  --color-violet-400: oklch(0.71 0.22 260);
+  --color-violet-500: oklch(0.61 0.25 260);
+  --color-violet-600: oklch(0.54 0.27 260);
+  --color-violet-700: oklch(0.46 0.25 260);
+  --color-violet-800: oklch(0.39 0.23 260);
+  --color-violet-900: oklch(59.017% 0.24113 330.465); */
+  /* Paleta Violet remapeada -> usar la paleta Magenta para consistencia visual */
+  --color-violet-50: var(--color-magenta-50);
+  --color-violet-100: var(--color-magenta-100);
+  --color-violet-200: var(--color-magenta-200);
+  --color-violet-300: var(--color-magenta-300);
+  --color-violet-400: var(--color-magenta-400);
+  --color-violet-500: var(--color-magenta-500);
+  --color-violet-600: var(--color-magenta-600);
+  --color-violet-700: var(--color-magenta-700);
+  --color-violet-800: var(--color-magenta-800);
+  --color-violet-900: var(--color-magenta-900);
+
+
+  /* Paleta Purple remapeada -> usar la paleta Magenta para consistencia visual */
+  --color-purple-50: var(--color-magenta-50);
+  --color-purple-100: var(--color-magenta-100);
+  --color-purple-200: var(--color-magenta-200);
+  --color-purple-300: var(--color-magenta-300);
+  --color-purple-400: var(--color-magenta-400);
+  --color-purple-500: var(--color-magenta-500);
+  --color-purple-600: var(--color-magenta-600);
+  --color-purple-700: var(--color-magenta-700);
+  --color-purple-800: var(--color-magenta-800);
+  --color-purple-900: var(--color-magenta-900);
+
+  /* Nueva Paleta Magenta basada en oklch(59.017% 0.24113 330.465) */
+  --color-magenta-50: oklch(0.97 0.03 330);
+  --color-magenta-100: oklch(0.95 0.06 330);
+  --color-magenta-200: oklch(0.90 0.12 330);
+  --color-magenta-300: oklch(0.83 0.18 330);
+  --color-magenta-400: oklch(0.73 0.22 330);
+  --color-magenta-500: oklch(0.59017 0.24113 330.465); /* Color base proporcionado */
+  --color-magenta-600: oklch(0.52 0.26 330);
+  --color-magenta-700: oklch(0.44 0.24 330);
+  --color-magenta-800: oklch(0.37 0.22 330);
+  --color-magenta-900: oklch(0.30 0.18 330);
+  --color-magenta-950: oklch(0.23 0.14 330);
+
+  /* Variaciones complementarias de Magenta */
+  --color-magenta-light: oklch(0.75 0.20 330);
+  --color-magenta-bright: oklch(0.65 0.28 330);
+  --color-magenta-deep: oklch(0.45 0.26 330);
+  --color-magenta-dark: oklch(0.35 0.20 330);
+
+  /* Paleta Magenta para temas específicos */
+  --color-magenta-soft: oklch(0.82 0.15 330);      /* Magenta suave */
+  --color-magenta-vivid: oklch(0.60 0.30 330);     /* Magenta vibrante */
+  --color-magenta-muted: oklch(0.55 0.18 330);     /* Magenta apagado */
+  --color-magenta-electric: oklch(0.70 0.32 330);  /* Magenta eléctrico */
+  
+  /* Gradaciones tonales de Magenta */
+  --color-magenta-pink: oklch(0.75 0.22 340);      /* Magenta rosado */
+  --color-magenta-purple: oklch(0.58 0.24 320);    /* Magenta violáceo */
+  --color-magenta-coral: oklch(0.68 0.26 345);     /* Magenta coral */
+
+/* dark */
+    --dark-primary-color: oklch(0.62 0.25 264);
+    --dark-secondary-color: oklch(0.65 0.23 293);
+    --dark-background-dark: oklch(0.22 0.01 265);
+    --dark-background-medium: oklch(0.27 0.01 265);
+    --dark-background-light: oklch(0.34 0.01 265);
+    --dark-text-primary: oklch(0.91 0.00 0);
+    --dark-text-secondary: oklch(0.67 0.01 247);
+    --dark-border-color: oklch(0.34 0.01 265);
+    --dark-success-color: oklch(0.70 0.13 162);
+    --dark-error-color: oklch(0.63 0.18 25);
+    --dark-warning-color: oklch(0.75 0.11 85);
+}
+

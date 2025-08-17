@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="src/main.js" defer></script>
+    <title>AstraLumina</title>
+</head>
+<body class="min-h-screen bg-gray-900 pb-20 lg:pb-0" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
+    <!-- hace los puntos en el fondo -->
+    <div class="fixed inset-0 opacity-10">
+        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0); background-size: 40px 40px;"></div>
+    </div>
+    <!-- Menú superior - Solo visible en desktop -->
+  <div class="nav-container hidden md:flex justify-center gap-y-8">
+    <nav class="bg-gray-900/80 backdrop-blur-sm border-b border-gray-700 shadow-2xl">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
+                <div class="flex justify-between h-16">
+                    <!-- Logo y Navegación Principal -->
+                    <div class="flex items-center">
+                        <!-- Logo-->
+                        <div class="flex-shrink-0 px-1.5 flex">
+                            <a href="#" class="flex items-center group pl-4">
+                                <div class="h-10 w-10 bg-gradient-to-br from-purple-500 to-violet-600 rounded-lg flex 
+                                items-center justify-center shadow-lg group-hover:shadow-xl 
+                                transition-all duration-300 border border-purple-400/30">
+                                    <span class="text-white font-bold text-sm">AL</span>
+                                </div>
+                                <span class="ml-3 text-white font-bold text-xl tracking-wide
+                                 group-hover:text-purple-300 transition-colors duration-300">AstraLumina</span>
+                            </a>
+                        </div>
+            <div class="hidden md:ml-10 md:flex md:items-center md:space-x-5 gap-x-5 pr-2">
+              <a href="#" class="text-white bg-gradient-to-r from-purple-600 to-violet-600 px-4 py-2 rounded-lg text-sm font-medium shadow-sm border border-purple-400/30">Inicio</a>
+              <a href="pags/consultas.html" class="text-gray-300 hover:text-white hover:bg-gray-700/50 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">Consultas</a>
+              <a href="pags/cursos.html" class="text-gray-300 hover:text-white hover:bg-gray-700/50 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">Cursos</a>
+              <a href="pags/contacto.html" class="text-gray-300 hover:text-white hover:bg-gray-700/50 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">Contacto</a>
+              <a href="pags/acerca-de.html" class="text-gray-300 hover:text-white hover:bg-gray-700/50 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">Acerca de</a>
+            </div>
+                    </div>
+
+                    <!-- Acciones y Menú Mobile -->
+                    <div class="flex items-center">
+                        <!-- Botón Menú Mobile -->
+                        <div class="md:hidden">
+                            <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                                <span class="sr-only">Abrir menú principal</span>
+                                <!-- Icono de menú (hamburguesa) -->
+                                <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                                </svg>
+                                <!-- Icono de cierre (X) -->
+                                <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menú Mobile -->
+            <div class="hidden md:hidden" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">Inicio</a>
+          <a href="pags/consultas.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Consultas</a>
+          <a href="pags/cursos.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Cursos</a>
+          <a href="pags/contacto.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contacto</a>
+          <a href="pags/acerca-de.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Acerca de</a>
+        </div>
+            </div>
+      </nav>
+    </div> 
+    <!-- Contenido Principal -->
+    <main class="max-w-4xl flex flex-col items-center mx-auto py-4 sm:py-6 lg:py-8 px-4 sm:px-6 lg:px-8 pt-6 lg:pt-8">
+      <!-- Imagen Principal Section -->
+      <section class="imagen-principal relative mb-8 sm:mb-12 w-full">
+        <div class="relative w-full max-w-md sm:max-w-lg lg:max-w-xl mx-auto aspect-square flex items-center overflow-hidden rounded-lg shadow-lg">
+            <img src="./images/LogoAstraConCirculo.png" alt="Imagen Principal" class="w-full h-full object-cover rounded-lg shadow-lg">
+        </div>
+      </section>
+
+      <!-- Navegación a secciones principales -->
+      <section class="mb-8 sm:mb-12 w-full">
+        <div class="text-center mb-10">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+            Donde La Magia Sucede.
+          </h2>
+          <p class="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto">
+            Explora nuestros servicios especializados en crecimiento personal y despertar espiritual.
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          <!-- Acerca de -->
+          <div class="group bg-gradient-to-br from-purple-900/40 via-gray-800/60 to-purple-800/40 
+          backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-purple-400/30 shadow-xl hover:shadow-2xl 
+          ">
+            <div class="text-center">
+              <div class="w-20 h-20 bg-purple-500/20 rounded-full flex items-center justify-center 
+              mx-auto mb-6 group-hover:scale-105 transition-transform duration-300">
+                <i class="fas fa-user-circle text-3xl text-purple-300"></i>
+              </div>
+              <h3 class="text-2xl font-bold text-white mb-4">Conoce a Liliana</h3>
+              <p class="text-gray-300 mb-6 leading-relaxed">
+                Te invito a encontrar tu equilibrio. Descubre mi metodología y 
+                mi filosofía como terapeuta holística.
+                <!-- Descubre la experiencia, metodología y filosofía de una maestra holistica certificada -->
+              </p>
+              <a href="./pags/acerca-de.html" class="inline-block w-full bg-gradient-to-r from-purple-600 to-violet-600 
+              hover:from-purple-700 hover:to-violet-700 text-white font-semibold py-3 px-6 rounded-xl 
+              transition-all duration-300 transform group-hover:scale-105">
+                Ver Perfil.
+              </a>
+            </div>
+          </div>
+          
+          <!-- Cursos -->
+          <div class="group bg-gradient-to-br from-indigo-900/40 via-gray-800/60 
+          to-indigo-800/40 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-indigo-400/30 
+          shadow-xl hover:shadow-2xl transition-all duration-500">
+            <div class="text-center">
+              <div class="w-20 h-20 bg-indigo-500/20 rounded-full flex items-center 
+              justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300">
+                <i class="fas fa-graduation-cap text-3xl text-indigo-300"></i>
+              </div>
+              <h3 class="text-2xl font-bold text-white mb-4">Cursos Online</h3>
+              <p class="text-gray-300 mb-6 leading-relaxed">
+                Programas de formación integral en tarot, Lectura de borra de café y desarrollo espiritual.
+              </p>
+              <a href="./pags/cursos.html" class="inline-block w-full bg-gradient-to-r 
+              from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 
+              text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 
+              transform group-hover:scale-105">
+                Explorar Cursos
+              </a>
+            </div>
+          </div>
+          
+          <!-- Consultas -->
+          <div class="group bg-gradient-to-br from-emerald-900/40 via-gray-800/60
+           to-emerald-800/40 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-emerald-400/30 
+           shadow-xl hover:shadow-2xl transition-all duration-500">
+            <div class="text-center">
+              <div class="w-20 h-20 bg-emerald-500/20 rounded-full flex items-center justify-center 
+              mx-auto mb-6 group-hover:scale-105 transition-transform duration-300">
+                <i class="fas fa-hands-helping text-3xl text-emerald-300"></i>
+              </div>
+              <h3 class="text-2xl font-bold text-white mb-4">Consultas</h3>
+              <p class="text-gray-300 mb-6 leading-relaxed">
+                Sesiones personalizadas de tarot, numerología y coaching para el desarrollo.
+              </p>
+              <a href="./pags/consultas.html" class="inline-block w-full bg-gradient-to-r 
+              from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700
+               text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform
+                group-hover:scale-105">
+                Agendar Consulta
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Sección testimonios breve -->
+      <section class="testimonios mb-8 sm:mb-12 w-full">
+        <div class="text-center mb-8">
+          <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">Lo que dicen nuestros clientes</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50">
+            <div class="flex mb-4">
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+            </div>
+            <p class="text-gray-300 mb-4 italic">
+              "Liliana me ayudó a encontrar mi propósito de vida. Su enfoque integral y profesional transformó mi perspectiva completamente."
+            </p>
+            <div class="text-sm text-purple-200">— María Elena, Argentina</div>
+          </div>
+          
+          <div class="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50">
+            <div class="flex mb-4">
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+            </div>
+            <p class="text-gray-300 mb-4 italic">
+              "Los cursos online son excepcionales. Contenido actualizado, metodología clara y acompañamiento constante."
+            </p>
+            <div class="text-sm text-purple-200">— Santiago López, México</div>
+          </div>
+        </div>
+      </section>
+      <!-- Contacto y redes sociales -->
+      <section class="contacto-social mb-4 sm:mb-12 w-full">
+        <div class="bg-gradient-to-r from-purple-900/30 via-gray-800/50 to-violet-900/30 
+        backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-purple-400/20 text-center">
+          <h3 class="text-2xl font-bold text-white mb-4">¿List@ para comenzar tu transformación?</h3>
+          <p class="text-gray-300 mb-6">Conecta conmigo y descubre las herramientas para tu crecimiento personal</p>
+          
+          <div class="flex flex-col sm:flex-row gap-6 sm:justify-center items-center mb-4">
+            <a href="https://wa.me/5491154106096?text=Hola,%20me%20interesa%20obtener%20más%20información" 
+               target="_blank"
+               class="bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 
+               hover:to-green-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 
+               transform hover:scale-105">
+              <i class="fab fa-whatsapp mr-2"></i>
+              Escribeme
+            </a>
+            <!-- <a href="mailto:info@astralumina.com" 
+               class="bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 
+               hover:to-violet-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 
+               transform hover:scale-105">
+              <i class="fas fa-envelope mr-2"></i>
+              Enviar Email
+            </a> -->
+          </div>
+        </div>
+      </section>
+    </main>
+    
+    <!-- Menú inferior móvil -->
+    <section class="menu-inferior md:hidden fixed bottom-0 left-0 right-0 z-40 pt-2 sm:pt-4 justify-center justify-items-center bg-gray-900/95 backdrop-blur-sm border-t border-gray-700">
+        <div class="menu-inferior-container flex w-full max-w-[600px] justify-around bg-gray-800/50 backdrop-blur-sm px-2 sm:px-4 pb-2 pt-2 rounded-t-2xl border border-gray-600 mx-4">
+            <div class="flex flex-col items-center group">
+                <div class="p-3 rounded-xl bg-purple-400/10 group-hover:bg-purple-400/20 transition-colors">
+                    <i class="fa-regular fa-house text-2xl text-purple-400 group-hover:text-purple-300 transition-colors"></i>
+                </div>
+                <span class="text-xs font-medium text-gray-300 mt-1">Home</span>
+            </div>
+            <a href="pags/consultas.html" class="flex flex-col items-center group">
+                <div class="p-3 rounded-xl bg-gray-400/10 group-hover:bg-gray-400/20 transition-colors">
+                    <i class="fa-solid fa-comments text-2xl text-gray-400 group-hover:text-gray-300 transition-colors"></i>
+                </div>
+                <span class="text-xs font-medium text-gray-300 mt-1">Consultas</span>
+            </a>
+            <a href="pags/cursos.html" class="flex flex-col items-center group">
+                <div class="p-3 rounded-xl bg-gray-400/10 group-hover:bg-gray-400/20 transition-colors">
+                    <i class="fa-solid fa-book text-2xl text-gray-400 group-hover:text-gray-300 transition-colors"></i>
+                </div>
+                <span class="text-xs font-medium text-gray-300 mt-1">Cursos</span>
+            </a>
+            <a href="pags/contacto.html" class="flex flex-col items-center group">
+                <div class="p-3 rounded-xl bg-gray-400/10 group-hover:bg-gray-400/20 transition-colors">
+                    <i class="fa-solid fa-phone-flip text-2xl text-gray-400 group-hover:text-gray-300 transition-colors"></i>
+                </div>
+                <span class="text-xs font-medium text-gray-300 mt-1">Contacto</span>
+            </a>
+            <a href="pags/acerca-de.html" class="flex flex-col items-center group">
+                <div class="p-3 rounded-xl bg-gray-400/10 group-hover:bg-gray-400/20 transition-colors">
+                    <i class="fa-regular fa-user text-2xl text-gray-400 group-hover:text-gray-300 transition-colors"></i>
+                </div>
+                <span class="text-xs font-medium text-gray-300 mt-1">Acerca de</span>
+            </a> 
+        </div>
+    </section>
+    
+    <!-- WhatsApp Flotante -->
+    <div class="fixed right-2 sm:right-4 bottom-24 lg:bottom-4 z-50">
+      <a href="./pags/chatboot.html"
+         class="group inline-flex items-center bg-gray-700/50 hover:bg-purple-600/30 
+                border border-gray-600 hover:border-purple-400/50 
+                rounded-xl px-1 py-1 transition-all duration-300 transform 
+                 hover:shadow-2xl hover:shadow-purple-600/20">
+        <!-- chatbot icon -->
+        <div class="bg-purple-100/10 rounded-full p-2 group-hover:bg-purple-200/40 transition-colors duration-300">
+          <img class="w-8 h-auto sm:w-5 sm:h-5 text-white"  src="./images/brujitaAstraLumina.png" alt="Chatbot">
+        </div>
+      </a>
+    </div>
+
+    <!-- Sección Síguenos -->
+    <section class="py-6 sm:py-8 px-4 bg-gray-800/30 backdrop-blur-sm">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="flex space-x-4 sm:space-x-6 justify-center">
+                <a href="#" class="group flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gray-700/50 hover:bg-purple-600/30 rounded-full border border-gray-600 hover:border-purple-400/50 transition-all duration-300">
+                    <i class="fab fa-facebook text-lg sm:text-xl text-gray-400 group-hover:text-purple-300 transition-colors duration-300"></i>
+                </a>
+                <a href="#" class="group flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gray-700/50 hover:bg-purple-600/30 rounded-full border border-gray-600 hover:border-purple-400/50 transition-all duration-300">
+                    <i class="fab fa-instagram text-lg sm:text-xl text-gray-400 group-hover:text-purple-300 transition-colors duration-300"></i>
+                </a>
+                <a href="#" class="group flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gray-700/50 hover:bg-purple-600/30 rounded-full border border-gray-600 hover:border-purple-400/50 transition-all duration-300">
+                    <i class="fab fa-twitter text-lg sm:text-xl text-gray-400 group-hover:text-purple-300 transition-colors duration-300"></i>
+                </a>
+                <a href="#" class="group flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gray-700/50 hover:bg-purple-600/30 rounded-full border border-gray-600 hover:border-purple-400/50 transition-all duration-300">
+                    <i class="fab fa-youtube text-lg sm:text-xl text-gray-400 group-hover:text-purple-300 transition-colors duration-300"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-400 py-4 sm:py-6 border-t border-gray-800">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <p class="text-xs sm:text-sm">© 2025 AstraLumina. Todos los derechos reservados.</p>
+            <p class="text-xs mt-1 sm:mt-2">Desarrollado por ©TheBaltoTeam</p>
+        </div>
+    </footer>
+</body>
+</html>

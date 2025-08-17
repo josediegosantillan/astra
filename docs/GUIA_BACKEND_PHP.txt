@@ -1,0 +1,263 @@
+# GUÍA COMPLETA: INTEGRACIÓN DE API KEYS EN BACKEND PHP
+
+## RESUMEN DEL PROYECTO
+**Objetivo:** Mover API keys del frontend al backend por seguridad
+**Tecnologías:** HTML/JavaScript (Frontend) + PHP (Backend) + Composer + vlucas/phpdotenv
+
+---
+
+## 1. ESTRUCTURA DE ARCHIVOS
+
+Proyecto/
+├── .env                    # Variables de entorno (API keys)
+├── composer.json           # Dependencias PHP
+├── composer.lock          # Versiones exactas instaladas
+├── vendor/                # Dependencias instaladas
+├── api/
+│   └── chat-endpoint.php  # Endpoint backend
+├── boton.html             # Frontend del chatbot
+└── README.md              # Documentación
+
+---
+
+## 2. CONFIGURACIÓN INICIAL
+
+### 2.1 Instalar XAMPP
+- Descargar: https://www.apachefriends.org/download.html
+- Instalar en C:\xampp
+- Mover proyecto a C:\xampp\htdocs\NombreProyecto
+
+### 2.2 Crear composer.json
+{
+    "require": {
+        "vlucas/phpdotenv": "^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
+
+### 2.3 Instalar dependencias
+cd C:\xampp\htdocs\NombreProyecto
+composer install
+
+---
+
+## 3. ARCHIVO .env
+
+# API Keys (NUNCA subir a Git)
+API_KEY=tu_api_key_aqui
+DB_HOST=localhost
+DB_USER=root
+DB_PASS=
+
+**IMPORTANTE:** Añadir .env al .gitignore
+
+---
+
+## 4. ENDPOINT PHP (api/chat-endpoint.php)
+
+<?php
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type');
+
+// Manejar preflight requests
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+try {
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+    $dotenv->load();
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode(['error' => 'Error de configuración']);
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    echo json_encode(['error' => 'Método no permitido']);
+    exit;
+}
+
+$input = json_decode(file_get_contents('php://input'), true);
+
+if (!isset($input['contents']) || json_last_error() !== JSON_ERROR_NONE) {
+    http_response_code(400);
+    echo json_encode(['error' => 'Datos inválidos']);
+    exit;
+}
+
+// Verificar API key
+if (!isset($_ENV['API_KEY']) || empty($_ENV['API_KEY'])) {
+    http_response_code(500);
+    echo json_encode(['error' => 'API key no configurada']);
+    exit;
+}
+
+$apiKey = $_ENV['API_KEY'];
+$apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" . $apiKey;
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $apiUrl);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($input));
+curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$curlError = curl_error($ch);
+
+if ($curlError) {
+    curl_close($ch);
+    http_response_code(500);
+    echo json_encode(['error' => 'Error de conexión']);
+    exit;
+}
+
+curl_close($ch);
+
+if ($httpCode >= 400) {
+    http_response_code($httpCode);
+    echo $response ?: json_encode(['error' => 'Error en la API externa']);
+} else {
+    http_response_code(200);
+    echo $response;
+}
+?>
+
+---
+
+## 5. MODIFICACIÓN DEL FRONTEND
+
+### 5.1 Cambiar URL de API en JavaScript
+class ChatBot {
+    constructor() {
+        // ANTES (inseguro):
+        // this.API_KEY = "AIzaSy...";
+        // this.API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${this.API_KEY}`;
+        
+        // DESPUÉS (seguro):
+        this.API_URL = './api/chat-endpoint.php';
+    }
+}
+
+---
+
+## 6. COMANDOS ÚTILES
+
+### 6.1 Verificar instalaciones
+php --version
+composer --version
+
+### 6.2 Iniciar servidor local
+# Opción 1: XAMPP
+# Iniciar Apache desde XAMPP Control Panel
+# Acceder: http://localhost/NombreProyecto/
+
+# Opción 2: Servidor PHP integrado
+php -S localhost:8000
+# Acceder: http://localhost:8000/
+
+### 6.3 Reinstalar dependencias
+composer install --no-dev  # Solo producción
+composer update            # Actualizar dependencias
+
+---
+
+## 7. SOLUCIÓN DE PROBLEMAS COMUNES
+
+### 7.1 Error: "composer.json not found"
+composer init
+
+### 7.2 Error: "Class 'Dotenv\Dotenv' not found"
+composer install
+# Verificar que vendor/autoload.php existe
+
+### 7.3 Error CORS
+// Añadir headers en PHP:
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type');
+
+### 7.4 Error: "API key no configurada"
+- Verificar que .env existe
+- Verificar que API_KEY=valor está en .env
+- Verificar permisos de archivo
+
+---
+
+## 8. MEJORES PRÁCTICAS DE SEGURIDAD
+
+### 8.1 Variables de entorno
+- ✅ Usar .env para API keys
+- ✅ Añadir .env a .gitignore
+- ✅ Crear .env.example con valores de ejemplo
+- ❌ NUNCA hardcodear API keys en código
+
+### 8.2 Validación de entrada
+- ✅ Validar JSON de entrada
+- ✅ Sanitizar datos del usuario
+- ✅ Limitar tamaño de requests
+- ✅ Implementar rate limiting
+
+### 8.3 Manejo de errores
+- ✅ No exponer información sensible en errores
+- ✅ Logs detallados en servidor
+- ✅ Respuestas genéricas al cliente
+
+---
+
+## 9. CHECKLIST DE IMPLEMENTACIÓN
+
+- [ ] XAMPP instalado y funcionando
+- [ ] Composer instalado globalmente
+- [ ] Proyecto movido a htdocs
+- [ ] composer.json creado
+- [ ] composer install ejecutado
+- [ ] .env creado con API key
+- [ ] chat-endpoint.php implementado
+- [ ] Frontend actualizado (nueva URL)
+- [ ] Servidor iniciado
+- [ ] Chatbot probado y funcionando
+- [ ] .gitignore configurado
+
+---
+
+## 10. COMANDOS DE REFERENCIA RÁPIDA
+
+# Instalación inicial
+composer install
+
+# Iniciar servidor
+php -S localhost:8000
+
+# Verificar PHP
+php --version
+
+# Verificar Composer
+composer --version
+
+# Actualizar dependencias
+composer update
+
+# Limpiar cache de Composer
+composer clear-cache
+
+---
+
+**NOTA:** Guarda este archivo como GUIA_BACKEND_PHP.md para futuras referencias.
+
+**Fecha de creación:** $(date)
+**Versión:** 1.0

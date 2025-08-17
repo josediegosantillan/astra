@@ -1,0 +1,26 @@
+<?php
+header('Content-Type: application/javascript');
+header('Access-Control-Allow-Origin: *');
+
+// Solo permitir desde tu dominio en producción
+$allowed_origins = ['localhost', 'astralumina.ar'];
+$origin = $_SERVER['HTTP_HOST'] ?? '';
+$is_allowed = false;
+
+foreach ($allowed_origins as $allowed) {
+    if (strpos($origin, $allowed) !== false) {
+        $is_allowed = true;
+        break;
+    }
+}
+
+if (!$is_allowed) {
+    http_response_code(403);
+    exit('window.ChatBotConfig={CONTEXT:"Error de configuración"};');
+}
+
+// Contexto completo solo para orígenes permitidos
+$context = `# PROMPT OPTIMIZADO PARA ASTRALUMINA ASSISTANT...`; // Tu contexto completo aquí
+
+echo "window.ChatBotConfig = { CONTEXT: " . json_encode($context, JSON_UNESCAPED_UNICODE) . " };";
+?>

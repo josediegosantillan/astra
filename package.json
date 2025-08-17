@@ -1,0 +1,29 @@
+{
+  "name": "astralumina",
+  "version": "1.0.0",
+  "description": "AstraLumina - Sitio web con integración GitHub y Vercel",
+  "main": "index.html",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "tailwindcss": "^4.1.11"
+  },
+  "scripts": {
+    "dev": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch",
+    "dev:server": "node server-dev.js",
+    "dev:full": "concurrently \"npm run dev\" \"npm run dev:server\"",
+    "build": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --minify",
+    "start": "npx serve .",
+    "vercel-build": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/josediegosantillan/astralumina.git"
+  },
+  "keywords": [
+    "astralumina",
+    "tailwindcss",
+    "website"
+  ],
+  "author": "Jose Diego Santillan",
+  "license": "MIT"
+}

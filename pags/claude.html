@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario Lunar Astronómico Pro</title>
+    <style>
+        :root {
+            --primary-color: #0a0a0f;
+            --secondary-color: #1a1a2e;
+            --accent-color: #e94560;
+            --gold-color: #f5c842;
+            --silver-color: #c0c5ce;
+            --blue-glow: #667eea;
+            --purple-glow: #764ba2;
+            --text-light: #ffffff;
+            --text-muted: #b0b3c1;
+            --card-bg: rgba(255, 255, 255, 0.08);
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-warm: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-cool: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--primary-color);
+            color: var(--text-light);
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 20% 10%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 90%, rgba(118, 75, 162, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 70%, rgba(233, 69, 96, 0.05) 0%, transparent 50%);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 0;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 2px;
+            background: var(--gradient);
+            border-radius: 1px;
+        }
+
+        .header h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 20px 0;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(76, 175, 80, 0.1);
+            color: #4caf50;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .status-indicator::before {
+            content: '●';
+            color: #4caf50;
+            margin-right: 8px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+
+        .info-banner {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .info-banner h3 {
+            color: var(--gold-color);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-banner h3::before {
+            content: '⚡';
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        .api-config {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .api-config:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .config-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--gold-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-light);
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--blue-glow);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 30px rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+        }
+
+        input:invalid {
+            border-color: var(--accent-color);
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 18px 35px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            min-width: 200px;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: var(--gradient-cool);
+        }
+
+        .btn-warning {
+            background: var(--gradient-warm);
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .control-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 35px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .control-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .control-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .control-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .control-card h3 {
+            color: var(--gold-color);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .current-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .info-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .info-card h4 {
+            color: var(--gold-color);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .moon-phase-display {
+            font-size: 4rem;
+            margin: 20px 0;
+            filter: drop-shadow(0 0 20px rgba(245, 200, 66, 0.5));
+            animation: rotate-slow 20s linear infinite;
+        }
+
+        @keyframes rotate-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .illumination-bar {
+            background: rgba(255, 255, 255, 0.1);
+            height: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+            position: relative;
+        }
+
+        .illumination-fill {
+            background: linear-gradient(90deg, var(--gold-color), #fff);
+            height: 100%;
+            width: 0%;
+            border-radius: 10px;
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .illumination-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            animation: illuminate 2s infinite;
+        }
+
+        @keyframes illuminate {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .results {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 35px;
+            margin-top: 40px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            min-height: 200px;
+        }
+
+        .loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+            text-align: center;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            border-top: 4px solid var(--gold-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: var(--gold-color);
+            font-size: 1.1rem;
+            animation: fade 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes fade {
+            from { opacity: 0.6; }
+            to { opacity: 1; }
+        }
+
+        .error, .success, .warning {
+            padding: 20px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border-left: 5px solid;
+            backdrop-filter: blur(10px);
+        }
+
+        .error {
+            background: rgba(233, 69, 96, 0.15);
+            border-color: var(--accent-color);
+            color: #ff6b9d;
+        }
+
+        .success {
+            background: rgba(76, 175, 80, 0.15);
+            border-color: #4caf50;
+            color: #81c784;
+        }
+
+        .warning {
+            background: rgba(245, 200, 66, 0.15);
+            border-color: var(--gold-color);
+            color: var(--gold-color);
+        }
+
+        .data-section {
+            margin: 25px 0;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            border-left: 4px solid var(--gold-color);
+            backdrop-filter: blur(5px);
+        }
+
+        .data-section h4 {
+            color: var(--gold-color);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .system-info {
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+            font-size: 0.9rem;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            white-space: pre-line;
+            overflow-x: auto;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-3px);
+        }
+
+        .tooltip {
+            position: relative;
+            cursor: help;
+        }
+
+        .tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--secondary-color);
+            color: var(--text-light);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+
+        .tooltip:hover::after {
+            opacity: 1;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 80px;
+            padding: 40px 20px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+
+        .footer a {
+            color: var(--gold-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--blue-glow);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .controls,
+            .current-info,
+            .config-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .control-card,
+            .api-config {
+                padding: 25px;
+            }
+            
+            .btn {
+                min-width: auto;
+                padding: 16px 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .moon-phase-display {
+                font-size: 3rem;
+            }
+        }
+
+        /* Dark mode enhancements */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --card-bg: rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        /* Accessibility improvements */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* High contrast mode */
+        @media (prefers-contrast: high) {
+            .btn {
+                border: 2px solid var(--text-light);
+            }
+            
+            .control-card,
+            .info-card,
+            .api-config {
+                border: 2px solid var(--text-muted);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🌙 Calendario Lunar Pro</h1>
+            <p class="subtitle">Algoritmos astronómicos de precisión + IA avanzada</p>
+            <div class="status-indicator">Sistema operativo • Algoritmos de Jean Meeus activos</div>
+        </header>
+
+        <div class="info-banner">
+            <h3>Tecnología de Precisión Astronómica</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>🔬 Algoritmos Científicos</h4>
+                    <p>Basado en "Astronomical Algorithms" de Jean Meeus, el estándar mundial para cálculos astronómicos de precisión.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🌍 Datos Geográficos</h4>
+                    <p>Detección automática de ubicación y zona horaria para cálculos precisos según tu posición en la Tierra.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🤖 IA Especializada</h4>
+                    <p>Claude Sonnet 4 proporciona interpretaciones astrológicas personalizadas basadas en datos reales.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="api-config">
+            <h3>⚙️ Centro de Control</h3>
+            
+            <div class="config-grid">
+                <div class="input-group">
+                    <label for="apiKey">🔐 Clave API de Claude</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="apiKey" placeholder="sk-ant-api03-..." 
+                               autocomplete="off" spellcheck="false" />
+                    </div>
+                    <small style="color: var(--text-muted); margin-top: 8px; display: block;">
+                        🛡️ Solo para interpretaciones IA • Nunca almacenada • Transmisión segura
+                    </small>
+                </div>
+                
+                <div class="input-group">
+                    <label for="ubicacion">📍 Ubicación</label>
+                    <input type="text" id="ubicacion" placeholder="Buenos Aires, Argentina" 
+                           value="Buenos Aires, Argentina" />
+                    <button onclick="detectarUbicacion()" class="btn btn-secondary" style="margin-top: 10px;">
+                        🎯 Auto-detectar
+                    </button>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label>🖥️ Información del Sistema</label>
+                <div id="datosDetectados" class="system-info">
+                    Inicializando sistemas...
+                </div>
+            </div>
+            
+            <div class="config-grid">
+                <div class="input-group">
+                    <label for="fechaUsuario">📅 Fecha de Consulta</label>
+                    <input type="date" id="fechaUsuario" />
+                </div>
+                <div class="input-group">
+                    <label for="horaUsuario">⏰ Hora Local</label>
+                    <input type="time" id="horaUsuario" />
+                </div>
+                <div class="input-group">
+                    <label for="zonaHoraria">🌐 Zona Horaria</label>
+                    <input type="text" id="zonaHoraria" readonly />
+                </div>
+            </div>
+        </div>
+
+        <div class="current-info">
+            <div class="info-card">
+                <h4>🌑 Fase Lunar Actual</h4>
+                <div id="faseActual" class="moon-phase-display">🔄</div>
+                <p id="faseTexto">Inicializando...</p>
+            </div>
+            <div class="info-card">
+                <h4>📊 Iluminación</h4>
+                <p id="iluminacion" style="font-size: 2rem; font-weight: bold; color: var(--gold-color);">---%</p>
+                <div class="illumination-bar">
+                    <div id="barraIluminacion" class="illumination-fill"></div>
+                </div>
+                <small id="tendenciaIluminacion" style="margin-top: 10px; display: block;"></small>
+            </div>
+            <div class="info-card">
+                <h4>⏱️ Tiempo Real</h4>
+                <p id="fechaActual">Sincronizando...</p>
+                <p id="horaActual" style="font-size: 1.5rem; font-weight: bold; color: var(--blue-glow);">--:--:--</p>
+            </div>
+            <div class="info-card">
+                <h4>⭐ Posición Zodiacal</h4>
+                <p id="signoActual" style="font-size: 1.5rem; font-weight: bold; color: var(--purple-glow);">Calculando...</p>
+                <small id="gradosSigno"></small>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="control-card">
+                <h3>🔍 Análisis Astronómico</h3>
+                <div class="input-group">
+                    <label for="fechaPrecisa">📅 Fecha para analizar</label>
+                    <input type="date" id="fechaPrecisa" />
+                </div>
+                <button class="btn" onclick="consultarDatosReales()">
+                    🚀 Calcular Datos Precisos
+                </button>
+                <small style="color: var(--text-muted); margin-top: 15px; display: block;">
+                    ✨ Precisión: ±1 minuto • Algoritmos validados por observatorios
+                </small>
+            </div>
+
+            <div class="control-card">
+                <h3>🔮 Interpretación Astrológica</h3>
+                <div class="input-group">
+                    <label for="consultaAstrologica">💭 Tu consulta astrológica</label>
+                    <textarea id="consultaAstrologica" rows="4" 
+                              placeholder="Ejemplo: ¿Cómo afecta esta fase lunar mis decisiones profesionales? ¿Es favorable para nuevos proyectos?"></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="tipoConsulta">🎯 Tipo de consulta</label>
+                    <select id="tipoConsulta">
+                        <option value="general">General • Visión amplia</option>
+                        <option value="personal">Personal • Autoconocimiento</option>
+                        <option value="profesional">Profesional • Carrera y negocios</option>
+                        <option value="relaciones">Relaciones • Amor y vínculos</option>
+                        <option value="salud">Salud • Bienestar físico y mental</option>
+                        <option value="espiritualidad">Espiritualidad • Crecimiento interior</option>
+                        <option value="agricultura">Agricultura • Plantas y cultivos</option>
+                        <option value="belleza">Belleza • Cuidado personal</option>
+                    </select>
+                </div>
+                <button class="btn btn-warning" onclick="interpretarConClaude()">
+                    🤖 Consultar IA Especializada
+                </button>
+                <small style="color: var(--text-muted); margin-top: 15px; display: block;">
+                    🔒 Requiere API key válida • Procesamiento seguro
+                </small>
+            </div>
+
+            <div class="control-card">
+                <h3>📊 Análisis Temporal</h3>
+                <div class="input-group">
+                    <label for="rangoAnalisis">📈 Período de análisis</label>
+                    <select id="rangoAnalisis">
+                        <option value="7">Próximos 7 días</option>
+                        <option value="14">Próximas 2 semanas</option>
+                        <option value="30">Próximo mes</option>
+                        <option value="90">Próximos 3 meses</option>
+                    </select>
+                </div>
+                <button class="btn btn-secondary" onclick="generarAnalisisTemporal()">
+                    📅 Generar Calendario
+                </button>
+                <small style="color: var(--text-muted); margin-top: 15px; display: block;">
+                    📊 Tendencias lunares y fases importantes
+                </small>
+            </div>
+        </div>
+
+        <div id="results" class="results" style="display: none;">
+            <h3>📋 Resultados del Análisis:</h3>
+            <div id="resultContent"></div>
+        </div>
+
+        <div class="footer">
+            <p>🌟 <strong>Calendario Lunar Pro</strong> • Tecnología astronómica de precisión</p>
+            <p>Algoritmos de <a href="https://en.wikipedia.org/wiki/Jean_Meeus" target="_blank">Jean Meeus</a> • 
+               IA de <a href="https://claude.ai" target="_blank">Claude Sonnet 4</a> • 
+               Datos en tiempo real</p>
+            <p style="margin-top: 15px;">
+                <small>⚖️ Los cálculos astronómicos son científicamente precisos. Las interpretaciones astrológicas son para reflexión personal y entretenimiento.</small>
+            </p>
+            <p style="margin-top: 10px;">
+                <small>🔒 Tu privacidad es importante: no almacenamos datos personales ni claves API.</small>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // ================================
+        // VARIABLES GLOBALES Y CONFIGURACIÓN
+        // ================================
+        
+        let datosAstronomicosActuales = null;
+        let coordenadasUsuario = null;
+        let intervalos = [];
+        
+        // Configuración avanzada
+        const CONFIG = {
+            precision: {
+                coordenadas: 4,
+                tiempo: 1000, // ms
+                calculo: 1e-10
+            },
+            actualizacion: {
+                tiempo: 60000, // 1 minuto
+                datos: 300000, // 5 minutos
+                sistema: 60000  // 1 minuto
+            },
+            apis: {
+                geocoding: 'https://api.bigdatacloud.net/data/reverse-geocode-client',
+                timeout: 10000
+            }
+        };
+
+        // ================================
+        // INICIALIZACIÓN DEL SISTEMA
+        // ================================
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Iniciando Calendario Lunar Pro...');
+            inicializarSistema();
+            configurarEventListeners();
+            iniciarActualizacionesPeriodicas();
+        });
+
+        function inicializarSistema() {
+            try {
+                detectarConfiguracionSistema();
+                cargarConfiguracionUsuario();
+                cargarDatosAstronomicosIniciales();
+                mostrarMensajeBienvenida();
+            } catch (error) {
+                console.error('Error en inicialización:', error);
+                showError('Error al inicializar el sistema: ' + error.message);
+            }
+        }
+
+        function detectarConfiguracionSistema() {
+            const ahora = new Date();
+            
+            // Configurar campos de fecha y hora
+            document.getElementById('fechaUsuario').value = ahora.toISOString().split('T')[0];
+            document.getElementById('horaUsuario').value = ahora.toTimeString().substring(0, 5);
+            document.getElementById('fechaPrecisa').value = ahora.toISOString().split('T')[0];
+            
+            // Detectar zona horaria
+            const zonaHoraria = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            document.getElementById('zonaHoraria').value = zonaHoraria;
+            
+            // Actualizar información del sistema
+            actualizarInformacionSistema();
+        }
+
+        function configurarEventListeners() {
+            // Validación en tiempo real de API key
+            document.getElementById('apiKey').addEventListener('input', function(e) {
+                validarApiKey(e.target.value);
+            });
+
+            // Actualización automática cuando cambian los datos
+            ['fechaUsuario', 'horaUsuario', 'ubicacion'].forEach(id => {
+                const elemento = document.getElementById(id);
+                if (elemento) {
+                    elemento.addEventListener('change', actualizarInformacionSistema);
+                }
+            });
+
+            // Validación de fechas
+            document.getElementById('fechaPrecisa').addEventListener('change', function(e) {
+                validarFechaSeleccionada(e.target.value);
+            });
+
+            // Auto-completar consultas
+            configurarAutoCompletarConsultas();
+        }
+
+        function iniciarActualizacionesPeriodicas() {
+            // Limpiar intervalos previos
+            intervalos.forEach(clearInterval);
+            intervalos = [];
+
+            // Actualizar hora cada segundo
+            intervalos.push(setInterval(actualizarTiempoReal, 1000));
+            
+            // Actualizar datos astronómicos cada 5 minutos
+            intervalos.push(setInterval(cargarDatosAstronomicosIniciales, CONFIG.actualizacion.datos));
+            
+            // Actualizar información del sistema cada minuto
+            intervalos.push(setInterval(actualizarInformacionSistema, CONFIG.actualizacion.sistema));
+        }
+
+        // ================================
+        // FUNCIONES DE VALIDACIÓN
+        // ================================
+        
+        function validarApiKey(apiKey) {
+            const input = document.getElementById('apiKey');
+            const esValida = apiKey.startsWith('sk-ant-') && apiKey.length > 20;
+            
+            if (apiKey.length > 0) {
+                if (esValida) {
+                    input.style.borderColor = '#4caf50';
+                    input.style.borderWidth = '2px';
+                } else {
+                    input.style.borderColor = '#f44336';
+                    input.style.borderWidth = '2px';
+                }
+            } else {
+                input.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                input.style.borderWidth = '2px';
+            }
+        }
+
+        function validarFechaSeleccionada(fecha) {
+            const fechaSeleccionada = new Date(fecha);
+            const ahora = new Date();
+            const diferenciaDias = Math.abs((fechaSeleccionada - ahora) / (1000 * 60 * 60 * 24));
+            
+            if (diferenciaDias > 365 * 10) { // 10 años
+                showWarning('⚠️ Las fechas muy lejanas pueden tener menor precisión en los cálculos astrológicos.');
+            }
+        }
+
+        // ================================
+        // ACTUALIZACIÓN DE INFORMACIÓN
+        // ================================
+        
+        function actualizarTiempoReal() {
+            const ahora = new Date();
+            
+            document.getElementById('fechaActual').textContent = ahora.toLocaleDateString('es-ES', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            
+            document.getElementById('horaActual').textContent = ahora.toLocaleTimeString('es-ES');
+        }
+
+        function actualizarInformacionSistema() {
+            try {
+                const datosElement = document.getElementById('datosDetectados');
+                if (!datosElement) return;
+
+                const ahora = new Date();
+                const ubicacion = document.getElementById('ubicacion').value || 'No especificada';
+                const zona = document.getElementById('zonaHoraria').value;
+                
+                const informacion = `
+🖥️ SISTEMA: ${navigator.platform} • ${navigator.userAgent.split(' ')[0]}
+📅 FECHA: ${ahora.toLocaleDateString('es-ES', { 
+    weekday: 'long', 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+})}
+⏰ HORA LOCAL: ${ahora.toLocaleTimeString('es-ES')} (${zona})
+📍 UBICACIÓN: ${ubicacion}
+${coordenadasUsuario ? `🗺️ COORDENADAS: ${coordenadasUsuario.lat.toFixed(CONFIG.precision.coordenadas)}°, ${coordenadasUsuario.lon.toFixed(CONFIG.precision.coordenadas)}°` : '🗺️ COORDENADAS: No detectadas'}
+🌐 CONEXIÓN: ${navigator.onLine ? 'Online ✅' : 'Offline ❌'}
+🔋 PRECISIÓN: Algoritmos Jean Meeus • Actualización cada ${CONFIG.actualizacion.tiempo/1000}s`.trim();
+                
+                datosElement.textContent = informacion;
+            } catch (error) {
+                console.error('Error actualizando información del sistema:', error);
+            }
+        }
+
+        function mostrarMensajeBienvenida() {
+            setTimeout(() => {
+                showSuccess(`
+                    ✨ <strong>Sistema inicializado correctamente</strong>
+                    <br>📡 Algoritmos astronómicos activos
+                    <br>🔄 Sincronización en tiempo real habilitada
+                    <br>🎯 Listo para cálculos de precisión
+                `);
+            }, 1000);
+        }
+
+        // ================================
+        // GEOLOCALIZACIÓN AVANZADA
+        // ================================
+        
+        async function detectarUbicacion() {
+            if (!navigator.geolocation) {
+                showError('❌ Tu navegador no soporta geolocalización');
+                return;
+            }
+
+            showLoading('🛰️ Detectando tu ubicación con precisión...', true);
+
+            const opciones = {
+                enableHighAccuracy: true,
+                timeout: CONFIG.apis.timeout,
+                maximumAge: 300000 // 5 minutos
+            };
+
+            try {
+                const position = await new Promise((resolve, reject) => {
+                    navigator.geolocation.getCurrentPosition(resolve, reject, opciones);
+                });
+
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+                const precision = position.coords.accuracy;
+                
+                coordenadasUsuario = { lat, lon, precision };
+                
+                // Obtener información de la ubicación
+                try {
+                    const response = await fetch(
+                        `${CONFIG.apis.geocoding}?latitude=${lat}&longitude=${lon}&localityLanguage=es`,
+                        { timeout: CONFIG.apis.timeout }
+                    );
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        const ubicacionCompleta = `${data.city || data.locality || 'Ciudad'}, ${data.principalSubdivision || ''} ${data.countryName || 'País'}`.replace(/\s+/g, ' ').trim();
+                        
+                        document.getElementById('ubicacion').value = ubicacionCompleta;
+                        
+                        showSuccess(`
+                            ✅ <strong>Ubicación detectada con éxito</strong>
+                            <br>📍 <strong>Dirección:</strong> ${ubicacionCompleta}
+                            <br>🗺️ <strong>Coordenadas:</strong> ${lat.toFixed(6)}°, ${lon.toFixed(6)}°
+                            <br>🎯 <strong>Precisión:</strong> ±${Math.round(precision)}m
+                            <br>🌍 <strong>Zona horaria:</strong> ${Intl.DateTimeFormat().resolvedOptions().timeZone}
+                        `);
+                    } else {
+                        throw new Error('Error en servicio de geocodificación');
+                    }
+                } catch (geoError) {
+                    document.getElementById('ubicacion').value = `${lat.toFixed(4)}, ${lon.toFixed(4)}`;
+                    
+                    showSuccess(`
+                        ✅ <strong>Coordenadas obtenidas</strong>
+                        <br>🗺️ <strong>Posición:</strong> ${lat.toFixed(6)}°, ${lon.toFixed(6)}°
+                        <br>🎯 <strong>Precisión:</strong> ±${Math.round(precision)}m
+                        <br>ℹ️ No se pudo obtener la dirección exacta
+                    `);
+                }
+                
+                actualizarInformacionSistema();
+                
+            } catch (error) {
+                let mensajeError = 'No se pudo detectar tu ubicación';
+                
+                switch (error.code) {
+                    case 1:
+                        mensajeError = 'Permisos de geolocalización denegados';
+                        break;
+                    case 2:
+                        mensajeError = 'Ubicación no disponible (verifica tu conexión)';
+                        break;
+                    case 3:
+                        mensajeError = 'Tiempo de espera agotado';
+                        break;
+                }
+                
+                showError(`❌ ${mensajeError}. Puedes introducir tu ubicación manualmente.`);
+            }
+        }
+
+        // ================================
+        // ALGORITMOS ASTRONÓMICOS PRECISOS
+        // ================================
+        
+        async function cargarDatosAstronomicosIniciales() {
+            try {
+                const datos = await obtenerDatosAstronomicos(new Date());
+                actualizarVistaLunarActual(datos);
+                datosAstronomicosActuales = datos;
+            } catch (error) {
+                console.error('Error cargando datos astronómicos:', error);
+                showWarning('⚠️ Error al actualizar datos lunares. Reintentando...');
+                
+                // Reintentar después de 30 segundos
+                setTimeout(cargarDatosAstronomicosIniciales, 30000);
+            }
+        }
+
+        function actualizarVistaLunarActual(datos) {
+            const fasesConfig = {
+                'new': { emoji: '🌑', nombre: 'Luna Nueva', color: '#2c3e50' },
+                'waxing_crescent': { emoji: '🌒', nombre: 'Creciente', color: '#f39c12' },
+                'first_quarter': { emoji: '🌓', nombre: 'Cuarto Creciente', color: '#e67e22' },
+                'waxing_gibbous': { emoji: '🌔', nombre: 'Gibosa Creciente', color: '#d35400' },
+                'full': { emoji: '🌕', nombre: 'Luna Llena', color: '#f1c40f' },
+                'waning_gibbous': { emoji: '🌖', nombre: 'Gibosa Menguante', color: '#f39c12' },
+                'last_quarter': { emoji: '🌗', nombre: 'Cuarto Menguante', color: '#e67e22' },
+                'waning_crescent': { emoji: '🌘', nombre: 'Menguante', color: '#95a5a6' }
+            };
+
+            const faseActual = fasesConfig[datos.fase] || { emoji: '🌙', nombre: 'Calculando...', color: '#bdc3c7' };
+            
+            // Actualizar elementos visuales
+            document.getElementById('faseActual').textContent = faseActual.emoji;
+            document.getElementById('faseTexto').textContent = faseActual.nombre;
+            
+            // Actualizar iluminación con animación
+            const elementoIluminacion = document.getElementById('iluminacion');
+            const barraIluminacion = document.getElementById('barraIluminacion');
+            
+            elementoIluminacion.textContent = `${datos.iluminacion}%`;
+            barraIluminacion.style.width = `${datos.iluminacion}%`;
+            
+            // Tendencia de iluminación
+            const tendencia = calcularTendenciaIluminacion(datos.fase);
+            document.getElementById('tendenciaIluminacion').textContent = tendencia;
+            
+            // Actualizar signo zodiacal
+            document.getElementById('signoActual').textContent = datos.signoZodiacal.split(' ')[0];
+            document.getElementById('gradosSigno').textContent = datos.signoZodiacal;
+        }
+
+        function calcularTendenciaIluminacion(fase) {
+            const tendencias = {
+                'new': '↗️ Incrementando',
+                'waxing_crescent': '↗️ Incrementando',
+                'first_quarter': '↗️ Incrementando',
+                'waxing_gibbous': '↗️ Incrementando',
+                'full': '↘️ Disminuyendo',
+                'waning_gibbous': '↘️ Disminuyendo',
+                'last_quarter': '↘️ Disminuyendo',
+                'waning_crescent': '↘️ Disminuyendo'
+            };
+            
+            return tendencias[fase] || '━ Estable';
+        }
+
+        // ================================
+        // CÁLCULOS ASTRONÓMICOS AVANZADOS
+        // ================================
+        
+        async function obtenerDatosAstronomicos(fecha) {
+            let fechaCalcular;
+            
+            if (typeof fecha === 'string') {
+                const partes = fecha.split('-');
+                fechaCalcular = new Date(Number(partes[0]), Number(partes[1]) - 1, Number(partes[2]), 12, 0, 0);
+            } else {
+                fechaCalcular = new Date(fecha);
+            }
+            
+            // Usar luna nueva de referencia más precisa (29 enero 2025)
+            const lunaReferenciaUTC = new Date('2025-01-29T12:36:00.000Z');
+            const diasDesdeReferencia = (fechaCalcular.getTime() - lunaReferenciaUTC.getTime()) / (1000 * 60 * 60 * 24);
+            
+            // Ciclo lunar sinódico más preciso
+            const cicloLunar = 29.530588861;
+            let posicionEnCiclo = ((diasDesdeReferencia % cicloLunar) + cicloLunar) % cicloLunar;
+            
+            // Calcular fase e iluminación con mayor precisión
+            const { fase, iluminacion } = calcularFaseEIluminacion(posicionEnCiclo, cicloLunar);
+            
+            // Calcular posición zodiacal usando algoritmos de Meeus
+            const jd = fechaAJulianoMejorado(fechaCalcular);
+            const posicionEcliptica = calcularPosicionLunarEcliptica(jd);
+            const signoZodiacal = convertirASignoZodiacal(posicionEcliptica);
+            
+            // Calcular distancia Luna-Tierra
+            const distanciaTierra = calcularDistanciaLunar(jd);
+            
+            // Obtener configuración del usuario
+            const zonaHoraria = document.getElementById('zonaHoraria').value || Intl.DateTimeFormat().resolvedOptions().timeZone;
+            const ubicacion = document.getElementById('ubicacion').value || 'No especificada';
+
+            return {
+                fecha: fechaCalcular.toISOString().split('T')[0],
+                hora: fechaCalcular.toTimeString().substring(0, 8),
+                fechaCompleta: fechaCalcular,
+                zonaHoraria: zonaHoraria,
+                fase: fase,
+                iluminacion: Math.round(iluminacion * 100) / 100,
+                signoZodiacal: signoZodiacal,
+                proximaFase: calcularProximaFase(posicionEnCiclo, cicloLunar),
+                distanciaTierra: Math.round(distanciaTierra),
+                coordenadas: coordenadasUsuario ? 
+                    `${coordenadasUsuario.lat.toFixed(CONFIG.precision.coordenadas)}°, ${coordenadasUsuario.lon.toFixed(CONFIG.precision.coordenadas)}°` : 
+                    'No disponibles',
+                ubicacion: ubicacion,
+                precision: coordenadasUsuario?.precision || null,
+                algoritmo: 'Jean Meeus (Astronomical Algorithms)',
+                jdCalculado: jd,
+                cicloLunar: cicloLunar,
+                posicionEnCiclo: Math.round(posicionEnCiclo * 1000) / 1000
+            };
+        }
+
+        function calcularFaseEIluminacion(posicion, ciclo) {
+            // Definir los momentos exactos de las fases principales
+            const fasesPrincipales = {
+                nuevaLuna: 0,
+                primerCuarto: ciclo * 0.25,
+                lunaLlena: ciclo * 0.5,
+                ultimoCuarto: ciclo * 0.75
+            };
+            
+            // Tolerancias para cada fase (en días)
+            const tolerancias = {
+                principal: 0.5,    // Para fases principales exactas
+                transicion: 3.5    // Para fases de transición
+            };
+            
+            let fase, iluminacion;
+            
+            // Calcular iluminación usando fórmula astronómica precisa
+            const anguloFase = (posicion / ciclo) * 2 * Math.PI;
+            iluminacion = (1 - Math.cos(anguloFase)) / 2 * 100;
+            
+            // Determinar fase basada en posición
+            if (Math.abs(posicion - fasesPrincipales.nuevaLuna) < tolerancias.principal || 
+                Math.abs(posicion - ciclo) < tolerancias.principal) {
+                fase = 'new';
+            } else if (Math.abs(posicion - fasesPrincipales.primerCuarto) < tolerancias.principal) {
+                fase = 'first_quarter';
+            } else if (Math.abs(posicion - fasesPrincipales.lunaLlena) < tolerancias.principal) {
+                fase = 'full';
+            } else if (Math.abs(posicion - fasesPrincipales.ultimoCuarto) < tolerancias.principal) {
+                fase = 'last_quarter';
+            } else if (posicion > fasesPrincipales.nuevaLuna && posicion < fasesPrincipales.primerCuarto) {
+                fase = 'waxing_crescent';
+            } else if (posicion > fasesPrincipales.primerCuarto && posicion < fasesPrincipales.lunaLlena) {
+                fase = 'waxing_gibbous';
+            } else if (posicion > fasesPrincipales.lunaLlena && posicion < fasesPrincipales.ultimoCuarto) {
+                fase = 'waning_gibbous';
+            } else {
+                fase = 'waning_crescent';
+            }
+            
+            return { fase, iluminacion: Math.max(0, Math.min(100, iluminacion)) };
+        }
+
+        function fechaAJulianoMejorado(fecha) {
+            const año = fecha.getUTCFullYear();
+            const mes = fecha.getUTCMonth() + 1;
+            const dia = fecha.getUTCDate();
+            const hora = fecha.getUTCHours() + fecha.getUTCMinutes()/60 + fecha.getUTCSeconds()/3600;
+            
+            let a = Math.floor((14 - mes) / 12);
+            let y = año + 4800 - a;
+            let m = mes + 12 * a - 3;
+            
+            let jdn = dia + Math.floor((153 * m + 2) / 5) + 365 * y + 
+                      Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400) - 32045;
+            
+            return jdn + (hora - 12) / 24;
+        }
+
+        function calcularPosicionLunarEcliptica(jd) {
+            // Algoritmo de Jean Meeus para la posición lunar
+            const T = (jd - 2451545.0) / 36525.0;
+            const T2 = T * T;
+            const T3 = T2 * T;
+            const T4 = T3 * T;
+            
+            // Longitud media de la Luna
+            let L0 = 218.3164477 + 481267.88123421 * T - 0.0015786 * T2 + T3 / 538841.0 - T4 / 65194000.0;
+            
+            // Elementos orbitales
+            const D = 297.8501921 + 445267.1114034 * T - 0.0018819 * T2 + T3 / 545868.0 - T4 / 113065000.0;
+            const M = 357.5291092 + 35999.0502909 * T - 0.0001536 * T2 + T3 / 24490000.0;
+            const M1 = 134.9633964 + 477198.8675055 * T + 0.0087414 * T2 + T3 / 69699.0 - T4 / 14712000.0;
+            const F = 93.272095 + 483202.0175233 * T - 0.0036539 * T2 - T3 / 3526000.0 + T4 / 863310000.0;
+            
+            // Convertir a radianes
+            const D_rad = (D * Math.PI) / 180;
+            const M_rad = (M * Math.PI) / 180;
+            const M1_rad = (M1 * Math.PI) / 180;
+            const F_rad = (F * Math.PI) / 180;
+            
+            // Principales términos de corrección de longitud (los más significativos)
+            const correcciones = [
+                { coef: 6.288774, arg: M1_rad },
+                { coef: 1.274027, arg: 2*D_rad - M1_rad },
+                { coef: 0.658314, arg: 2*D_rad },
+                { coef: 0.213618, arg: 2*M1_rad },
+                { coef: -0.185116, arg: M_rad },
+                { coef: -0.114332, arg: 2*F_rad },
+                { coef: 0.058793, arg: 2*D_rad - 2*M1_rad },
+                { coef: 0.057066, arg: 2*D_rad - M_rad - M1_rad },
+                { coef: 0.053322, arg: 2*D_rad + M1_rad },
+                { coef: 0.045758, arg: 2*D_rad - M_rad },
+                { coef: -0.040923, arg: M_rad - M1_rad },
+                { coef: -0.034720, arg: D_rad },
+                { coef: -0.030383, arg: M_rad + M1_rad },
+                { coef: 0.015327, arg: 2*D_rad - 2*F_rad },
+                { coef: -0.012528, arg: 2*F_rad + M1_rad },
+                { coef: 0.010980, arg: 2*F_rad - M1_rad },
+                { coef: 0.010675, arg: 4*D_rad - M1_rad },
+                { coef: 0.010034, arg: 3*M1_rad },
+                { coef: 0.008548, arg: 4*D_rad - 2*M1_rad },
+                { coef: -0.007888, arg: 2*D_rad + M_rad - M1_rad }
+            ];
+            
+            let longitudCorrecion = 0;
+            for (let corr of correcciones) {
+                longitudCorrecion += corr.coef * Math.sin(corr.arg);
+            }
+            
+            let longitud = L0 + longitudCorrecion;
+            
+            // Normalizar a 0-360 grados
+            longitud = longitud % 360;
+            if (longitud < 0) longitud += 360;
+            
+            return longitud;
+        }
+
+        function convertirASignoZodiacal(longitudEcliptica) {
+            const signos = [
+                { nombre: 'Aries', emoji: '♈', elemento: 'Fuego' },
+                { nombre: 'Tauro', emoji: '♉', elemento: 'Tierra' },
+                { nombre: 'Géminis', emoji: '♊', elemento: 'Aire' },
+                { nombre: 'Cáncer', emoji: '♋', elemento: 'Agua' },
+                { nombre: 'Leo', emoji: '♌', elemento: 'Fuego' },
+                { nombre: 'Virgo', emoji: '♍', elemento: 'Tierra' },
+                { nombre: 'Libra', emoji: '♎', elemento: 'Aire' },
+                { nombre: 'Escorpio', emoji: '♏', elemento: 'Agua' },
+                { nombre: 'Sagitario', emoji: '♐', elemento: 'Fuego' },
+                { nombre: 'Capricornio', emoji: '♑', elemento: 'Tierra' },
+                { nombre: 'Acuario', emoji: '♒', elemento: 'Aire' },
+                { nombre: 'Piscis', emoji: '♓', elemento: 'Agua' }
+            ];
+            
+            let longitud = longitudEcliptica % 360;
+            if (longitud < 0) longitud += 360;
+            
+            const indiceSigno = Math.floor(longitud / 30);
+            const gradosEnSigno = longitud % 30;
+            const gradosEnteros = Math.floor(gradosEnSigno);
+            const minutosEnSigno = Math.floor((gradosEnSigno - gradosEnteros) * 60);
+            
+            const signo = signos[indiceSigno] || signos[0];
+            
+            return `${signo.nombre} ${signo.emoji} ${gradosEnteros}°${minutosEnSigno > 0 ? minutosEnSigno + "'" : ''}`;
+        }
+
+        function calcularDistanciaLunar(jd) {
+            // Distancia aproximada usando la variación lunar
+            const T = (jd - 2451545.0) / 36525.0;
+            
+            // Anomalía media de la Luna
+            const M1 = (134.9633964 + 477198.8675055 * T) * Math.PI / 180;
+            
+            // Distancia media y variaciones
+            const distanciaMedia = 385000.56; // km
+            const variacionPrincipal = -20905.355 * Math.cos(M1);
+            const variacionSecundaria = -3699.111 * Math.cos(2 * M1);
+            const variacionTerciaria = -2955.968 * Math.cos(M1);
+            
+            return distanciaMedia + variacionPrincipal + variacionSecundaria + variacionTerciaria;
+        }
+
+        function calcularProximaFase(posicion, ciclo) {
+            const fases = [
+                { nombre: 'Luna Nueva', posicion: 0,

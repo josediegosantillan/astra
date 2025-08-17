@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../src/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="../src/main.js" defer></script>
+    <title>Acerca de Liliana Morelli - AstraLumina</title>
+</head>
+<body class="min-h-screen bg-gray-900 pb-20 lg:pb-0" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
+    
+    <!-- hace los puntos en el fondo -->
+    <div class="fixed inset-0 opacity-10">
+        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0); background-size: 40px 40px;"></div>
+    </div>
+    
+    <div class="relative z-10">
+      
+    <div class="nav-container hidden md:flex justify-center gap-y-8">
+    <nav class="bg-gray-900/80 backdrop-blur-sm border-b border-gray-700 shadow-2xl">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
+        <div class="flex justify-between h-16">
+          <!-- Logo y Navegación Principal -->
+          <div class="flex items-center">
+            <!-- Logo-->
+            <div class="flex-shrink-0">
+              <a href="../index.html" class="flex items-center group">
+                <div class="h-10 w-10 bg-gradient-to-br from-purple-500 to-violet-600 rounded-lg flex 
+                items-center justify-center shadow-lg group-hover:shadow-xl 
+                transition-all duration-300 border border-purple-400/30">
+                  <span class="text-white font-bold text-sm">AL</span>
+                </div>
+                <span class="ml-3 text-white font-bold text-xl tracking-wide
+                 group-hover:text-purple-300 transition-colors duration-300">AstraLumina</span>
+              </a>
+            </div>
+            <!-- Navegación Desktop -->
+            <div class="hidden md:ml-10 md:flex md:items-center md:space-x-5 gap-x-5 pr-2">
+              <a href="../index.html" class="text-gray-300 hover:text-white hover:bg-gray-700/50 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">Inicio</a>
+              <a href="consultas.html" class="text-gray-300 hover:text-white hover:bg-gray-700/50 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">Consultas</a>
+              <a href="cursos.html" class="text-gray-300 hover:text-white hover:bg-gray-700/50 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">Cursos</a>
+              <a href="contacto.html" class="text-gray-300 hover:text-white hover:bg-gray-700/50 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">Contacto</a>
+              <a href="#" class="text-white bg-gradient-to-r from-purple-600 to-violet-600 px-4 py-2 rounded-lg text-sm font-medium shadow-sm border border-purple-400/30">Acerca de</a>
+            </div>
+          </div>
+
+          <!-- Acciones y Menú Mobile -->
+          <div class="flex items-center">
+            <!-- Botón Menú Mobile -->
+            <div class="md:hidden">
+              <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                <span class="sr-only">Abrir menú principal</span>
+                <!-- Icono de menú (hamburguesa) -->
+                <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                <!-- Icono de cierre (X) -->
+                <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Menú Mobile -->
+      <div class="hidden md:hidden" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <a href="../index.html" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">Inicio</a>
+          <a href="consultas.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Consultas</a>
+          <a href="cursos.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Cursos</a>
+          <a href="contacto.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contacto</a>
+          <a href="#" class="text-white bg-gradient-to-r from-purple-600 to-violet-600 block px-3 py-2 rounded-md text-base font-medium">Acerca de</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+  </div>    
+    
+    <!-- Contenido Principal -->
+    <main class="max-w-4xl flex flex-col items-center mx-auto py-4 sm:py-6 lg:py-8 px-4 sm:px-6 lg:px-8 pt-6 lg:pt-8">
+      
+      <!-- Liliana Morelli Profile Section -->
+      <section class="mb-8 sm:mb-12 w-full">
+        <div class="bg-gradient-to-br from-purple-900/30 via-gray-800/50 to-violet-900/30 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-purple-400/20 shadow-2xl">
+          <!-- Header with Photo -->
+          <div class="flex flex-col md:flex md:flex-col lg:flex-row items-center lg:items-start gap-6 sm:gap-8 mb-8">
+            <div class="flex-shrink-0">
+              <div class="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 rounded-full bg-gradient-to-br from-purple-400/20 to-violet-600/20 p-1 shadow-2xl">
+                <img src="../images/lili.png" alt="Liliana Morelli" class="w-full h-full object-cover rounded-full shadow-lg border-2 border-purple-400/30">
+              </div>
+            </div>
+            
+            <div class="flex-1 text-center lg:text-left">
+              <h1 class="text-3xl sm:text-4xl font-bold text-white mb-3">Liliana Morelli</h1>
+              <p class="text-xl sm:text-2xl text-purple-200 mb-4 font-light">Consultora Holística</p>
+              
+              <!-- Credenciales -->
+              <div class="flex flex-wrap justify-center lg:justify-start gap-2 mb-6">
+                <span class="px-3 py-1 bg-purple-500/20 text-purple-200 rounded-full text-sm border border-purple-400/30">Certificada Internacional</span>
+                <span class="px-3 py-1 bg-violet-500/20 text-violet-200 rounded-full text-sm border border-violet-400/30">+15 años experiencia</span>
+                <span class="px-3 py-1 bg-indigo-500/20 text-indigo-200 rounded-full text-sm border border-indigo-400/30">5000+ consultas</span>
+              </div>
+              
+              <!-- Descripción Personal -->
+              <p class="text-gray-300 text-base sm:text-lg leading-relaxed mb-6">
+                Guía espiritual comprometida con el despertar de la consciencia y el crecimiento personal. 
+                Con una metodología integrativa que combina sabiduría ancestral y psicología moderna, 
+                acompaño a las personas en su viaje hacia el autoconocimiento y la transformación personal.
+              </p>
+              
+              <!-- Call to Action -->
+              <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+                <a href="consultas.html" class="bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-center">
+                  Agendar Consulta
+                </a>
+                <button class="bg-gray-700/50 hover:bg-gray-600/60 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 border border-gray-600 hover:border-gray-500">
+                  Ver Testimonios
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Especialidades -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8">
+            <div class="bg-gray-800/60 backdrop-blur-sm rounded-xl p-4 sm:p-5 border border-gray-700/50 hover:border-purple-400/30 transition-all duration-300">
+              <div class="flex items-center mb-3">
+                <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center mr-3">
+                  <i class="fas fa-cards text-purple-300"></i>
+                </div>
+                <h3 class="text-lg font-bold text-purple-200">Tarot Profesional</h3>
+              </div>
+              <p class="text-gray-300 text-sm leading-relaxed">
+                Lecturas terapéuticas personalizadas que revelan patrones inconscientes y guían hacia decisiones conscientes.
+              </p>
+            </div>
+            
+            <div class="bg-gray-800/60 backdrop-blur-sm rounded-xl p-4 sm:p-5 border border-gray-700/50 hover:border-violet-400/30 transition-all duration-300">
+              <div class="flex items-center mb-3">
+                <div class="w-10 h-10 bg-violet-500/20 rounded-lg flex items-center justify-center mr-3">
+                  <i class="fas fa-calculator text-violet-300"></i>
+                </div>
+                <h3 class="text-lg font-bold text-violet-200">Numerología Aplicada</h3>
+              </div>
+              <p class="text-gray-300 text-sm leading-relaxed">
+                Análisis profundo de los números de tu vida para comprender tu propósito y maximizar tu potencial.
+              </p>
+            </div>
+            
+            <div class="bg-gray-800/60 backdrop-blur-sm rounded-xl p-4 sm:p-5 border border-gray-700/50 hover:border-indigo-400/30 transition-all duration-300">
+              <div class="flex items-center mb-3">
+                <div class="w-10 h-10 bg-indigo-500/20 rounded-lg flex items-center justify-center mr-3">
+                  <i class="fas fa-lotus-flower text-indigo-300"></i>
+                </div>
+                <h3 class="text-lg font-bold text-indigo-200">Consultoría Holística</h3>
+              </div>
+              <p class="text-gray-300 text-sm leading-relaxed">
+                Acompañamiento integral que integra cuerpo, mente y espíritu para una transformación auténtica.
+              </p>
+            </div>
+            
+            <div class="bg-gray-800/60 backdrop-blur-sm rounded-xl p-4 sm:p-5 border border-gray-700/50 hover:border-pink-400/30 transition-all duration-300">
+              <div class="flex items-center mb-3">
+                <div class="w-10 h-10 bg-pink-500/20 rounded-lg flex items-center justify-center mr-3">
+                  <i class="fas fa-atom text-pink-300"></i>
+                </div>
+                <h3 class="text-lg font-bold text-pink-200">Decodificación Energética</h3>
+              </div>
+              <p class="text-gray-300 text-sm leading-relaxed">
+                Identificación y liberación de bloqueos energéticos que limitan tu crecimiento personal.
+              </p>
+            </div>
+            
+            <div class="bg-gray-800/60 backdrop-blur-sm rounded-xl p-4 sm:p-5 border border-gray-700/50 hover:border-emerald-400/30 transition-all duration-300">
+              <div class="flex items-center mb-3">
+                <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center mr-3">
+                  <i class="fas fa-seedling text-emerald-300"></i>
+                </div>
+                <h3 class="text-lg font-bold text-emerald-200">Crecimiento Personal</h3>
+              </div>
+              <p class="text-gray-300 text-sm leading-relaxed">
+                Herramientas prácticas basadas en neurociencia y psicología positiva para tu evolución.
+              </p>
+            </div>
+            
+            <div class="bg-gray-800/60 backdrop-blur-sm rounded-xl p-4 sm:p-5 border border-gray-700/50 hover:border-amber-400/30 transition-all duration-300">
+              <div class="flex items-center mb-3">
+                <div class="w-10 h-10 bg-amber-500/20 rounded-lg flex items-center justify-center mr-3">
+                  <i class="fas fa-infinity text-amber-300"></i>
+                </div>
+                <h3 class="text-lg font-bold text-amber-200">Desarrollo Espiritual</h3>
+              </div>
+              <p class="text-gray-300 text-sm leading-relaxed">
+                Conexión con tu esencia más profunda mediante técnicas milenarias y enfoques contemporáneos.
+              </p>
+            </div>
+          </div>
+          
+          <!-- Metodología -->
+          <div class="bg-gradient-to-r from-gray-800/60 to-gray-700/60 backdrop-blur-sm rounded-xl p-6 border border-gray-600/50">
+            <h3 class="text-xl sm:text-2xl font-bold text-white mb-4 text-center">Mi Metodología Integrativa</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="text-center">
+                <div class="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <i class="fas fa-brain text-2xl text-purple-300"></i>
+                </div>
+                <h4 class="text-lg font-semibold text-purple-200 mb-2">Análisis Profundo</h4>
+                <p class="text-gray-300 text-sm">Exploración de patrones subconscientes mediante técnicas avaladas por la psicología transpersonal.</p>
+              </div>
+              <div class="text-center">
+                <div class="w-16 h-16 bg-violet-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <i class="fas fa-heart text-2xl text-violet-300"></i>
+                </div>
+                <h4 class="text-lg font-semibold text-violet-200 mb-2">Sanación Emocional</h4>
+                <p class="text-gray-300 text-sm">Integración de traumas y liberación emocional através de técnicas de mindfulness y terapia energética.</p>
+              </div>
+              <div class="text-center">
+                <div class="w-16 h-16 bg-indigo-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <i class="fas fa-compass text-2xl text-indigo-300"></i>
+                </div>
+                <h4 class="text-lg font-semibold text-indigo-200 mb-2">Guía Práctica</h4>
+                <p class="text-gray-300 text-sm">Herramientas concretas y plan de acción personalizado para manifestar tu máximo potencial.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section class="mb-8 sm:mb-12 w-full">
+        <div class="text-center mb-8">
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Lo que dicen nuestros consultantes</h2>
+          <p class="text-lg text-gray-300">Más de 5,000 personas han transformado sus vidas con nuestras consultas</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <!-- Testimonio 1 -->
+          <div class="bg-gray-800/60 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-purple-400/30 transition-all duration-300">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-violet-600 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
+                M
+              </div>
+              <div>
+                <h4 class="text-white font-semibold">María Elena</h4>
+                <p class="text-gray-400 text-sm">Empresaria, 42 años</p>
+              </div>
+            </div>
+            <div class="flex text-yellow-400 mb-3">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm italic">"La consulta con Liliana fue un punto de inflexión en mi vida. Su enfoque profesional y profundamente sanador me ayudó a superar bloqueos que tenía hace años. Totalmente recomendable."</p>
+          </div>
+          
+          <!-- Testimonio 2 -->
+          <div class="bg-gray-800/60 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-violet-400/30 transition-all duration-300">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-gradient-to-br from-violet-400 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
+                C
+              </div>
+              <div>
+                <h4 class="text-white font-semibold">Carlos R.</h4>
+                <p class="text-gray-400 text-sm">Psicólogo, 38 años</p>
+              </div>
+            </div>
+            <div class="flex text-yellow-400 mb-3">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm italic">"Como profesional de la salud mental, valoro enormemente la ética y profesionalismo de Liliana. Su metodología integrativa complementó perfectamente mi proceso terapéutico."</p>
+          </div>
+          
+          <!-- Testimonio 3 -->
+          <div class="bg-gray-800/60 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-indigo-400/30 transition-all duration-300">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-gradient-to-br from-indigo-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
+                A
+              </div>
+              <div>
+                <h4 class="text-white font-semibold">Ana Sofía</h4>
+                <p class="text-gray-400 text-sm">Artista, 29 años</p>
+              </div>
+            </div>
+            <div class="flex text-yellow-400 mb-3">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="text-gray-300 text-sm italic">"El curso de Tarot Profesional superó todas mis expectativas. No solo aprendí la técnica, sino que desarrollé una nueva perspectiva de vida. ¡Gracias infinitas!"</p>
+          </div>
+        </div>
+        
+        <!-- Stats Section -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 bg-gradient-to-r from-gray-800/60 to-gray-700/60 backdrop-blur-sm rounded-xl p-6 border border-gray-600/50">
+          <div class="text-center">
+            <div class="text-3xl sm:text-4xl font-bold text-purple-300 mb-2">5,000+</div>
+            <div class="text-gray-300 text-sm">Consultas Realizadas</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl sm:text-4xl font-bold text-violet-300 mb-2">15+</div>
+            <div class="text-gray-300 text-sm">Años de Experiencia</div>
+          </div>
+          <!--<div class="text-center"> -->
+            <div class="text-3xl sm:text-4xl font-bold text-indigo-300 mb-2">98%</div>
+            <div class="text-gray-300 text-sm">Satisfacción Cliente</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl sm:text-4xl font-bold text-emerald-300 mb-2">1,200+</div>
+            <div class="text-gray-300 text-sm">Estudiantes Graduados</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Certificaciones y Credenciales -->
+      <section class="mb-8 sm:mb-12 w-full">
+        <div class="text-center mb-8">
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Certificaciones y Formación</h2>
+          <p class="text-lg text-gray-300">Respaldo académico y profesional reconocido internacionalmente</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-gradient-to-br from-purple-900/30 to-purple-800/30 backdrop-blur-sm rounded-xl p-6 border border-purple-400/30">
+            <div class="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-certificate text-2xl text-purple-300"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white text-center mb-2">Instituto Internacional de Tarot</h3>
+            <p class="text-gray-300 text-sm text-center">Certificación Profesional en Tarot Terapéutico (2008)</p>
+          </div>
+          
+          <div class="bg-gradient-to-br from-violet-900/30 to-violet-800/30 backdrop-blur-sm rounded-xl p-6 border border-violet-400/30">
+            <div class="w-16 h-16 bg-violet-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-graduation-cap text-2xl text-violet-300"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white text-center mb-2">Universidad de Psicología Transpersonal</h3>
+            <p class="text-gray-300 text-sm text-center">Máster en Psicología Integral y Desarrollo Humano (2012)</p>
+          </div>
+          
+          <div class="bg-gradient-to-br from-indigo-900/30 to-indigo-800/30 backdrop-blur-sm rounded-xl p-6 border border-indigo-400/30">
+            <div class="w-16 h-16 bg-indigo-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-atom text-2xl text-indigo-300"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white text-center mb-2">Centro de Estudios Energéticos</h3>
+            <p class="text-gray-300 text-sm text-center">Especialización en Sanación Cuántica y Bioenergia (2015)</p>
+          </div>
+          
+          <div class="bg-gradient-to-br from-emerald-900/30 to-emerald-800/30 backdrop-blur-sm rounded-xl p-6 border border-emerald-400/30">
+            <div class="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-lotus-flower text-2xl text-emerald-300"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white text-center mb-2">Escuela de Medicina Integrativa</h3>
+            <p class="text-gray-300 text-sm text-center">Diplomatura en Terapias Holísticas Complementarias (2018)</p>
+          </div>
+          
+          <div class="bg-gradient-to-br from-amber-900/30 to-amber-800/30 backdrop-blur-sm rounded-xl p-6 border border-amber-400/30">
+            <div class="w-16 h-16 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-calculator text-2xl text-amber-300"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white text-center mb-2">Academia de Numerología Pitagórica</h3>
+            <p class="text-gray-300 text-sm text-center">Certificación Avanzada en Numerología Aplicada (2020)</p>
+          </div>
+          
+          <div class="bg-gradient-to-br from-pink-900/30 to-pink-800/30 backdrop-blur-sm rounded-xl p-6 border border-pink-400/30">
+            <div class="w-16 h-16 bg-pink-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-brain text-2xl text-pink-300"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white text-center mb-2">Instituto de Neurociencias Aplicadas</h3>
+            <p class="text-gray-300 text-sm text-center">Formación en Neuroplasticidad y Cambio de Patrones (2023)</p>
+          </div>
+        </div>
+        
+        <!-- Membresías Profesionales -->
+        <!-- <div class="mt-8 bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50">
+          <h3 class="text-xl font-bold text-white text-center mb-6">Membresías Profesionales</h3>
+          <div class="flex flex-wrap justify-center gap-6">
+            <div class="text-center">
+              <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mx-auto mb-2">
+                <i class="fas fa-users text-purple-300"></i>
+              </div>
+              <p class="text-gray-300 text-sm">Asociación Internacional de Tarotistas</p>
+            </div>
+            <div class="text-center">
+              <div class="w-12 h-12 bg-violet-500/20 rounded-lg flex items-center justify-center mx-auto mb-2">
+                <i class="fas fa-globe text-violet-300"></i>
+              </div>
+              <p class="text-gray-300 text-sm">Federación Mundial de Terapeutas</p>
+            </div>
+            <div class="text-center">
+              <div class="w-12 h-12 bg-indigo-500/20 rounded-lg flex items-center justify-center mx-auto mb-2">
+                <i class="fas fa-heart text-indigo-300"></i>
+              </div>
+              <p class="text-gray-300 text-sm">Consejo de Medicina Integrativa</p>
+            </div>
+          </div>
+        </div>  -->
+      </section> 
+      
+    </main>
+    
+    <!-- Sección Síguenos -->
+    <section class="py-6 sm:py-8 px-4 bg-gray-800/30 backdrop-blur-sm">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="flex space-x-4 sm:space-x-6 justify-center">
+                <a href="#" class="group flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gray-700/50 hover:bg-purple-600/30 rounded-full border border-gray-600 hover:border-purple-400/50 transition-all duration-300">
+                    <i class="fab fa-facebook text-lg sm:text-xl text-gray-400 group-hover:text-purple-300 transition-colors duration-300"></i>
+                </a>
+                <a href="#" class="group flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gray-700/50 hover:bg-purple-600/30 rounded-full border border-gray-600 hover:border-purple-400/50 transition-all duration-300">
+                    <i class="fab fa-instagram text-lg sm:text-xl text-gray-400 group-hover:text-purple-300 transition-colors duration-300"></i>
+                </a>
+                <a href="#" class="group flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gray-700/50 hover:bg-purple-600/30 rounded-full border border-gray-600 hover:border-purple-400/50 transition-all duration-300">
+                    <i class="fab fa-twitter text-lg sm:text-xl text-gray-400 group-hover:text-purple-300 transition-colors duration-300"></i>
+                </a>
+                <a href="#" class="group flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gray-700/50 hover:bg-purple-600/30 rounded-full border border-gray-600 hover:border-purple-400/50 transition-all duration-300">
+                    <i class="fab fa-youtube text-lg sm:text-xl text-gray-400 group-hover:text-purple-300 transition-colors duration-300"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+  <section class="menu-inferior md:hidden fixed bottom-0 left-0 right-0 z-40 pt-2 sm:pt-4 justify-center justify-items-center bg-gray-900/95 backdrop-blur-sm border-t border-gray-700">
+        <div class="menu-inferior-container flex w-full max-w-[600px] justify-around bg-gray-800/50 backdrop-blur-sm px-2 sm:px-4 pb-2 pt-2 rounded-t-2xl border border-gray-600 mx-4">
+            <a href="../index.html" class="flex flex-col items-center group">
+                <div class="p-3 rounded-xl bg-gray-400/10 group-hover:bg-gray-400/20 transition-colors">
+                    <i class="fa-regular fa-house text-2xl text-gray-400 group-hover:text-gray-300 transition-colors"></i>
+                </div>
+                <span class="text-xs font-medium text-gray-300 mt-1">Home</span>
+            </a>
+            <a href="consultas.html" class="flex flex-col items-center group">
+                <div class="p-3 rounded-xl bg-gray-400/10 group-hover:bg-gray-400/20 transition-colors">
+                    <i class="fa-solid fa-comments text-2xl text-gray-400 group-hover:text-gray-300 transition-colors"></i>
+                </div>
+                <span class="text-xs font-medium text-gray-300 mt-1">Consultas</span>
+            </a>
+            <a href="cursos.html" class="flex flex-col items-center group">
+                <div class="p-3 rounded-xl bg-gray-400/10 group-hover:bg-gray-400/20 transition-colors">
+                    <i class="fa-solid fa-book text-2xl text-gray-400 group-hover:text-gray-300 transition-colors"></i>
+                </div>
+                <span class="text-xs font-medium text-gray-300 mt-1">Cursos</span>
+            </a>
+            <a href="contacto.html" class="flex flex-col items-center group">
+                <div class="p-3 rounded-xl bg-gray-400/10 group-hover:bg-gray-400/20 transition-colors">
+                    <i class="fa-solid fa-phone-flip text-2xl text-gray-400 group-hover:text-gray-300 transition-colors"></i>
+                </div>
+                <span class="text-xs font-medium text-gray-300 mt-1">Contacto</span>
+            </a>
+            <div class="flex flex-col items-center group">
+                <div class="p-3 rounded-xl bg-purple-400/10 group-hover:bg-purple-400/20 transition-colors">
+                    <i class="fa-regular fa-user text-2xl text-purple-400 group-hover:text-purple-300 transition-colors"></i>
+                </div>
+                <span class="text-xs font-medium text-gray-300 mt-1">Acerca de</span>
+            </div> 
+        </div>
+    </section>
+    
+    <!-- WhatsApp Flotante -->
+    <div class="fixed right-2 sm:right-4 bottom-24 lg:bottom-4 z-50">
+      <a href="https://wa.me/5491154106096?text=Hola,%20me%20interesa%20obtener%20más%20información" 
+         target="_blank"
+         class="group inline-flex items-center bg-green-600/20 hover:bg-green-600/30 
+                border border-green-500/30 hover:border-green-400/50 
+                rounded-xl px-1 py-1 transition-all duration-300 transform 
+                 hover:shadow-2xl hover:shadow-green-600/05">
+        <!-- Icono WhatsApp -->
+        <div class="bg-green-500 rounded-full p-2 group-hover:bg-green-400 transition-colors duration-300">
+          <svg class="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12.017 2c-5.527 0-9.998 4.471-9.998 9.998 0 1.764.459 3.423 1.265 4.859L2 22l5.233-1.237c1.4.739 2.992 1.152 4.767 1.152 5.527 0 9.998-4.471 9.998-9.998S17.544 2 12.017 2zm5.951 14.5c-.252.706-1.26 1.306-2.018 1.471-.758.165-1.39.147-4.748-1.11-2.89-1.08-4.758-3.946-4.9-4.13-.141-.183-1.156-1.537-1.156-2.932 0-1.395.731-2.077 1.02-2.36.29-.282.632-.353.843-.353.211 0 .422.001.606.011.194.011.454-.073.708.539.252.612.864 2.11.94 2.26.076.151.127.327.025.528-.101.2-.151.327-.302.502-.151.176-.318.392-.453.527-.151.151-.308.314-.133.615.176.302.783 1.295 1.681 2.097 1.155.03 2.085 1.437 3.134 1.437.303 0 .966-.127 1.282-.302.317-.176.504-.28.705-.438.2-.159.453-.127.604.075.151.201.63.705.63 1.658 0 .378-.075.706-.226.959z"/>
+          </svg>
+        </div>
+      </a>
+    </div>
+
+    <footer class="bg-gray-900 text-gray-400 py-4 sm:py-6 border-t border-gray-800">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <p class="text-xs sm:text-sm">© 2025 AstraLumina. Todos los derechos reservados.</p>
+            <p class="text-xs mt-1 sm:mt-2">Desarrollado por ©TheBaltoTeam</p>
+        </div>
+    </footer>
+</body>
+</html>

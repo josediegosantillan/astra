@@ -1,0 +1,60 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+vendor/
+
+# Environment variables
+chatbot.html
+chatbot.js
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Development config (contains API keys)
+config/dev.js
+config/local.js
+
+# Private examples and sensitive data
+private_examples/
+private_examples/.env
+private_examples/context.txt
+
+# Composer
+composer.phar
+
+# Build outputs
+dist/
+build/
+out/
+
+# Cache
+.cache/
+.parcel-cache/
+.next/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+tmp/
+temp/

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horóscopo Personalizado - AstraLumina</title>
+    <link rel="stylesheet" href="../src/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="../src/horoscopo.js" defer></script>
+</head>
+<body class="min-h-screen bg-gray-900 pb-20 lg:pb-0" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
+    <!-- hace los puntos en el fondo -->
+    <div class="fixed inset-0 opacity-10 pointer-events-none select-none">
+        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0); background-size: 40px 40px;"></div>
+    </div>
+    
+    <div class="relative z-10">
+        <!-- Contenido Principal -->
+        <main class="max-w-4xl flex flex-col items-center mx-auto py-2 sm:py-2 lg:py-8 px-4 sm:px-6 lg:px-8 pt-6 lg:pt-8">
+            
+            <!-- Header -->
+            <section class="text-center mb-12">
+                <h1 class="text-4xl sm:text-5xl font-bold text-white mb-4">🔮 Horóscopo Personalizado</h1>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">Descubre lo que las estrellas tienen preparado para ti con predicciones personalizadas generadas por inteligencia artificial.</p>
+            </section>
+
+            <!-- Chat Container -->
+            <section class="mb-8 sm:mb-12 w-full">
+                <div class="bg-gray-800/60 backdrop-blur-sm rounded-xl p-3 border border-gray-700/50 shadow-xl">
+                    <div class="mb-5 p-4 rounded-2xl bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 text-gray-300 max-w-[85%]">
+                            <strong class="text-purple-300">🌟 AstraLumina:</strong><br>
+                            ¡Saludos! Soy AstraLumina, tu astróloga personal potenciada por inteligencia artificial. Completa tus datos para recibir predicciones personalizadas.
+                    </div>
+                    <!-- Formulario -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="nombre" class="block mb-2 font-semibold text-white">👤 Nombre Completo</label>
+                            <input type="text" id="nombre" placeholder="Tu nombre completo" 
+                                   class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/30 transition" />
+                        </div>
+                        <div>
+                            <label for="fechaNacimiento" class="block mb-2 font-semibold text-white">📅 Fecha de Nacimiento</label>
+                            <input type="date" id="fechaNacimiento" 
+                                   class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/30 transition" />
+                        </div>
+                        <div>
+                            <label for="horaNacimiento" class="block mb-2 font-semibold text-white">⏰ Hora de Nacimiento</label>
+                            <input type="time" id="horaNacimiento" 
+                                   class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/30 transition" />
+                            <small class="text-gray-400">Opcional - Mejora la precisión</small>
+                        </div>
+                        <div>
+                            <label for="lugarNacimiento" class="block mb-2 font-semibold text-white">🌍 Lugar de Nacimiento</label>
+                            <input type="text" id="lugarNacimiento" placeholder="Ciudad, País" 
+                                   class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/30 transition" />
+                            <small class="text-gray-400">Opcional - Para cálculos precisos</small>
+                        </div>
+                    </div>
+
+                    <!-- Botones -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-4">
+                        <button type="button" class="bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-xl" onclick="solicitarHoroscopo('diario')">
+                            🌅 Horóscopo Diario
+                        </button>
+                        <button type="button" class="bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-xl" onclick="solicitarHoroscopo('semanal')">
+                            📊 Horóscopo Semanal
+                        </button>
+                    </div>
+                    <!-- Loading -->
+                    <div class="flex flex-col items-center py-4" id="loading" style="display:none;">
+                        <div class="animate-spin rounded-full h-8 w-8 border-4 border-purple-200 border-t-purple-500 mb-3"></div>
+
+                        <span id="loadingText" class="text-purple-300 font-semibold">Consultando las estrellas con IA...</span>
+                    </div>
+                    <!-- Contenedor de chat se expande dinámicamente según contenido -->
+                    <div class="flex flex-col mb-2 p-2 bg-gray-900/30 rounded-lg" id="chatContainer">
+                        <p class="text-2xl">Hola</p>
+                    </div>
+                </div>
+                
+            </section>
+            
+        </main>
+    </div>
+
+    <!-- Menú inferior AstraLumina -->
+    <section class="menu-inferior md:hidden fixed bottom-0 left-0 right-0 z-40 pt-2 sm:pt-4 justify-center justify-items-center bg-gray-900/95 backdrop-blur-sm border-t border-gray-700">
+        <div class="menu-inferior-container flex w-full max-w-[600px] justify-around bg-gray-800/50 backdrop-blur-sm px-2 sm:px-4 pb-2 pt-2 rounded-t-2xl border border-gray-600 mx-4">
+            <a href="../index.html" class="flex flex-col items-center group">
+                <div class="p-3 rounded-xl bg-gray-400/10 group-hover:bg-gray-400/20 transition-colors">
+                    <i class="fa-regular fa-house text-2xl text-gray-400 group-hover:text-gray-300 transition-colors"></i>
+                </div>
+                <span class="text-xs font-medium text-gray-300 mt-1">Home</span>
+            </a>
+            <a href="consultas.html" class="flex flex-col items-center group">
+                <div class="p-3 rounded-xl bg-purple-400/10 group-hover:bg-purple-400/20 transition-colors">
+                    <i class="fa-solid fa-comments text-2xl text-purple-400 group-hover:text-purple-300 transition-colors"></i>
+                </div>
+                <span class="text-xs font-medium text-gray-300 mt-1">Consultas</span>
+            </a>
+            <a href="cursos.html" class="flex flex-col items-center group">
+                <div class="p-3 rounded-xl bg-gray-400/10 group-hover:bg-gray-400/20 transition-colors">
+                    <i class="fa-solid fa-book text-2xl text-gray-400 group-hover:text-gray-300 transition-colors"></i>
+                </div>
+                <span class="text-xs font-medium text-gray-300 mt-1">Cursos</span>
+            </a>
+            <a href="contacto.html" class="flex flex-col items-center group">
+                <div class="p-3 rounded-xl bg-gray-400/10 group-hover:bg-gray-400/20 transition-colors">
+                    <i class="fa-solid fa-phone-flip text-2xl text-gray-400 group-hover:text-gray-300 transition-colors"></i>
+                </div>
+                <span class="text-xs font-medium text-gray-300 mt-1">Contacto</span>
+            </a>
+            <a href="acerca-de.html" class="flex flex-col items-center group">
+                <div class="p-3 rounded-xl bg-gray-400/10 group-hover:bg-gray-400/20 transition-colors">
+                    <i class="fa-regular fa-user text-2xl text-gray-400 group-hover:text-gray-300 transition-colors"></i>
+                </div>
+                <span class="text-xs font-medium text-gray-300 mt-1">Acerca de</span>
+            </a> 
+        </div>
+    </section>    
+</body>
+</html>

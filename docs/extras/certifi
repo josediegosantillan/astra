@@ -1,0 +1,82 @@
+<!-- Certificaciones y Credenciales -->
+      <section class="mb-8 sm:mb-12 w-full">
+        <div class="text-center mb-8">
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Certificaciones y Formación</h2>
+          <p class="text-lg text-gray-300">Respaldo académico y profesional reconocido internacionalmente</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-gradient-to-br from-purple-900/30 to-purple-800/30 backdrop-blur-sm rounded-xl p-6 border border-purple-400/30">
+            <div class="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-certificate text-2xl text-purple-300"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white text-center mb-2">Instituto Internacional de Tarot</h3>
+            <p class="text-gray-300 text-sm text-center">Certificación Profesional en Tarot Terapéutico (2008)</p>
+          </div>
+          
+          <div class="bg-gradient-to-br from-violet-900/30 to-violet-800/30 backdrop-blur-sm rounded-xl p-6 border border-violet-400/30">
+            <div class="w-16 h-16 bg-violet-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-graduation-cap text-2xl text-violet-300"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white text-center mb-2">Universidad de Psicología Transpersonal</h3>
+            <p class="text-gray-300 text-sm text-center">Máster en Psicología Integral y Desarrollo Humano (2012)</p>
+          </div>
+          
+          <div class="bg-gradient-to-br from-indigo-900/30 to-indigo-800/30 backdrop-blur-sm rounded-xl p-6 border border-indigo-400/30">
+            <div class="w-16 h-16 bg-indigo-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-atom text-2xl text-indigo-300"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white text-center mb-2">Centro de Estudios Energéticos</h3>
+            <p class="text-gray-300 text-sm text-center">Especialización en Sanación Cuántica y Bioenergia (2015)</p>
+          </div>
+          
+          <div class="bg-gradient-to-br from-emerald-900/30 to-emerald-800/30 backdrop-blur-sm rounded-xl p-6 border border-emerald-400/30">
+            <div class="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-lotus-flower text-2xl text-emerald-300"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white text-center mb-2">Escuela de Medicina Integrativa</h3>
+            <p class="text-gray-300 text-sm text-center">Diplomatura en Terapias Holísticas Complementarias (2018)</p>
+          </div>
+          
+          <div class="bg-gradient-to-br from-amber-900/30 to-amber-800/30 backdrop-blur-sm rounded-xl p-6 border border-amber-400/30">
+            <div class="w-16 h-16 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-calculator text-2xl text-amber-300"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white text-center mb-2">Academia de Numerología Pitagórica</h3>
+            <p class="text-gray-300 text-sm text-center">Certificación Avanzada en Numerología Aplicada (2020)</p>
+          </div>
+          
+          <div class="bg-gradient-to-br from-pink-900/30 to-pink-800/30 backdrop-blur-sm rounded-xl p-6 border border-pink-400/30">
+            <div class="w-16 h-16 bg-pink-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-brain text-2xl text-pink-300"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white text-center mb-2">Instituto de Neurociencias Aplicadas</h3>
+            <p class="text-gray-300 text-sm text-center">Formación en Neuroplasticidad y Cambio de Patrones (2023)</p>
+          </div>
+        </div>
+        
+        <!-- Membresías Profesionales -->
+        <div class="mt-8 bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50">
+          <h3 class="text-xl font-bold text-white text-center mb-6">Membresías Profesionales</h3>
+          <div class="flex flex-wrap justify-center gap-6">
+            <div class="text-center">
+              <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mx-auto mb-2">
+                <i class="fas fa-users text-purple-300"></i>
+              </div>
+              <p class="text-gray-300 text-sm">Asociación Internacional de Tarotistas</p>
+            </div>
+            <div class="text-center">
+              <div class="w-12 h-12 bg-violet-500/20 rounded-lg flex items-center justify-center mx-auto mb-2">
+                <i class="fas fa-globe text-violet-300"></i>
+              </div>
+              <p class="text-gray-300 text-sm">Federación Mundial de Terapeutas</p>
+            </div>
+            <div class="text-center">
+              <div class="w-12 h-12 bg-indigo-500/20 rounded-lg flex items-center justify-center mx-auto mb-2">
+                <i class="fas fa-heart text-indigo-300"></i>
+              </div>
+              <p class="text-gray-300 text-sm">Consejo de Medicina Integrativa</p>
+            </div>
+          </div>
+        </div>
+      </section>
