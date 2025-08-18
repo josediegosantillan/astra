@@ -2,7 +2,49 @@
 // ASTRALUMINA - MAIN JAVASCRIPT FILE
 // Archivo JavaScript principal que combina toda la funcionalidad
 // =============================================================================
+// =============================================================================
+// Modal Para Reservas 
+// =============================================================================
+// Modal ligero para reservas
+(function(){
+const modal = document.getElementById('reservar-modal');
+const closeBtn = document.getElementById('modal-close');
+const cancelBtn = document.getElementById('modal-cancel');
+const serviceInput = document.getElementById('service-input');
 
+function openModal(service){
+    serviceInput.value = service || '';
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+function closeModal(){
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+}
+
+document.querySelectorAll('.reservar-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+    const svc = btn.getAttribute('data-service') || '';
+    openModal(svc);
+    });
+});
+
+if(closeBtn) closeBtn.addEventListener('click', closeModal);
+if(cancelBtn) cancelBtn.addEventListener('click', closeModal);
+
+// submit mínimo: evitar envío real y mostrar confirmación
+const form = document.getElementById('reservar-form');
+if(form){
+    form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    // Aquí podrías integrar un fetch a tu endpoint de reservas
+    closeModal();
+    alert('Solicitud enviada. Te contactaremos pronto.');
+    form.reset();
+    });
+}
+})();
 // =============================================================================
 // MOBILE NAVBAR FUNCTIONALITY
 // =============================================================================
@@ -23,6 +65,160 @@ function initMobileNavbar() {
         });
     }
 }
+// =============================================================================
+// para el efecto de las estrellas y el fondo en donde la magia sucede
+// =============================================================================
+
+// Efectos visuales avanzados UX/UI
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // 1. Animaciones de scroll optimizadas
+    const observerOptions = {
+        threshold: 0.15, // Aumentado para activar menos elementos
+        rootMargin: '0px 0px -30px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                // Dejar de observar el elemento una vez que es visible (optimización)
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    // Observar elementos con un delay para no bloquear el hilo principal
+    setTimeout(() => {
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+    }, 100);
+    
+    // 3. Efecto parallax optimizado con throttling
+    let ticking = false;
+    let lastScrollY = 0;
+    
+    function updateParallax() {
+        const scrolled = window.pageYOffset;
+        
+        // Solo actualizar si el scroll cambió significativamente (throttling manual)
+        if (Math.abs(scrolled - lastScrollY) < 5) {
+            ticking = false;
+            return;
+        }
+        
+        lastScrollY = scrolled;
+        const parallaxElements = document.querySelectorAll('.parallax-element');
+        
+        if (parallaxElements.length > 0) {
+            parallaxElements.forEach(element => {
+                const rate = scrolled * -0.05; // Reducido aún más para menos cálculos
+                element.style.transform = `translate3d(0, ${rate}px, 0)`; // Uso de translate3d para aceleración por hardware
+            });
+        }
+        
+        ticking = false;
+    }
+    
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(updateParallax);
+            ticking = true;
+        }
+    }
+
+    // 5. Efecto de typewriter para textos especiales
+    function typewriterEffect(element, text, speed = 100) {
+        let i = 0;
+        element.innerHTML = '';
+        
+        function type() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            }
+        }
+        
+        type();
+    }
+    
+    // Efecto parallax con throttling mejorado
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        if (scrollTimeout) return;
+        
+        scrollTimeout = setTimeout(() => {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+            scrollTimeout = null;
+        }, 16); // ~60fps
+    }, { passive: true });
+    
+    // Optimización de memoria - limpiar observers antes de salir
+    window.addEventListener('beforeunload', () => {
+        document.querySelectorAll('.animate-on-scroll').forEach(element => {
+            if (observer) observer.unobserve(element);
+        });
+    });
+    
+    // 7. Efecto de ondas al hacer clic
+    function createRippleEffect(e) {
+        const button = e.currentTarget;
+        const ripple = document.createElement('span');
+        const rect = button.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.cssText = `
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            width: ${size}px;
+            height: ${size}px;
+            left: ${x}px;
+            top: ${y}px;
+            animation: ripple 1s ease-out;
+            pointer-events: none;
+        `;
+        
+        button.style.position = 'relative';
+        button.style.overflow = 'hidden';
+        button.appendChild(ripple);
+        
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
+    }
+    
+    // Añadir efecto de ondas a todos los botones
+    document.querySelectorAll('button').forEach(button => {
+        button.addEventListener('click', createRippleEffect);
+    });
+
+    // stars now implemented via CSS pseudo-elements for performance
+    
+});
+
+// Estilo CSS para el efecto ripple
+const rippleStyle = document.createElement('style');
+rippleStyle.textContent = `
+    @keyframes ripple {
+        from {
+            transform: scale(0);
+            opacity: 1;
+        }
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(rippleStyle);
 
 // =============================================================================
 // CAROUSEL FUNCTIONALITY

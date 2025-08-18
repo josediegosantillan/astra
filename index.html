@@ -5,314 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/output.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="src/main.css">
     <script src="src/main.js" defer></script>
-    
-    <style>
-        /* Efectos visuales avanzados UX/UI */
-        
-        /* Animaciones de entrada */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-    @keyframes pulse-glow {
-      0%, 100% {
-        box-shadow: 0 0 10px rgba(219, 39, 119, 0.10);
-      }
-      50% {
-        box-shadow: 0 0 15px rgba(219, 39, 119, 0.14), 0 0 20px rgba(219, 39, 119, 0.06);
-      }
-    }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        @keyframes sparkle {
-            0%, 100% { opacity: 0; transform: scale(0); }
-            50% { opacity: 1; transform: scale(1); }
-        }
-        
-        /* Clases para efectos */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease-out;
-        }
-        
-        .animate-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .glassmorphism-enhanced {
-            backdrop-filter: blur(20px) saturate(180%);
-            background: rgba(31, 41, 55, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .card-hover-effect {
-            transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        
-        .card-hover-effect:hover {
-            transform: translateY(-1px) scale(1.004);
-            box-shadow: 0 8px 18px -6px rgba(168, 85, 247, 0.08);
-        }
-        
-        .glow-effect {
-            position: relative;
-            overflow: hidden;
-        }
-        
-    .glow-effect::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(219, 39, 119, 0.02), transparent);
-      transform: rotate(45deg);
-      transition: all 0.8s;
-      opacity: 0;
-    }
-        
-        .glow-effect:hover::before {
-            opacity: 1;
-            animation: shimmer 3s ease-in-out;
-        }
-        
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-        
-        /* Efectos de texto brillante */
-    .text-glow {
-      text-shadow: 0 0 6px rgba(219, 39, 119, 0.18),
-             0 0 10px rgba(219, 39, 119, 0.10),
-             0 0 12px rgba(219, 39, 119, 0.06);
-    }
-        
-        .logo-container {
-            animation: pulse-glow 6s ease-in-out infinite;
-        }
-        
-        /* Mejoras en transiciones optimizadas */
-      .card-hover-effect {
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      will-change: transform, box-shadow;
-    }
-        
-        /* Efecto parallax optimizado */
-        .parallax-element {
-            will-change: transform;
-        }
-
-        /* Desactivar animaciones para usuarios con preferencia reducida */
-        @media (prefers-reduced-motion: reduce) {
-            .parallax-bg,
-            .animate-pulse-soft,
-            .animate-bounce-soft {
-                animation: none !important;
-                transform: none !important;
-            }
-        }
-
-  /* Usar utilidades Tailwind para gradientes (no usar CSS personalizado aquí) */
-    </style>
-
     <title>AstraLumina</title>
-    
-    <script>
-        // Efectos visuales avanzados UX/UI
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            // 1. Animaciones de scroll optimizadas
-            const observerOptions = {
-                threshold: 0.15, // Aumentado para activar menos elementos
-                rootMargin: '0px 0px -30px 0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        // Dejar de observar el elemento una vez que es visible (optimización)
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-            
-            // Observar elementos con un delay para no bloquear el hilo principal
-            setTimeout(() => {
-                document.querySelectorAll('.animate-on-scroll').forEach(el => {
-                    observer.observe(el);
-                });
-            }, 100);
-            
-            // 3. Efecto parallax optimizado con throttling
-            let ticking = false;
-            let lastScrollY = 0;
-            
-            function updateParallax() {
-                const scrolled = window.pageYOffset;
-                
-                // Solo actualizar si el scroll cambió significativamente (throttling manual)
-                if (Math.abs(scrolled - lastScrollY) < 5) {
-                    ticking = false;
-                    return;
-                }
-                
-                lastScrollY = scrolled;
-                const parallaxElements = document.querySelectorAll('.parallax-element');
-                
-                if (parallaxElements.length > 0) {
-                    parallaxElements.forEach(element => {
-                        const rate = scrolled * -0.05; // Reducido aún más para menos cálculos
-                        element.style.transform = `translate3d(0, ${rate}px, 0)`; // Uso de translate3d para aceleración por hardware
-                    });
-                }
-                
-                ticking = false;
-            }
-            
-            function requestTick() {
-                if (!ticking) {
-                    requestAnimationFrame(updateParallax);
-                    ticking = true;
-                }
-            }
-        
-            // 5. Efecto de typewriter para textos especiales
-            function typewriterEffect(element, text, speed = 100) {
-                let i = 0;
-                element.innerHTML = '';
-                
-                function type() {
-                    if (i < text.length) {
-                        element.innerHTML += text.charAt(i);
-                        i++;
-                        setTimeout(type, speed);
-                    }
-                }
-                
-                type();
-            }
-            
-            // Efecto parallax con throttling mejorado
-            let scrollTimeout;
-            window.addEventListener('scroll', () => {
-                if (scrollTimeout) return;
-                
-                scrollTimeout = setTimeout(() => {
-                    if (!ticking) {
-                        requestAnimationFrame(updateParallax);
-                        ticking = true;
-                    }
-                    scrollTimeout = null;
-                }, 16); // ~60fps
-            }, { passive: true });
-            
-            // Optimización de memoria - limpiar observers antes de salir
-            window.addEventListener('beforeunload', () => {
-                document.querySelectorAll('.animate-on-scroll').forEach(element => {
-                    if (observer) observer.unobserve(element);
-                });
-            });
-            
-            // 7. Efecto de ondas al hacer clic
-            function createRippleEffect(e) {
-                const button = e.currentTarget;
-                const ripple = document.createElement('span');
-                const rect = button.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
-                
-                ripple.style.cssText = `
-                    position: absolute;
-                    border-radius: 50%;
-                    background: rgba(255, 255, 255, 0.08);
-                    width: ${size}px;
-                    height: ${size}px;
-                    left: ${x}px;
-                    top: ${y}px;
-                    animation: ripple 1s ease-out;
-                    pointer-events: none;
-                `;
-                
-                button.style.position = 'relative';
-                button.style.overflow = 'hidden';
-                button.appendChild(ripple);
-                
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
-            }
-            
-            // Añadir efecto de ondas a todos los botones
-            document.querySelectorAll('button').forEach(button => {
-                button.addEventListener('click', createRippleEffect);
-            });
-            
-        });
-        
-        // Estilo CSS para el efecto ripple
-        const rippleStyle = document.createElement('style');
-        rippleStyle.textContent = `
-            @keyframes ripple {
-                from {
-                    transform: scale(0);
-                    opacity: 1;
-                }
-                to {
-                    transform: scale(4);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(rippleStyle);
-    </script>
 </head>
 <body class="min-h-screen bg-gray-900 pb-20 lg:pb-0" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
-    
-    <!-- Fondo con puntos mejorado -->
     <div class="fixed inset-0 opacity-10">
         <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0); background-size: 40px 40px;"></div>
     </div>
-    
     <div class="relative z-10">
       <nav class="nav-container hidden md:flex justify-center gap-y-8 bg-gray-900/80 backdrop-blur-sm border-b border-gray-700 shadow-2xl">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
@@ -337,17 +37,18 @@
     <main class="max-w-4xl flex flex-col items-center mx-auto py-4 sm:py-6 lg:py-8 px-4 sm:px-6 lg:px-8 pt-6 lg:pt-8">
       <!-- Imagen Principal Section -->
       <section class="imagen-principal relative mb-8 sm:mb-12 w-full animate-on-scroll">
-        <div class="logo-container relative w-full max-w-md sm:max-w-lg lg:max-w-xl mx-auto aspect-square flex items-center overflow-hidden rounded-lg shadow-lg glow-effect card-hover-effect">
-            <!-- Efecto de resplandor interno -->
-            <div class="absolute inset-0 bg-gradient-to-br from-magenta-500/8 via-transparent to-magenta-700/8 rounded-lg"></div>
-            <img src="./images/LogoAstraConCirculo.png" alt="Imagen Principal" class="logo_astra w-full h-full object-cover rounded-lg shadow-lg relative z-10" loading="lazy">
-        </div>
+    <div class="logo-container relative w-full max-w-md sm:max-w-lg lg:max-w-xl mx-auto aspect-square flex items-center overflow-hidden rounded-lg shadow-lg glow-effect card-hover-effect">
+      <div class="stars-overlay pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true" style="z-index:15"></div>
+      <img src="./images/LogoAstraConCirculo.png" alt="Imagen Principal" class="logo_astra w-full h-full object-cover rounded-lg shadow-lg relative z-10" loading="lazy">
+    </div>
       </section>
 
       <!--Donde la magia sucede -->
       <section class="text-center mb-8 sm:mb-12 animate-on-scroll">
-        <div class="w-full max-w-sm mx-auto relative glassmorphism-enhanced rounded-2xl p-4 sm:p-6 border border-gray-700 card-hover-effect">
-          <h1 class="text-3xl sm:text-4xl font-bold text-white mb-2 text-glow text-shadow-outline">
+        <div id="title-card" class="w-full max-w-sm mx-auto relative glassmorphism-enhanced rounded-2xl p-4 sm:p-6 border border-gray-700 card-hover-effect">
+          <!-- Overlay de estrellas animadas (pointer-events-none) -->
+          <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true"></div>
+          <h1 class="text-3xl sm:text-4xl font-bold text-white mb-2 text-glow text-shadow-outline neon-title">
             AstraLumina
           </h1>
           <p class="text-base sm:text-lg text-magenta-200 mb-2">
@@ -533,8 +234,8 @@
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <!-- Curso 1 -->
-            <div class="bg-gradient-to-tr from-magenta-500/10 via-magenta-800/15 to-magenta-800/6 backdrop-blur-sm rounded-xl p-6 border border-magenta-400/30 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02]">
+          <!-- Curso 1 bg-gradient-to-tr from-magenta-500/10 via-magenta-800/15 to-magenta-800/6 backdrop-blur-sm   -->
+            <div class=" bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-magenta-400/30 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02]">
               
               
               <div class="flex items-center mb-4">
@@ -567,7 +268,7 @@
           </div>
 
           <!-- Curso 2 -->
-          <div class="bg-gradient-to-tr from-magenta-500/10 via-magenta-800/15 to-magenta-800/6 backdrop-blur-sm rounded-xl p-6 border border-magenta-400/30 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02]">
+          <div class=" bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-magenta-400/30 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02]">
             <div class="flex items-center mb-4">
               <span class="group flex items-center justify-center w-12 h-12 sm:w-12 sm:h-12 bg-magenta-400/10 rounded-full border border-magenta-400/20 mr-4">
                 <i class="text-2xl fas fa-calculator text-magenta-100"></i>
@@ -591,7 +292,7 @@
           </div>
           
           <!-- Curso 3 -->
-          <div class="bg-gradient-to-tr from-magenta-500/10 via-magenta-800/15 to-magenta-800/6 backdrop-blur-sm rounded-xl p-6 border border-magenta-400/30 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02]">
+          <div class=" bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-magenta-400/30 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02]">
             <div class="flex items-center mb-4">
               <span class="group flex items-center justify-center w-12 h-12 sm:w-12 sm:h-12 bg-magenta-400/10 rounded-full border border-magenta-400/20 mr-4">
                 <i class="text-2xl fas fa-seedling text-magenta-100"></i>
@@ -621,7 +322,7 @@
           </div>
           
           <!-- Curso 4 -->
-          <div class="bg-gradient-to-tr from-magenta-500/10 via-magenta-800/15 to-magenta-800/6 backdrop-blur-sm 
+          <div class=" bg-gray-800/50 backdrop-blur-sm 
           rounded-xl p-6 border border-magenta-400/30 shadow-xl hover:shadow-2xl transition-all duration-300 transform 
           hover:scale-[1.02]">
             <div class="flex items-center mb-4">
@@ -744,55 +445,83 @@
         <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4 sm:mb-6">Servicios</h2>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-          <!-- lectura de tarot -->
-          <div class="flex flex-col bg-gray-800/50 backdrop-blur-sm rounded-xl 
-          shadow-lg px-4 sm:px-6 py-4 sm:py-6 transition-all duration-300 border border-gray-700">
-            
-          <div class="flex flex-col sm:flex-row sm:items-center mb-3 sm:mb-4">
-              
-            <span class="group flex items-center justify-center w-12 h-12 sm:w-14 
-              sm:h-14 bg-magenta-400/10 rounded-full border border-magenta-400/20 mx-auto 
-              sm:mx-0 mb-2 sm:mb-0">
-                <i class="text-2xl fa-solid fa-ankh  text-magenta-100"></i>
-              </span>
-              <h3 class="text-lg sm:text-xl font-bold text-magenta-200 leading-6 text-center sm:text-left sm:ml-2">Lectura de Tarot</h3>
-            </div>
-            <div class="mt-2">
-              <p class="text-sm sm:text-base text-gray-300 font-medium leading-6 text-center sm:text-left">
-                Lecturas personalizadas para guiarte en tu camino espiritual.
-              </p>
-            </div>
-          </div>
-          
-          <!-- Card 2 -->
+          <!-- Lectura de Tarot (mejorada) -->
           <div class="flex flex-col bg-gray-800/50 backdrop-blur-sm rounded-xl shadow-lg 
-          px-4 sm:px-6 py-4 sm:py-6 transition-all duration-300 border border-gray-700">
-            <div class="flex flex-col sm:flex-row sm:items-center mb-3 sm:mb-4">
-              <span class="group flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 
-              bg-magenta-400/10 rounded-full border border-magenta-400/20 mx-auto sm:mx-0 mb-2 sm:mb-0">
-                <i class="fa-solid fa-mug-hot text-xl sm:text-2xl text-magenta-100"></i>
+          px-4 sm:px-6 py-4 sm:py-6 transition-all duration-300 border border-gray-700" 
+          role="article" aria-label="Lectura de Tarot">
+            <div class="flex items-start md:grid md:grid-cols-4 mb-3">
+              <span class="group flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-magenta-400/10 rounded-full border border-magenta-400/20 mr-4" aria-hidden="true">
+                <i class="fa-solid fa-ankh text-xl sm:text-2xl text-magenta-100"></i>
               </span>
-              <h3 class="text-lg sm:text-xl font-bold text-magenta-200 leading-6 text-center sm:text-left sm:ml-2">
-                Borra de Café
-              </h3>
+              
+                <h3 class="md:col-span-3 md:pl-4 text-lg sm:text-xl font-bold text-white">Lectura de Tarot</h3>
+              
             </div>
-            <div class="mt-2">
-              <p class="text-sm sm:text-base text-gray-300 font-medium leading-6 text-center sm:text-left">Descubre tu futuro a través de la lectura de borra de café.</p>
+            <p class="text-sm text-gray-300 mb-4">Interpretación personalizada para tomar decisiones con mayor claridad.</p>
+            <div class="flex items-center justify-between mt-auto">
+              <button class="reservar-btn bg-magenta-600 hover:bg-magenta-700 text-white px-3 py-2 rounded-md text-sm shadow-sm" data-service="Lectura de Tarot" type="button">Reservar</button>
             </div>
           </div>
 
-          <div class="flex flex-col bg-gray-800/50 backdrop-blur-sm rounded-xl shadow-lg px-4 sm:px-6 py-4 sm:py-6 transition-all duration-300 border border-gray-700">
-            <div class="flex flex-col sm:flex-row sm:items-center mb-3 sm:mb-4">
-              <span class="group flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-magenta-400/10 rounded-full border border-magenta-400/20 mx-auto sm:mx-0 mb-2 sm:mb-0">
-                <i class="fa-brands fa-slack text-xl sm:text-2xl text-magenta-100"></i>
+          <!-- Borra de Café (mejorada) -->
+          <div class="flex flex-col bg-gray-800/50 backdrop-blur-sm rounded-xl shadow-lg px-4 sm:px-6 py-4 sm:py-6 transition-all duration-300 border border-gray-700" role="article" aria-label="Borra de Cafe">
+            
+            <div class="flex items-start md:grid md:grid-cols-4 mb-3">
+              <span class="group flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-magenta-400/10 rounded-full border border-magenta-400/20 mr-4" aria-hidden="true">
+                <i class="fa-solid fa-mug-hot text-xl sm:text-2xl text-magenta-100"></i>
               </span>
-              <h3 class="text-lg sm:text-xl font-bold text-magenta-200 leading-6 text-center sm:text-left sm:ml-2">Consultoria Holística</h3>
+              
+                <h3 class="md:col-span-3 md:pl-4 text-lg sm:text-xl font-bold text-white">Lectura de Borra de Café</h3>
+              
             </div>
-            <div class="mt-2">
-              <p class="text-sm sm:text-base text-gray-300 font-medium leading-6 text-center sm:text-left">Explora tu ser integral y encuentra el equilibrio en tu vida.</p>
+            <p class="text-sm text-gray-300 mb-4">Descubre patrones y mensajes ocultos para tu crecimiento personal.</p>
+            <div class="flex items-center justify-between mt-auto">
+              <button class="reservar-btn bg-magenta-600 hover:bg-magenta-700 text-white px-3 py-2 rounded-md text-sm shadow-sm" data-service="Borra de Café" type="button">Reservar</button>
             </div>
           </div>
-          
+
+          <!-- Consultoría Holística (mejorada) -->
+          <div class="flex flex-col bg-gray-800/50 backdrop-blur-sm rounded-xl shadow-lg px-4 sm:px-6 py-4 sm:py-6 transition-all duration-300 border border-gray-700" role="article" aria-label="Consultoria Holistica">
+
+            <div class="flex items-start md:grid md:grid-cols-4 mb-3">
+              <span class="group flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-magenta-400/10 rounded-full border border-magenta-400/20 mr-4" aria-hidden="true">
+                <i class="fa-brands fa-slack text-xl sm:text-2xl text-magenta-100"></i>
+              </span>
+             
+              <h3 class="md:col-span-3 md:pl-4 text-lg sm:text-xl font-bold text-white">Consultoría Holística</h3>
+              
+            </div>
+            <p class="text-sm text-gray-300 mb-4">Explora tu ser integral y encuentra herramientas prácticas para tu bienestar.</p>
+            <div class="flex items-center justify-between mt-auto">
+              <button class="reservar-btn bg-magenta-600 hover:bg-magenta-700 text-white px-3 py-2 rounded-md text-sm shadow-sm" data-service="Consultoría Holística" type="button">Reservar</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Modal simple para reservar -->
+        <div id="reservar-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+          <div class="bg-gray-900 rounded-lg p-6 max-w-md w-full border border-gray-700">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-bold text-white">Reservar Servicio</h3>
+              <button id="modal-close" class="text-gray-400 hover:text-white">✕</button>
+            </div>
+            <form id="reservar-form" class="space-y-3">
+              <input type="hidden" name="service" id="service-input">
+              <div>
+                <label class="text-sm text-gray-300">Nombre</label>
+                <input class="w-full mt-1 p-2 rounded bg-gray-800 border border-gray-700 text-white" type="text" name="name" required>
+              </div>
+              <div>
+                <label class="text-sm text-gray-300">Email</label>
+                <input class="w-full mt-1 p-2 rounded bg-gray-800 border border-gray-700 text-white" type="email" name="email" required>
+              </div>
+              <div class="flex items-center justify-between">
+                <button type="submit" class="bg-magenta-600 hover:bg-magenta-700 text-white px-4 py-2 rounded">Enviar</button>
+                <button type="button" id="modal-cancel" class="text-gray-400">Cancelar</button>
+              </div>
+            </form>
+          </div>
         </div>
       </section>
     </main>
@@ -874,5 +603,6 @@
             <p class="text-xs mt-1 sm:mt-2">Desarrollado por ©TheBaltoTeam</p>
         </div>
     </footer>
+    
 </body>
 </html>

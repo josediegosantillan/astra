@@ -1,0 +1,259 @@
+
+    /* Efectos visuales avanzados UX/UI */
+    
+    /* Animaciones de entrada */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes fadeInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    
+    @keyframes fadeInRight {
+        from {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    
+@keyframes pulse-glow {
+    0%, 100% {
+    box-shadow: 0 0 10px rgba(219, 39, 119, 0.10);
+    }
+    50% {
+    box-shadow: 0 0 15px rgba(219, 39, 119, 0.14), 0 0 20px rgba(219, 39, 119, 0.06);
+    }
+}
+    
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+    }
+    
+    @keyframes sparkle {
+        0%, 100% { opacity: 0; transform: scale(0); }
+        50% { opacity: 1; transform: scale(1); }
+    }
+    
+    /* Clases para efectos */
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.8s ease-out;
+    }
+    
+    .animate-on-scroll.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .glassmorphism-enhanced {
+        backdrop-filter: blur(20px) saturate(180%);
+        background: rgba(31, 41, 55, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .card-hover-effect {
+        transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .card-hover-effect:hover {
+        transform: translateY(-1px) scale(1.004);
+        box-shadow: 0 8px 18px -6px rgba(168, 85, 247, 0.08);
+    }
+    
+    .glow-effect {
+        position: relative;
+        overflow: hidden;
+    }
+    
+.glow-effect::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(219, 39, 119, 0.02), transparent);
+    transform: rotate(45deg);
+    transition: all 0.8s;
+    opacity: 0;
+}
+    
+    .glow-effect:hover::before {
+        opacity: 1;
+        animation: shimmer 3s ease-in-out;
+    }
+    
+    @keyframes shimmer {
+        0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+    
+    /* Efectos de texto brillante */
+.text-glow {
+    text-shadow: 0 0 6px rgba(219, 39, 119, 0.18),
+            0 0 10px rgba(219, 39, 119, 0.10),
+            0 0 12px rgba(219, 39, 119, 0.06);
+}
+    
+    .logo-container {
+        animation: pulse-glow 6s ease-in-out infinite;
+    }
+
+/* Paleta del tema — variables para fácil ajuste */
+:root{
+    --theme-magenta-rgb: 219,39,119; /* usado en sombras / highlight */
+    --theme-violet-rgb: 168,85,247; /* color complementario */
+}
+
+/* Neón pulsante para el título (usa la paleta del tema)
+    Para evitar 'temblor' mantenemos los valores de blur constantes
+    y solo animamos la opacidad de los colores (menos repaints) */
+.neon-title{
+    color: #fff;
+    /* glow fijo (valores más amplios para buena visibilidad) */
+    text-shadow: 0 0 26px rgba(var(--theme-magenta-rgb),0.6), 0 0 39px rgba(var(--theme-violet-rgb),0.25);
+    transition: text-shadow 1s ease;
+    animation: neon-pulse 5s ease-in-out infinite;
+    will-change: text-shadow;
+}
+@keyframes neon-pulse{
+    /* mismos blur, solo cambiamos el alpha para suavizar y evitar jitter */
+    0%,100%{ text-shadow: 0 0 26px rgba(var(--theme-magenta-rgb),0.25), 0 0 39px rgba(var(--theme-violet-rgb),0.10); }
+    50%{ text-shadow: 0 0 26px rgba(var(--theme-magenta-rgb),0.9), 0 0 39px rgba(var(--theme-violet-rgb),0.35); }
+}
+@media (prefers-reduced-motion: reduce){ .neon-title{ animation:none } }
+
+/* Overlay de estrellas eficiente usando pseudo-elementos (mínimos repaints) */
+.stars-overlay { z-index: 5; position: absolute; inset: 0; pointer-events: none; }
+
+/* Usamos dos pseudo-elementos con box-shadow para múltiples puntos (estrellas)
+    Añadimos más posiciones (incluyendo zonas bajas) y mayor movimiento */
+.stars-overlay::before,
+.stars-overlay::after{
+    content: '';
+    position: absolute;
+    inset: 0; /* cubrir todo el contenedor */
+    background-repeat: no-repeat;
+    pointer-events: none;
+    opacity: 0.9;
+    will-change: opacity, transform;
+    transform-origin: center;
+    filter: drop-shadow(0 0 5px rgba(var(--theme-magenta-rgb), 0.35));
+}
+
+/* Primera capa: muchas estrellas pequeñas (más cantidad, menor tamaño) */
+.stars-overlay::before{
+    background:
+    radial-gradient(circle at 3% 6%,  rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 12% 18%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 22% 30%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 34% 8%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 45% 40%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 55% 25%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 68% 12%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 78% 34%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 88% 6%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 96% 26%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 15% 48%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 28% 52%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 42% 16%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 58% 44%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 72% 28%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 85% 42%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 18% 62%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 38% 76%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 62% 54%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 74% 68%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 6% 82%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 24% 14%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 48% 2%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 64% 86%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 86% 74%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 94% 58%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 16% 36%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 36% 56%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 52% 72%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 76% 46%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 92% 12%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 8% 94%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px);
+    transform: translateZ(0);
+    animation: stars-move 6s linear infinite;
+}
+
+/* Segunda capa: estrellas del centro con recorrido más largo */
+.stars-overlay::after{
+    background:
+    radial-gradient(circle at 45% 40%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 55% 25%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 42% 16%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 58% 44%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 48% 52%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 52% 38%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 46% 28%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px),
+    radial-gradient(circle at 54% 36%, rgba(255,255,255,1) 0.3px, rgba(255,255,255,0.4) 0.6px, transparent 0.9px);
+    transform: translateZ(0);
+    animation: stars-move-center 10s linear infinite;
+}
+
+@keyframes stars-move{
+    0%{ transform: scale(0.8) translateZ(0); opacity: 0; }
+    10%{ opacity: 1; }
+    90%{ opacity: 1; }
+    100%{ transform: scale(1.2) translateZ(0); opacity: 0; }
+}
+
+@keyframes stars-move-center{
+    0%{ transform: scale(0.5) translateZ(0); opacity: 0; }
+    5%{ opacity: 1; }
+    95%{ opacity: 1; }
+    100%{ transform: scale(1.2) translateZ(0); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .stars-overlay::before,
+    .stars-overlay::after { animation: none; opacity: 0.9; transform: none; }
+}
+    
+    /* Mejoras en transiciones optimizadas */
+    .card-hover-effect {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    will-change: transform, box-shadow;
+}
+    
+    /* Efecto parallax optimizado */
+    .parallax-element {
+        will-change: transform;
+    }
+
+    /* Desactivar animaciones para usuarios con preferencia reducida */
+    @media (prefers-reduced-motion: reduce) {
+        .parallax-bg,
+        .animate-pulse-soft,
+        .animate-bounce-soft {
+            animation: none !important;
+            transform: none !important;
+        }
+    }
+
+/* Usar utilidades Tailwind para gradientes (no usar CSS personalizado aquí) */
