@@ -6,8 +6,6 @@ yarn-error.log*
 vendor/
 
 # Environment variables
-chatbot.html
-chatbot.js
 .env
 .env.local
 .env.development.local

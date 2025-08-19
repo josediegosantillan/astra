@@ -57,85 +57,34 @@ DB_PASS=
 
 ---
 
-## 4. ENDPOINT PHP (api/chat-endpoint.php)
+## 4. ENDPOINT PHP (api/chat-endpoint.php) - VERSIÓN SEGURA
 
-<?php
-header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
+La versión segura del endpoint hace lo siguiente:
+- Carga el archivo `.env` preferiblemente fuera del webroot (no dentro de `htdocs`).
+- Restringe CORS a una lista de orígenes permitidos.
+- Maneja preflight (OPTIONS).
+- Valida y limita tamaño de requests.
+- Implementa un rate limiting simple por IP.
+- No expone información sensible en respuestas de error.
+- Envía la API key al servicio externo mediante el header `x-goog-api-key` en lugar de la query string.
 
-// Manejar preflight requests
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200);
-    exit;
-}
+Puntos clave del código (resumen):
+- Reemplazar `https://tu-dominio.com` en la lista de orígenes permitidos por tu dominio real.
+- Mover `.env` a un directorio fuera de `htdocs`, por ejemplo `C:\xampp\private_config\.env` o un nivel por encima del proyecto.
+- No escribir debug ni paths internos en la respuesta JSON hacia el cliente; usar logs del servidor (`error_log`) para incidentes.
 
-require_once __DIR__ . '/../vendor/autoload.php';
+Ejemplo de configuración recomendada:
+- Estructura:
+    - C:\xampp\private_config\.env   (contiene API_KEY)
+    - C:\xampp\htdocs\astralumina\   (código público)
 
-try {
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
-    $dotenv->load();
-} catch (Exception $e) {
-    http_response_code(500);
-    echo json_encode(['error' => 'Error de configuración']);
-    exit;
-}
+En `api/chat-endpoint.php` el servidor pasa la API key al servicio externo usando:
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode(['error' => 'Método no permitido']);
-    exit;
-}
+    Header: x-goog-api-key: <API_KEY>
 
-$input = json_decode(file_get_contents('php://input'), true);
+Esto evita dejar la key en la URL y reduce exposición en logs.
 
-if (!isset($input['contents']) || json_last_error() !== JSON_ERROR_NONE) {
-    http_response_code(400);
-    echo json_encode(['error' => 'Datos inválidos']);
-    exit;
-}
-
-// Verificar API key
-if (!isset($_ENV['API_KEY']) || empty($_ENV['API_KEY'])) {
-    http_response_code(500);
-    echo json_encode(['error' => 'API key no configurada']);
-    exit;
-}
-
-$apiKey = $_ENV['API_KEY'];
-$apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" . $apiKey;
-
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $apiUrl);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($input));
-curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-
-$response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-$curlError = curl_error($ch);
-
-if ($curlError) {
-    curl_close($ch);
-    http_response_code(500);
-    echo json_encode(['error' => 'Error de conexión']);
-    exit;
-}
-
-curl_close($ch);
-
-if ($httpCode >= 400) {
-    http_response_code($httpCode);
-    echo $response ?: json_encode(['error' => 'Error en la API externa']);
-} else {
-    http_response_code(200);
-    echo $response;
-}
-?>
+---
 
 ---
 

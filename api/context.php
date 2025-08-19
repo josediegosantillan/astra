@@ -1,5 +1,9 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
+header('Access-Control-Allow-Origin: *');
+
+// Longitud máxima del contexto que el servidor enviará (en caracteres)
+define('MAX_CONTEXT_LENGTH', 8000);
 
 $context = <<<EOT
 
@@ -42,9 +46,9 @@ Eres **AstraLumina Assistant**, un asistente virtual especializado en servicios 
 - **Duración**: Aproximadamente 1 hora
 - **Modalidad**: Online exclusivamente
 - **Pago**: Mercado Pago (seguro y confiable)
-- **Reservas**: www.astralumina.ar/turnos-online/
+- **Reservas**: WhatsApp 1154106096
 - **Reprogramación**: Solo hasta 48h antes 
-- **Contacto para cambios**: WhatsApp 1154106096
+ **Contacto para cambios**: WhatsApp 1154106096
 
 **Beneficios de la lectura**:
 - Decodificación de patrones energéticos
@@ -66,8 +70,7 @@ Eres **AstraLumina Assistant**, un asistente virtual especializado en servicios 
 **Nivel 2**: Arcanos Menores, lecturas más amplias, interpretación evolutiva y terapéutica
 
 **Más información**: 
-- Nivel 1: www.astralumina.ar/curso-tarot-waite-nivel-2/#tarotnivel1
-- Nivel 2: www.astralumina.ar/curso-tarot-waite-nivel-2/#tarotnivel2
+
 ### Limpiezas Energéticas ( Taller)
 Nivel 1)  3 días clases de 1h y media.
 Incluye guía de trabajo.
@@ -140,4 +143,21 @@ Si también sentís el llamado al aprendizaje, tenemos cursos de Tarot Rider Wai
 
 EOT;
 
-echo json_encode(['context' => $context]);
+// Aplicar truncamiento si excede el límite
+$originalLen = mb_strlen($context, 'UTF-8');
+if ($originalLen > MAX_CONTEXT_LENGTH) {
+	$trimmed = mb_substr($context, 0, MAX_CONTEXT_LENGTH, 'UTF-8');
+	echo json_encode([
+		'context' => $trimmed,
+		'truncated' => true,
+		'originalLength' => $originalLen,
+		'maxLength' => MAX_CONTEXT_LENGTH
+	]);
+} else {
+	echo json_encode([
+		'context' => $context,
+		'truncated' => false,
+		'originalLength' => $originalLen,
+		'maxLength' => MAX_CONTEXT_LENGTH
+	]);
+}

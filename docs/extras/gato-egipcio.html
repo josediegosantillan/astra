@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Gato Egipcio - Render SVG</title>
+  <style>
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#0f1724 0%,#071024 100%);display:flex;align-items:center;justify-content:center;font-family:Inter,system-ui,Arial;color:#fff}
+    .card{width:min(720px,94vw);padding:24px;border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));box-shadow:0 10px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.04);text-align:center}
+    h1{margin:0 0 12px;font-size:20px;color:#f7e7c6}
+    p{margin:0 0 16px;color:#c8c8c8;font-size:14px}
+    .svg-wrap{display:flex;justify-content:center}
+    svg{max-width:100%;height:auto}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Gato Egipcio — SVG renderizado</h1>
+    <p>Este gato está creado solo con SVG: formas, gradientes y trazados — totalmente escalable.</p>
+    <div class="svg-wrap">
+      <!-- SVG estilizado de gato egipcio (postura sentada) -->
+      <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+        <title id="title">Gato Egipcio estilizado</title>
+        <desc id="desc">Ilustración vectorial de un gato con motivos egipcios (collar multicolor y postura sentada).</desc>
+        <defs>
+          <linearGradient id="furGrad" x1="0" x2="1">
+            <stop offset="0%" stop-color="#2a2a2a"/>
+            <stop offset="100%" stop-color="#1a1a1a"/>
+          </linearGradient>
+          <linearGradient id="gold" x1="0" x2="1">
+            <stop offset="0%" stop-color="#ffd86b"/>
+            <stop offset="100%" stop-color="#f39c12"/>
+          </linearGradient>
+          <linearGradient id="blueCollar" x1="0" x2="1">
+            <stop offset="0%" stop-color="#4a90e2"/>
+            <stop offset="100%" stop-color="#2171b5"/>
+          </linearGradient>
+          <linearGradient id="redCollar" x1="0" x2="1">
+            <stop offset="0%" stop-color="#e63946"/>
+            <stop offset="100%" stop-color="#a63d40"/>
+          </linearGradient>
+          <radialGradient id="eyeGrad" cx="50%" cy="40%" r="70%">
+            <stop offset="0%" stop-color="#ffd24a"/>
+            <stop offset="100%" stop-color="#f39c12"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Sombra base -->
+        <ellipse cx="200" cy="460" rx="80" ry="15" fill="rgba(0,0,0,0.2)" />
+
+        <!-- Cola curvada -->
+        <path d="M270 380 C300 370, 315 340, 310 300 C305 260, 285 240, 270 250 C255 260, 250 300, 260 340 L270 380" 
+              fill="url(#furGrad)" stroke="#0f0f0f" stroke-width="2"/>
+        
+        <!-- Piernas traseras (sentado) -->
+        <ellipse cx="175" cy="420" rx="18" ry="40" fill="url(#furGrad)"/>
+        <ellipse cx="225" cy="420" rx="18" ry="40" fill="url(#furGrad)"/>
+        
+        <!-- Patas -->
+        <ellipse cx="175" cy="450" rx="14" ry="12" fill="#1a1a1a"/>
+        <ellipse cx="225" cy="450" rx="14" ry="12" fill="#1a1a1a"/>
+
+        <!-- Cuerpo principal (sentado) -->
+        <ellipse cx="200" cy="340" rx="55" ry="85" fill="url(#furGrad)" />
+        <path d="M145 320 C145 280, 170 240, 200 240 C230 240, 255 280, 255 320 L255 380 C255 420, 230 430, 200 430 C170 430, 145 420, 145 380 Z" 
+              fill="url(#furGrad)" stroke="#0f0f0f" stroke-width="1"/>
+
+        <!-- Pecho -->
+        <ellipse cx="200" cy="300" rx="30" ry="25" fill="#353535"/>
+
+        <!-- Collar elaborado (múltiples capas) -->
+        <!-- Capa base dorada -->
+        <path d="M135 260 C165 245, 235 245, 265 260 L265 280 C235 290, 165 290, 135 280 Z" 
+              fill="url(#gold)" stroke="#b07618" stroke-width="2"/>
+        <!-- Capa azul -->
+        <path d="M140 270 C165 260, 235 260, 260 270 L260 285 C235 295, 165 295, 140 285 Z" 
+              fill="url(#blueCollar)" stroke="#1f4b5d" stroke-width="1"/>
+        <!-- Capa roja con detalles -->
+        <path d="M145 280 C165 275, 235 275, 255 280 L255 290 C235 295, 165 295, 145 290 Z" 
+              fill="url(#redCollar)" stroke="#8b1538" stroke-width="1"/>
+        
+        <!-- Detalles dorados en collar -->
+        <g stroke="#ffd86b" stroke-width="2" fill="none">
+          <circle cx="150" cy="275" r="3"/>
+          <circle cx="175" cy="280" r="3"/>
+          <circle cx="200" cy="282" r="4"/>
+          <circle cx="225" cy="280" r="3"/>
+          <circle cx="250" cy="275" r="3"/>
+        </g>
+
+        <!-- Brazos/piernas frontales -->
+        <ellipse cx="170" cy="380" rx="12" ry="35" fill="url(#furGrad)"/>
+        <ellipse cx="230" cy="380" rx="12" ry="35" fill="url(#furGrad)"/>
+        
+        <!-- Patas delanteras -->
+        <ellipse cx="170" cy="405" rx="10" ry="8" fill="#1a1a1a"/>
+        <ellipse cx="230" cy="405" rx="10" ry="8" fill="#1a1a1a"/>
+
+        <!-- Cabeza -->
+        <g transform="translate(200,180)">
+          <ellipse cx="0" cy="0" rx="45" ry="60" fill="url(#furGrad)" />
+          
+          <!-- Orejas puntiagudas -->
+          <path d="M-35 -45 L-50 -90 L-10 -60 Z" fill="#2a2a2a" stroke="#0f0f0f" stroke-width="2"/>
+          <path d="M35 -45 L50 -90 L10 -60 Z" fill="#2a2a2a" stroke="#0f0f0f" stroke-width="2"/>
+          <!-- Interior de orejas -->
+          <path d="M-35 -50 L-45 -80 L-20 -65 Z" fill="#444"/>
+          <path d="M35 -50 L45 -80 L20 -65 Z" fill="#444"/>
+
+          <!-- Detalles dorados en orejas -->
+          <circle cx="-30" cy="-65" r="8" fill="url(#gold)" stroke="#b07618" stroke-width="1"/>
+          <circle cx="30" cy="-65" r="8" fill="url(#gold)" stroke="#b07618" stroke-width="1"/>
+
+          <!-- Ojos almendrados más grandes -->
+          <g class="eye-left">
+            <path d="M-25 -5 C-40 -15, -40 10, -25 5 C-10 0, -10 -10, -25 -5 Z" 
+                  fill="url(#eyeGrad)" stroke="#2a2a2a" stroke-width="2"/>
+            <ellipse class="pupil" cx="-25" cy="-2" rx="4" ry="6" fill="#0f0f0f" />
+            <circle cx="-23" cy="-4" r="2" fill="#ffd86b" opacity="0.8"/>
+          </g>
+          <g class="eye-right">
+            <path d="M25 -5 C40 -15, 40 10, 25 5 C10 0, 10 -10, 25 -5 Z" 
+                  fill="url(#eyeGrad)" stroke="#2a2a2a" stroke-width="2"/>
+            <ellipse class="pupil" cx="25" cy="-2" rx="4" ry="6" fill="#0f0f0f" />
+            <circle cx="23" cy="-4" r="2" fill="#ffd86b" opacity="0.8"/>
+          </g>
+
+          <!-- Hocico y nariz -->
+          <ellipse cx="0" cy="20" rx="8" ry="6" fill="#444"/>
+          <path d="M-3 20 L3 20 L0 25 Z" fill="#222"/>
+          
+          <!-- Bigotes -->
+          <g stroke="#666" stroke-width="1" fill="none">
+            <path d="M-20 25 L-45 20"/>
+            <path d="M-20 30 L-45 30"/>
+            <path d="M20 25 L45 20"/>
+            <path d="M20 30 L45 30"/>
+          </g>
+
+          <!-- Marcas faciales egipcias -->
+          <path d="M-15 -20 C-8 -15, -5 -5, 0 0" stroke="#ffd86b" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M15 -20 C8 -15, 5 -5, 0 0" stroke="#ffd86b" stroke-width="3" fill="none" stroke-linecap="round"/>
+          
+          <!-- Tocado/corona simple -->
+          <path d="M-45 -30 L45 -30 L38 -50 L-38 -50 Z" fill="#1a237e" opacity="0.9"/>
+          <rect x="-35" y="-48" width="70" height="6" rx="3" fill="url(#gold)"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</body>
+</html>

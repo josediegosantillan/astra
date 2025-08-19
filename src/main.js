@@ -2,49 +2,7 @@
 // ASTRALUMINA - MAIN JAVASCRIPT FILE
 // Archivo JavaScript principal que combina toda la funcionalidad
 // =============================================================================
-// =============================================================================
-// Modal Para Reservas 
-// =============================================================================
-// Modal ligero para reservas
-(function(){
-const modal = document.getElementById('reservar-modal');
-const closeBtn = document.getElementById('modal-close');
-const cancelBtn = document.getElementById('modal-cancel');
-const serviceInput = document.getElementById('service-input');
 
-function openModal(service){
-    serviceInput.value = service || '';
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-}
-function closeModal(){
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
-}
-
-document.querySelectorAll('.reservar-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-    const svc = btn.getAttribute('data-service') || '';
-    openModal(svc);
-    });
-});
-
-if(closeBtn) closeBtn.addEventListener('click', closeModal);
-if(cancelBtn) cancelBtn.addEventListener('click', closeModal);
-
-// submit mínimo: evitar envío real y mostrar confirmación
-const form = document.getElementById('reservar-form');
-if(form){
-    form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const data = new FormData(form);
-    // Aquí podrías integrar un fetch a tu endpoint de reservas
-    closeModal();
-    alert('Solicitud enviada. Te contactaremos pronto.');
-    form.reset();
-    });
-}
-})();
 // =============================================================================
 // MOBILE NAVBAR FUNCTIONALITY
 // =============================================================================

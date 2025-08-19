@@ -1,0 +1,106 @@
+ <!-- Modal simple para reservar -->
+        <div id="reservar-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+          <div class="bg-gray-900 rounded-lg p-6 max-w-md w-full border border-gray-700">
+            
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <h3 class="text-lg font-bold text-white">Reservar Servicio</h3>
+                <p class ="text-magenta-100 ">Para reservar un servicio, envianos un mensaje por WhatsApp o completa el siguiente formulario:</p>
+              </div>
+              <button id="modal-close" class="text-gray-400 hover:text-white">✕</button>
+            </div>
+            
+            <form id="reservar-form" class="space-y-3">
+              <input type="hidden" name="service" id="service-input">
+              <div>
+                <label class="text-sm text-gray-300">Nombre</label>
+                <input class="w-full mt-1 p-2 rounded bg-gray-800 border border-gray-700 text-white" type="text" name="name" required>
+              </div>
+              
+              <div>
+                <label class="text-sm text-gray-300">Email</label>
+                <input class="w-full mt-1 p-2 rounded bg-gray-800 border border-gray-700 text-white" type="email" name="email" required>
+              </div>
+              
+              <div>
+                <label class="text-sm text-gray-300">Cómo prefieres que te contactemos</label>
+                <select id="contact-method" name="contact_method" class="w-full mt-1 p-2 rounded bg-gray-800 border border-gray-700 text-white">
+                  <option value="whatsapp">WhatsApp</option>
+                  <option value="chatbot">Chatbot</option>
+                </select>
+                <p class="text-xs text-gray-400 mt-1">WhatsApp abrirá la app/web con un mensaje prellenado. Chatbot abrirá la ventana de chat en nuestra web.</p>
+              </div>
+              <div class="flex items-center justify-between">
+                <button type="submit" class="bg-magenta-600 hover:bg-magenta-700 text-white px-4 py-2 rounded">Enviar</button>
+                <button type="button" id="modal-cancel" class="text-gray-400">Cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+// =============================================================================
+// Modal Para Reservas 
+// =============================================================================
+// Modal ligero para reservas
+(function(){
+const modal = document.getElementById('reservar-modal');
+const closeBtn = document.getElementById('modal-close');
+const cancelBtn = document.getElementById('modal-cancel');
+const serviceInput = document.getElementById('service-input');
+
+function openModal(service){
+    serviceInput.value = service || '';
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+function closeModal(){
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+}
+
+document.querySelectorAll('.reservar-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+    const svc = btn.getAttribute('data-service') || '';
+    openModal(svc);
+    });
+});
+
+if(closeBtn) closeBtn.addEventListener('click', closeModal);
+if(cancelBtn) cancelBtn.addEventListener('click', closeModal);
+
+// submit mínimo: evitar envío real y mostrar confirmación
+const form = document.getElementById('reservar-form');
+if(form){
+    form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    // Leer valores
+    const name = data.get('name') || '';
+    const email = data.get('email') || '';
+    const service = data.get('service') || '';
+    const method = data.get('contact_method') || 'whatsapp';
+
+    // Construir mensaje prellenado
+    const message = `Hola, soy ${name}. Me interesa: ${service}. Mi email: ${email}.`; // plantilla simple
+
+    if(method === 'whatsapp'){
+        // abrir WhatsApp Web / móvil con mensaje prellenado
+        const phone = ''; // opcional: agregar número si se desea (ej: '5491123456789')
+        const encoded = encodeURIComponent(message);
+    const waUrl = phone ? `https://wa.me/${phone}?text=${encoded}` : `https://api.whatsapp.com/send?text=${encoded}`;
+        window.open(waUrl, '_blank');
+    } else if(method === 'chatbot'){
+        // abrir la página del chatbot y pasar el mensaje por querystring
+        const query = encodeURIComponent(message);
+        const chatbotUrl = `./pags/chatboot.html?prefill=${query}`;
+        window.open(chatbotUrl, '_blank');
+    }
+
+    // Cerrar modal y reset
+    closeModal();
+    alert('Se abrió la opción seleccionada para continuar la comunicación.');
+    form.reset();
+    });
+}
+})();
+
