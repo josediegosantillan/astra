@@ -1,6 +1,5 @@
 <?php
 header('Content-Type: application/javascript');
-header('Access-Control-Allow-Origin: *');
 
 // Solo permitir desde tu dominio en producción
 $allowed_origins = ['localhost', 'astralumina.ar'];

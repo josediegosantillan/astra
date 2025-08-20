@@ -1,6 +1,33 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: *');
+
+// --- CORS y orígenes permitidos (reemplazar con tu(s) dominio(s) de producción) ---
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+$allowed_origins = [
+    'http://localhost',
+    'http://localhost:8000',
+    'https://tu-dominio.com' // <-- REEMPLAZAR por tu dominio real
+];
+
+if (in_array($origin, $allowed_origins, true)) {
+    header('Access-Control-Allow-Origin: ' . $origin);
+} else {
+    // Si hay Origin pero no está en la whitelist, rechazar para evitar uso desde orígenes no autorizados
+    if (!empty($origin)) {
+        http_response_code(403);
+        echo json_encode(['error' => 'Origen no permitido']);
+        exit;
+    }
+}
+
+header('Access-Control-Allow-Methods: GET, OPTIONS'); // Assuming GET for context.php
+header('Access-Control-Allow-Headers: Content-Type');
+
+// Responder preflight
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
 
 // Longitud máxima del contexto que el servidor enviará (en caracteres)
 define('MAX_CONTEXT_LENGTH', 8000);

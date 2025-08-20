@@ -481,12 +481,26 @@ function toggleLoading(show, texto = 'Consultando las estrellas con IA Gemini...
  * @throws {Error} Si la llamada a la API falla.
  */
 async function llamarGeminiAPI(prompt) {
-    // Llama al backend PHP local como proxy
+    // El cliente debe construir el payload correcto que espera la API de Gemini.
+    // `chat-endpoint.php` simplemente lo reenviará.
+    const payload = {
+        contents: [
+            {
+                parts: [
+                    {
+                        text: prompt
+                    }
+                ]
+            }
+        ]
+    };
+
     try {
-        const response = await fetch('http://localhost/AstraLuminatailwind/api/gemini-proxy.php', {
+        // Usar el endpoint seguro y una ruta relativa, que es mejor práctica.
+        const response = await fetch('../api/chat-endpoint.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ prompt })
+            body: JSON.stringify(payload)
         });
         if (!response.ok) {
             let errorText = await response.text();

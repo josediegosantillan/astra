@@ -607,6 +607,62 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize contact form
     initContactForm();
+
+    // Initialize generic modals (centralized modal handling)
+    if (typeof initModals === 'function') initModals();
     
     console.log('🌟 AstraLumina JavaScript initialized successfully!');
 });
+
+// =============================================================================
+// GENERIC MODAL HANDLER
+// =============================================================================
+function initModals() {
+    // Openers: elements with data-modal-open="modalId"
+    document.querySelectorAll('[data-modal-open]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const modalId = btn.getAttribute('data-modal-open');
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+
+    // Closers: elements with data-modal-close attribute
+    document.querySelectorAll('[data-modal-close]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            // find nearest modal ancestor
+            const modal = btn.closest('.site-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    });
+
+    // Click outside to close
+    document.querySelectorAll('.site-modal').forEach(modal => {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    });
+
+    // Escape key closes any open modal
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.site-modal:not(.hidden)').forEach(modal => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            });
+            document.body.style.overflow = 'auto';
+        }
+    });
+}
