@@ -257,3 +257,67 @@
     }
 
 /* Usar utilidades Tailwind para gradientes (no usar CSS personalizado aquí) */
+
+/* =========================
+   Modal scrollbar styles
+   (aplicado a todos los modales de cursos)
+   ========================= */
+#tarotModal .overflow-y-auto::-webkit-scrollbar,
+#borraModal .overflow-y-auto::-webkit-scrollbar,
+#herbolariaModal .overflow-y-auto::-webkit-scrollbar,
+#limpiezaModal .overflow-y-auto::-webkit-scrollbar {
+    width: 30px; /* 50% más grueso respecto a 20px */
+}
+#tarotModal .overflow-y-auto::-webkit-scrollbar-track,
+#borraModal .overflow-y-auto::-webkit-scrollbar-track,
+#herbolariaModal .overflow-y-auto::-webkit-scrollbar-track,
+#limpiezaModal .overflow-y-auto::-webkit-scrollbar-track {
+    background: transparent;
+}
+#tarotModal .overflow-y-auto::-webkit-scrollbar-thumb,
+#borraModal .overflow-y-auto::-webkit-scrollbar-thumb,
+#herbolariaModal .overflow-y-auto::-webkit-scrollbar-thumb,
+#limpiezaModal .overflow-y-auto::-webkit-scrollbar-thumb {
+    background: rgba(196, 60, 150, 0.35);
+    border-radius: 999px;
+    border: 5px solid rgba(0,0,0,0.35);
+}
+/* Firefox */
+#tarotModal .overflow-y-auto,
+#borraModal .overflow-y-auto,
+#herbolariaModal .overflow-y-auto,
+#limpiezaModal .overflow-y-auto {
+    scrollbar-width: auto;
+    scrollbar-color: rgba(196, 60, 150, 0.35) transparent;
+}
+
+/* Modal entrance/exit animations (fade + scale) */
+@keyframes modalShow {
+    from { opacity: 0; transform: translateY(10px) scale(0.985); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes modalHide {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to   { opacity: 0; transform: translateY(10px) scale(0.985); }
+}
+
+.modal-dialog {
+    will-change: transform, opacity;
+    transform-origin: center;
+}
+.modal-show {
+    /* aparición más lenta: duración aumentada a 720ms, misma curva */
+    animation: modalShow 720ms cubic-bezier(.4,0,.2,1) forwards;
+}
+.modal-hide {
+    animation: modalHide 360ms cubic-bezier(.4,0,.2,1) forwards;
+}
+
+/* Overlay fade: control opacity of the site-modal container for smooth background fade */
+.site-modal {
+    opacity: 0;
+    transition: opacity 360ms cubic-bezier(.16,.84,.24,1);
+}
+.site-modal.overlay-show {
+    opacity: 1;
+}
