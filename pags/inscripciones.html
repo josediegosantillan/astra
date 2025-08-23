@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../src/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <script src="../src/main.js" defer></script>
+    <script src="../src/inscripciones.js" defer></script>
+    <title>AstraLumina</title>
+</head>
+<body class="min-h-screen bg-gray-900 pb-20 lg:pb-0" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
+    
+    <!-- hace los puntos en el fondo -->
+    <div class="fixed inset-0 opacity-10">
+        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0); background-size: 40px 40px;"></div>
+    </div>
+    
+    <div class="relative z-10">
+      
+    <div class="nav-container hidden md:flex justify-center gap-y-8">
+        <nav class="bg-gray-900/80 backdrop-blur-sm border-b border-gray-700 shadow-2xl">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
+                <div class="flex justify-between h-16">
+                    <!-- Logo y Navegación Principal -->
+                    <div class="flex items-center">
+                        <!-- Logo-->
+                        <div class="flex-shrink-0">
+                            <a href="../index.html" class="flex items-center group">
+                                <div class="h-10 w-10 bg-gradient-to-br from-purple-500 to-violet-600 rounded-lg flex 
+                                items-center justify-center shadow-lg group-hover:shadow-xl 
+                                transition-all duration-300 border border-purple-400/30">
+                                    <span class="text-white font-bold text-sm">AL</span>
+                                </div>
+                                <span class="ml-3 text-white font-bold text-xl tracking-wide
+                                 group-hover:text-purple-300 transition-colors duration-300">AstraLumina</span>
+                            </a>
+                        </div>
+                        <!-- Navegación Desktop -->
+                        <div class="hidden md:ml-10 md:flex md:items-center md:space-x-5 gap-x-5 pr-2">
+                            <a href="../index.html" class="text-gray-300 hover:text-white hover:bg-gray-700/50 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">Inicio</a>
+                            <a href="../pags/consultas.html" class="text-gray-300 hover:text-white hover:bg-gray-700/50 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">Consultas</a>
+                            <a href="../pags/cursos.html" class="text-gray-300 hover:text-white hover:bg-gray-700/50 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">Cursos</a>
+                            <a href="#" class="text-white bg-gradient-to-r from-purple-600 to-violet-600 px-4 py-2 rounded-lg text-sm font-medium shadow-sm border border-purple-400/30">Contacto</a>
+                            <a href="../pags/acerca-de.html" class="text-gray-300 hover:text-white hover:bg-gray-700/50 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">Acerca de</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </div>
+    </div>  
+    <!-- Contenido Principal -->
+    <main class="max-w-4xl mx-auto py-4 sm:py-6 lg:py-8 px-4 sm:px-6 lg:px-8">
+        <div class="relative">
+        <!-- Liliana  -->
+      <section class="text-center mb-4 sm:mb-6">
+        <div class="relative bg-gray-800/50 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-gray-700">
+          <h1 class="text-3xl sm:text-4xl lg:text-4xl font-bold text-white mb-3 sm:mb-4">
+            Inscripción a Cursos y Talleres.
+          </h1>
+          <p class="text-base sm:text-lg md:text-xl text-purple-200 mb-2">
+            AstraLumina
+          </p>
+        </div>
+      </section>
+       <!-- Liliana descripcion -->
+    
+      <section class="inscripcion mb-8 sm:mb-12 flex flex-col items-center justify-center
+       rounded-2xl overflow-hidden border border-gray-700">        
+        <h2 class="mt-3 text-2xl sm:text-3xl font-bold text-white mb-4 sm:mb-6 transition-opacity 
+        duration-300 text-center">
+            Completa el formulario para comenzar la inscripción.
+        </h2>
+
+        <div class="flex flex-col items-center justify-center gap-4 sm:gap-6"> 
+          </div>
+          <!-- Formulario -->
+          <form id="contactForm" action="https://docs.google.com/forms/d/1BOxsxndSQ1e0QlNekIpK-7Bgv3mCB5fnr2fcGvQOmhA/formResponse" method="POST"
+          
+                class="flex flex-col items-center justify-center gap-4 mb-6 sm:gap-6 rounded-2xl overflow-hidden border border-gray-700 transition-all duration-500">
+            <div class="p-4 sm:p-6">
+                <!-- nombre -->
+                <div class="relative">
+                    <label class="block text-xs sm:text-sm font-medium text-gray-300 mb-2">
+                        Nombre completo
+                    </label>
+                    <input type="text" 
+                        name="entry.2005620554"
+                        required
+                        class="block w-80 pl-3 sm:pl-10 pr-3 py-2 border border-gray-600 rounded-lg
+                            bg-gray-800/50 text-white placeholder-gray-400 focus:outline-none focus:ring-2
+                            focus:ring-purple-400 focus:border-transparent text-xs sm:text-sm backdrop-blur-sm" 
+                        placeholder="Tu nombre...">
+                </div>
+                <!-- email -->
+                <div class="relative mt-3 sm:mt-4">
+                    <label class="block text-xs sm:text-sm font-medium text-gray-300 mb-2">
+                        Correo electrónico
+                    </label>
+                    <input type="email"
+                    
+                        name="entry.1045781291"
+                        required
+                        class="block w-80 pl-3 sm:pl-10 pr-3 py-2 border border-gray-600 rounded-lg
+                            bg-gray-800/50 text-white placeholder-gray-400 focus:outline-none focus:ring-2
+                            focus:ring-purple-400 focus:border-transparent text-xs sm:text-sm backdrop-blur-sm" 
+                        placeholder="Tu correo...">
+                </div>
+                <!-- telefono -->
+                <div class="relative mt-3 sm:mt-4">
+                    <label class="block text-xs sm:text-sm font-medium text-gray-300 mb-2">
+                        Teléfono
+                    </label>
+                    <input type="tel" 
+                        name="entry.1166974658"
+                        required
+                        class="block w-80 pl-3 sm:pl-10 pr-3 py-2 border border-gray-600 rounded-lg
+                            bg-gray-800/50 text-white placeholder-gray-400 focus:outline-none focus:ring-2
+                            focus:ring-purple-400 focus:border-transparent text-xs sm:text-sm backdrop-blur-sm" 
+                        placeholder="Tu teléfono...">
+                </div>
+                <!-- lugar de residencia -->
+                <div class="relative mt-3 sm:mt-4">
+                    <label class="block text-xs sm:text-sm font-medium text-gray-300 mb-2">
+                        Lugar de residencia
+                    </label>
+                    <input type="text" 
+                        name="entry.1065046570"
+                        required
+                        class="block w-80 pl-3 sm:pl-10 pr-3 py-2 border border-gray-600 rounded-lg
+                            bg-gray-800/50 text-white placeholder-gray-400 focus:outline-none focus:ring-2
+                            focus:ring-purple-400 focus:border-transparent text-xs sm:text-sm backdrop-blur-sm" 
+                        placeholder="Lugar de residencia...">
+                </div>
+                <!-- curso (select personalizado) -->
+                <div class="relative mt-3 sm:mt-4">
+                    <label class="block text-xs sm:text-sm font-medium text-gray-300 mb-2">Seleccioná el curso</label>
+                    <div class="relative w-80">
+                        <!-- Select nativo oculto (para envío del formulario) -->
+                        <select name="entry.873280510" id="hiddenSelect" class="sr-only" aria-hidden="true">
+                            <option value="">-- Seleccioná --</option>
+                            <option value="Curso de Tarot Rider-Waite">Curso de Tarot Rider-Waite</option>
+                            <option value="Taller: lectura de borra de café">Taller: lectura de borra de café</option>
+                            <option value="Taller de Herbolaria Natural">Taller de Herbolaria Natural</option>
+                            <option value="Taller de limpieza energética">Taller de limpieza energética</option>
+                        </select>
+                        
+                        <!-- Select personalizado visible -->
+                        <div id="customSelect" class="custom-select">
+                            <div class="select-trigger cursor-pointer w-full pl-3 pr-10 py-2 border border-gray-600 rounded-lg
+                                        bg-gradient-to-br from-gray-800/60 to-gray-800/40 text-white text-xs sm:text-sm backdrop-blur-sm
+                                        focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-colors duration-150"
+                                        tabindex="0" role="button" aria-haspopup="listbox" aria-controls="customSelect_listbox" aria-expanded="false">
+                                <span class="select-text text-gray-400">-- Seleccioná --</span>
+                            </div>
+                            
+                            <!-- Opciones desplegables -->
+                            <div id="customSelect_listbox" class="select-options absolute z-10 w-full mt-1 bg-gray-800/50 border border-gray-600 rounded-lg shadow-lg backdrop-blur-sm hidden" role="listbox" aria-hidden="true">
+                              <div role="option" tabindex="-1" class="option px-3 py-2 text-white text-xs sm:text-sm cursor-pointer hover:bg-purple-600/20 transition-colors duration-150" 
+                                  data-value="">-- Seleccioná --</div>
+                              <div role="option" tabindex="-1" class="option px-3 py-2 text-white text-xs sm:text-sm cursor-pointer hover:bg-purple-600/20 transition-colors duration-150" 
+                                  data-value="Curso de Tarot Rider-Waite">Curso de Tarot Rider-Waite</div>
+                              <div role="option" tabindex="-1" class="option px-3 py-2 text-white text-xs sm:text-sm cursor-pointer hover:bg-purple-600/20 transition-colors duration-150" 
+                                  data-value="Taller: lectura de borra de café">Taller: lectura de borra de café</div>
+                              <div role="option" tabindex="-1" class="option px-3 py-2 text-white text-xs sm:text-sm cursor-pointer hover:bg-purple-600/20 transition-colors duration-150" 
+                                  data-value="Taller de Herbolaria Natural">Taller de Herbolaria Natural</div>
+                              <div role="option" tabindex="-1" class="option px-3 py-2 text-white text-xs sm:text-sm cursor-pointer hover:bg-purple-600/20 transition-colors duration-150" 
+                                  data-value="Taller de limpieza energética">Taller de limpieza energética</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Chevrón -->
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                            <svg class="w-4 h-4 text-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.939l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.243a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-400 mt-1">Puedes elegir uno de los cursos.</p>
+                </div>
+                <!-- mensaje -->
+                <div class="relative mt-3 sm:mt-4">
+                    <label class="block text-xs sm:text-sm font-medium text-gray-300 mb-2">
+                        Mensaje
+                    </label>
+                    <textarea rows="4" 
+                        name="entry.839337160"
+                        required
+                        class="block w-80 pl-3 pr-3 py-2 border border-gray-600 rounded-lg
+                            bg-gray-800/50 text-white placeholder-gray-400 focus:outline-none focus:ring-2
+                            focus:ring-purple-400 focus:border-transparent text-xs sm:text-sm backdrop-blur-sm" 
+                        placeholder="Escribe tu mensaje..."></textarea>     
+                </div>
+                <!-- Botón Enviar -->
+                <div class="mt-4 sm:mt-6 flex justify-end">
+                    <button type="submit"
+                        class="group bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 
+                        border border-purple-400/30 hover:border-purple-300/50 px-3 py-1 rounded-full shadow-lg hover:shadow-xl 
+                        transition-all duration-300 flex items-center gap-1 cursor-pointer backdrop-blur-sm">
+                        <span class="flex items-center justify-center w-6 h-6 bg-transparent rounded-full transition-all duration-300">
+                            <i class="fas fa-paper-plane text-xs text-white transition-all duration-300"></i>
+                        </span>
+                        <span class="text-white text-xs sm:text-sm font-medium">Enviar Mensaje</span>
+                    </button>
+                </div>  
+            </div>
+          </form>
+
+          <!-- Spinner overlay (oculto por defecto) - versión mejorada: centrado, accesible y más visible -->
+          <div id="contactSpinner" tabindex="-1" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm invisible opacity-0 pointer-events-none" role="status" aria-live="polite" aria-hidden="true">
+              <div class="flex flex-col items-center gap-4 bg-gradient-to-br from-gray-800/60 to-gray-900/60 border border-purple-500/20 rounded-2xl p-6 shadow-2xl transform transition-all duration-300 max-w-xs mx-4">
+                  <div class="flex items-center justify-center">
+                      <!-- Dual-ring SVG spinner (opción 1) -->
+                      <svg class="w-20 h-20 text-white animate-spin" viewBox="0 0 50 50" aria-hidden="true" focusable="false">
+                          <circle cx="25" cy="25" r="20" stroke="currentColor" stroke-width="4" class="opacity-30" fill="none"></circle>
+                          <circle cx="25" cy="25" r="20" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="31.4 31.4" stroke-dashoffset="0" fill="none"></circle>
+                      </svg>
+                      <!-- Texto sólo para lectores de pantalla -->
+                      <span class="sr-only">Enviando, por favor espera</span>
+                  </div>
+                  <div class="text-white text-sm font-medium">Enviando... por favor espera</div>
+                  <div class="text-gray-300 text-xs text-center">No cierres la ventana. Estamos procesando el envio.</div>
+              </div>
+          </div>
+
+          <!-- Mensaje de éxito (oculto hasta el envío) -->
+          <div id="contactSuccess" class="hidden opacity-0 scale-95 w-11/12 max-w-lg bg-gradient-to-br from-purple-700/10 to-violet-900/5 backdrop-blur-sm 
+          rounded-2xl p-6 sm:p-8 text-center mx-auto border border-purple-400/20 shadow-2xl transition-all duration-300">
+              <!-- Icono de éxito -->
+              <div class="mb-4 flex justify-center">
+                  <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center shadow-lg">
+                      <i class="fas fa-check text-2xl text-white"></i>
+                  </div>
+              </div>
+              
+              <h3 class="text-xl sm:text-2xl font-bold bg-gradient-to-r from-purple-200 to-violet-200 bg-clip-text text-transparent mb-3">
+                  ¡Enviado con éxito!
+              </h3>
+              
+              <p class="text-gray-300 text-sm sm:text-base mb-6 leading-relaxed">
+                  Gracias por inscribirte. Recibimos tu mensaje y te responderemos a la brevedad.
+              </p>
+              <!-- Datos que ingresó el usuario (serán rellenados tras enviar) -->
+              <div id="submittedData" class="text-sm text-gray-200"></div>
+              
+              <button id="contactNew" class="group bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 border border-purple-400/30 hover:border-purple-300/50 px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center mx-auto backdrop-blur-sm">
+                  <span class="flex items-center justify-center mr-2 bg-transparent rounded-full p-1 transition-all duration-300">
+                      <i class="fas fa-paper-plane text-sm text-white"></i>
+                  </span>
+                  <span class="text-white text-sm font-medium">Cerrar</span>
+              </button>
+          </div>
+
+          <!-- Iframe oculto para enviar el form sin redirigir la página -->
+          <iframe name="submitFrame" id="submitFrame" style="display:none;"></iframe>
+        </div>
+      
+    </section>
+    
+
+    </main>
+
+    <!-- Sección Síguenos -->
+    <section class="py-6 sm:py-8 px-4 bg-gray-800/30 backdrop-blur-sm">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="flex space-x-4 sm:space-x-6 justify-center">
+                <a href="#" class="group flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gray-700/50 hover:bg-purple-600/30 rounded-full border border-gray-600 hover:border-purple-400/50 transition-all duration-300">
+                    <i class="fab fa-facebook text-lg sm:text-xl text-gray-400 group-hover:text-purple-300 transition-colors duration-300"></i>
+                </a>
+                <a href="#" class="group flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gray-700/50 hover:bg-purple-600/30 rounded-full border border-gray-600 hover:border-purple-400/50 transition-all duration-300">
+                    <i class="fab fa-instagram text-lg sm:text-xl text-gray-400 group-hover:text-purple-300 transition-colors duration-300"></i>
+                </a>
+                <a href="#" class="group flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gray-700/50 hover:bg-purple-600/30 rounded-full border border-gray-600 hover:border-purple-400/50 transition-all duration-300">
+                    <i class="fab fa-twitter text-lg sm:text-xl text-gray-400 group-hover:text-purple-300 transition-colors duration-300"></i>
+                </a>
+                <a href="#" class="group flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gray-700/50 hover:bg-purple-600/30 rounded-full border border-gray-600 hover:border-purple-400/50 transition-all duration-300">
+                    <i class="fab fa-youtube text-lg sm:text-xl text-gray-400 group-hover:text-purple-300 transition-colors duration-300"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="menu-inferior md:hidden fixed bottom-0 left-0 right-0 z-40 pt-2 sm:pt-4 justify-center justify-items-center bg-gray-900/95 backdrop-blur-sm border-t border-gray-700">
+        <div class="menu-inferior-container flex w-full max-w-[600px] justify-around bg-gray-800/50 backdrop-blur-sm px-2 sm:px-4 pb-2 pt-2 rounded-t-2xl border border-gray-600 mx-4">
+            <a href="../index.html" class="flex flex-col items-center group">
+                <div class="p-3 rounded-xl bg-gray-400/10 group-hover:bg-gray-400/20 transition-colors">
+                    <i class="fa-regular fa-house text-2xl text-gray-400 group-hover:text-gray-300 transition-colors"></i>
+                </div>
+                <span class="text-xs font-medium text-gray-300 mt-1">Home</span>
+            </a>
+            <a href="consultas.html" class="flex flex-col items-center group">
+                <div class="p-3 rounded-xl bg-gray-400/10 group-hover:bg-gray-400/20 transition-colors">
+                    <i class="fa-solid fa-comments text-2xl text-gray-400 group-hover:text-gray-300 transition-colors"></i>
+                </div>
+                <span class="text-xs font-medium text-gray-300 mt-1">Consultas</span>
+            </a>
+            <a href="cursos.html" class="flex flex-col items-center group">
+                <div class="p-3 rounded-xl bg-gray-400/10 group-hover:bg-gray-400/20 transition-colors">
+                    <i class="fa-solid fa-book text-2xl text-gray-400 group-hover:text-gray-300 transition-colors"></i>
+                </div>
+                <span class="text-xs font-medium text-gray-300 mt-1">Cursos</span>
+            </a>
+            <div class="flex flex-col items-center group">
+                <div class="p-3 rounded-xl bg-purple-400/10 group-hover:bg-purple-400/20 transition-colors">
+                    <i class="fa-solid fa-phone-flip text-2xl text-purple-400 group-hover:text-purple-300 transition-colors"></i>
+                </div>
+                <span class="text-xs font-medium text-gray-300 mt-1">Contacto</span>
+            </div>
+            <a href="acerca-de.html" class="flex flex-col items-center group">
+                <div class="p-3 rounded-xl bg-gray-400/10 group-hover:bg-gray-400/20 transition-colors">
+                    <i class="fa-regular fa-user text-2xl text-gray-400 group-hover:text-gray-300 transition-colors"></i>
+                </div>
+                <span class="text-xs font-medium text-gray-300 mt-1">Acerca de</span>
+            </a> 
+        </div>
+    </section>
+    
+    <!-- WhatsApp Flotante -->
+    <div class="fixed right-2 sm:right-4 bottom-16 sm:bottom-17 z-50">
+      <a href="https://wa.me/5491154106096?text=Hola,%20me%20interesa%20obtener%20más%20información" 
+         target="_blank"
+         class="group inline-flex items-center bg-green-600/20 hover:bg-green-600/30 
+                border border-green-500/30 hover:border-green-400/50 
+                rounded-xl px-1 py-1 transition-all duration-300 transform 
+                 hover:shadow-2xl hover:shadow-green-600/05">
+        <!-- Icono WhatsApp -->
+        <div class="bg-green-500 rounded-full p-2 group-hover:bg-green-400 transition-colors duration-300">
+          <svg class="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12.017 2c-5.527 0-9.998 4.471-9.998 9.998 0 1.764.459 3.423 1.265 4.859L2 22l5.233-1.237c1.4.739 2.992 1.152 4.767 1.152 5.527 0 9.998-4.471 9.998-9.998S17.544 2 12.017 2zm5.951 14.5c-.252.706-1.26 1.306-2.018 1.471-.758.165-1.39.147-4.748-1.11-2.89-1.08-4.758-3.946-4.9-4.13-.141-.183-1.156-1.537-1.156-2.932 0-1.395.731-2.077 1.02-2.36.29-.282.632-.353.843-.353.211 0 .422.001.606.011.194.011.454-.073.708.539.252.612.864 2.11.94 2.26.076.151.127.327.025.528-.101.2-.151.327-.302.502-.151.176-.318.392-.453.527-.151.151-.308.314-.133.615.176.302.783 1.295 1.681 2.097 1.155.03 2.085 1.437 3.134 1.437.303 0 .966-.127 1.282-.302.317-.176.504-.28.705-.438.2-.159.453-.127.604.075.151.201.63.705.63 1.658 0 .378-.075.706-.226.959z"/>
+          </svg>
+        </div>
+      </a>
+    </div>
+    <!-- Chatbot Flotante -->
+    <div class="fixed right-2 sm:right-4 bottom-2 sm:bottom-4 z-50">
+        <a href="../pags/chatboot.html" 
+            class="group inline-flex items-center bg-purple-600/20 hover:bg-purple-600/30 
+                border border-purple-500/30 hover:border-purple-400/50 
+                rounded-xl px-1 py-1 transition-all duration-300 transform 
+                    hover:shadow-2xl hover:shadow-purple-600/20">
+            <!-- Icono chatbot -->
+            <div class="bg-purple-500/80 rounded-full p-2 group-hover:bg-purple-500 transition-colors duration-300">
+                <svg class="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M11 18H13V16H11V18ZM12 2C6.48 2 2 6.48 2 12S6.48 22 12 22 22 17.52 22 12 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12S7.59 4 12 4 20 7.59 20 12 16.41 20 12 20ZM12 6C9.79 6 8 7.79 8 10H10C10 8.9 10.9 8 12 8S14 8.9 14 10C14 12 11 11.75 11 15H13C13 12.75 16 12.5 16 10C16 7.79 14.21 6 12 6Z"/>
+                </svg>
+            </div>
+        </a>
+    </div>
+    
+    <footer class="bg-gray-900 text-gray-400 py-4 sm:py-6 border-t border-gray-800">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <p class="text-xs sm:text-sm">© 2025 AstraLumina. Todos los derechos reservados.</p>
+            <p class="text-xs mt-1 sm:mt-2">Desarrollado por ©TheBaltoTeam</p>
+        </div>
+    </footer>
+</body>
+</html>

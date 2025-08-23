@@ -14,35 +14,52 @@
     <script src="../src/chatbot.js" defer></script>
     
 </head>
-<body class="min-h-screen pb-20 lg:pb-0" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
+<body class="min-h-screen pb-0" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
     
     <!-- Fondo de puntos místico -->
     <div class="fixed inset-0 opacity-10">
         <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0); background-size: 40px 40px;"></div>
     </div>
     
-    <div class="relative z-10 min-h-screen flex items-center justify-center p-2 sm:p-4">
-    <main class="chat-main w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto h-screen sm:h-[600px] md:h-[650px] lg:h-[700px] max-h-screen sm:max-h-[90vh] bg-gray-900/95 backdrop-blur-md border-0 sm:border border-purple-400/30 rounded-none sm:rounded-2xl shadow-none sm:shadow-2xl sm:shadow-purple-500/20 flex flex-col overflow-hidden" role="main">
-        <header class="flex items-center p-4 sm:p-5 md:p-6 bg-gradient-to-r from-purple-600/20 via-violet-600/15 to-purple-700/20 border-b border-purple-400/30 relative min-h-[70px] sm:min-h-[80px]">
-            <!-- <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-none sm:rounded-t-2xl"></div> -->
-          <img src="../images/LogoAstraLumina.png" 
-                 onerror="this.src='https://astralumina.ar/Archivos WP/Imagenes/logoastra.webp'" 
-                 alt="Logo de AstraLumina" 
-                 loading="lazy" 
+    <div class="relative z-10 h-screen flex items-center justify-center">
+        <main class="w-full md:w-1/2 md:max-w-2xl mx-auto min-h-screen lg:h-[700px] 
+        max-h-screen bg-gray-900/95 backdrop-blur-md border-0 sm:border border-purple-400/30 
+        rounded-none sm:rounded-2xl shadow-none sm:shadow-2xl sm:shadow-purple-500/20 flex flex-col overflow-hidden" role="main">
+            <header class="flex items-center p-4 sm:p-5 md:p-6 bg-gradient-to-r from-purple-600/20 
+            via-violet-600/15 to-purple-700/20 border-b border-purple-400/30 relative min-h-[70px]
+            sm:min-h-[80px] overflow-hidden">
+                <!-- <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-none sm:rounded-t-2xl"></div> -->
+               <!-- chat-avatar sm:w-15 sm:h-15-->
+                <img src="../images/LogoAstraLumina.png"
+                        onerror="this.src='https://astralumina.ar/Archivos WP/Imagenes/logoastra.webp'" 
+                        alt="Logo de AstraLumina" 
+                        loading="lazy" class="bg-transparent w-24 h-12 shadow-2xl rounded-full mr-3 sm:mr-4 object-cover relative z-10 
+                        brightness-[1.7] saturate-150 contrast-110 transition-all duration-300 hover:shadow-purple-500/30"
+                > 
+                <div class="flex-grow font-serif font-semibold text-base sm:text-lg leading-tight relative z-10 text-white">
+                    <div class="block">AstraLumina Assistant</div>
+                    <!-- <div class="hidden sm:block">AstraLumina Assistant</div> -->
+                    <small class="opacity-90 text-xs sm:text-sm font-sans font-normal text-purple-200 block">Asistente Virtual</small>
+                </div>
 
-              class="chat-avatar shadow-2xl rounded-full mr-3 sm:mr-4 object-cover relative z-10"> 
-            <div class="flex-grow font-serif font-semibold text-base sm:text-lg leading-tight relative z-10 text-white">
-                <div class="block sm:hidden">AstraLumina Assistant</div>
-                <div class="hidden sm:block">AstraLumina</div>
-                <small class="opacity-90 text-xs sm:text-sm font-sans font-normal text-purple-200 block">Asistente Virtual</small>
-            </div>
-            <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-purple-400 rounded-full ml-auto animate-pulse shadow-lg shadow-purple-400/60 relative z-10"></div>
-            <div class="absolute top-2 right-2 sm:top-3 sm:right-3 px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-xs font-medium z-20 bg-purple-600/30 text-purple-200 border border-purple-400/30 backdrop-blur-sm" id="connectionStatus">En línea</div>
-        </header>
+                <div class="flex items-center gap-1">
+
+                    <div class="w-3 h-3 sm:w-3 sm:h-3 border-2 bg-purple-400 rounded-full ml-auto animate-pulse shadow-lg 
+                        shadow-purple-400/60 relative z-10">
+                    </div>   
+                    <div class="top-2 right-2 sm:top-3 sm:right-3 px-2 py-1 sm:px-3 sm:py-1.5 rounded-full 
+                        text-xs font-medium z-20 bg-purple-600/30 text-purple-200 border-purple-400/50 
+                        backdrop-blur-sm" id="connectionStatus">
+                    </div>
+
+                </div>
+                
+            </header>
+            <!--  -->
         
-        <div id="chat-log" role="log" aria-live="polite" aria-label="Historial de conversación" class="flex-1 p-4 
-        overflow-y-auto bg-gray-900/50 flex flex-col gap-3 sm:gap-4 scrollbar-thin scrollbar-thumb-purple-600 
-        scrollbar-track-gray-700 min-h-0">
+    <div id="chat-log" role="log" aria-live="polite" aria-label="Historial de conversación" class="flex-1 p-4 
+    overflow-y-auto bg-gray-900/50 flex flex-col gap-3 sm:gap-4 scrollbar-thin scrollbar-thumb-purple-600 
+    scrollbar-track-gray-700 min-h-0">
         </div>
         
         <div class="p-3 sm:p-4 md:p-5 lg:p-6 bg-gray-900/70 backdrop-blur-sm border-t border-purple-400/30 flex gap-2 sm:gap-3 md:gap-4 items-center" role="form">
@@ -74,7 +91,7 @@
     </div>
     
    
-    <section class="menu-inferior md:hidden fixed bottom-0 left-0 right-0 z-40 pt-2 sm:pt-4 justify-center justify-items-center bg-gray-900/95 backdrop-blur-sm border-t border-gray-700">
+    <!-- <section class="menu-inferior md:hidden fixed bottom-0 left-0 right-0 z-40 pt-2 sm:pt-4 justify-center justify-items-center bg-gray-900/95 backdrop-blur-sm border-t border-gray-700">
         <div class="menu-inferior-container flex w-full max-w-[600px] justify-around bg-gray-800/50 backdrop-blur-sm px-2 sm:px-4 pb-2 pt-2 rounded-t-2xl border border-gray-600 mx-4">
             <a href="../index.html" class="flex flex-col items-center group">
                 <div class="p-3 rounded-xl bg-gray-400/10 group-hover:bg-gray-400/20 transition-colors">
@@ -107,7 +124,7 @@
                 <span class="text-xs font-medium text-gray-300 mt-1">Acerca de</span>
             </a> 
         </div>
-    </section>
+    </section> -->
 
 </body>
 </html>

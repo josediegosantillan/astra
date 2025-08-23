@@ -38,7 +38,7 @@ class AstraLuminaChatbot {
             // fallback: usar un contexto genérico y permitir envío
             this.systemContext = 'Eres un asistente virtual amigable de AstraLumina.';
             if (this.sendButton) this.sendButton.disabled = false;
-            if (this.connectionStatus) this.connectionStatus.textContent = 'En línea (contexto por defecto)';
+            if (this.connectionStatus) this.connectionStatus.textContent = 'En línea';
             this.addWelcomeMessage();
         });
 
@@ -197,18 +197,23 @@ class AstraLuminaChatbot {
             if (lineIndex >= lines.length) return;
             
             const line = lines[lineIndex];
-            const lineElement = document.createElement('div');
+            // Usar <p> para que las reglas de tipografía aplicadas a #chat-log p
+            // (por ejemplo el aumento de font-size en móviles) afecten también
+            // a las líneas del mensaje progresivo.
+            const lineElement = document.createElement('p');
+            // Aplicar las mismas clases que usan los mensajes normales
+            lineElement.className = 'text-sm sm:text-base text-gray-100 leading-relaxed whitespace-pre-wrap';
             lineElement.style.opacity = '0';
             lineElement.style.transform = 'translateY(4px)';
             // Transición más larga para una aparición muy suave
             lineElement.style.transition = 'opacity 0.9s ease-out, transform 0.9s ease-out';
-            
+
             if (line === '') {
                 lineElement.innerHTML = '&nbsp;';
             } else {
                 lineElement.innerHTML = this.formatMessage(line);
             }
-            
+
             contentContainer.appendChild(lineElement);
             
             // Transición ultra suave (ligero delay antes de iniciar para evitar parpadeos)
@@ -403,7 +408,8 @@ Contame, ¿en qué puedo ayudarte?`;
             this.addTypingIndicator();
         } else {
             this.connectionStatus.textContent = 'En línea';
-            this.connectionStatus.className = 'absolute top-2 right-2 sm:top-3 sm:right-3 px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-xs font-medium z-20 bg-purple-600/30 text-purple-200 border border-purple-400/30 backdrop-blur-sm';
+            
+            this.connectionStatus.className = 'top-2 right-2 sm:top-3 sm:right-3 px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-xs font-medium z-20 bg-purple-600/30 text-purple-200 border-purple-400/50 backdrop-blur-sm';
             
             // Remover indicador de escritura
             this.removeTypingIndicator();

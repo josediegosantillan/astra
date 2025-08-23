@@ -1,5 +1,8 @@
 
-    /* Efectos visuales avanzados UX/UI */
+#cursos, #servicios, #inicio {
+  scroll-margin-top: 100px; /* Ajusta el valor según la altura del header */
+}  
+  /* Efectos visuales avanzados UX/UI */
     
     /* Animaciones de entrada */
     @keyframes fadeInUp {
